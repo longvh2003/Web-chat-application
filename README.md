@@ -1,5 +1,4 @@
 # Web-chat-application
-# Web Chat Application
 
 **Nhóm 8:**
 
@@ -19,42 +18,7 @@
 
 **Đặng Ngọc Tiến**
 
-
-
-
-
-
-
-
-
-
-
-
-
 #
-## Mục lục:
-
-I.Giới thiệu:        3
-
-I.1: Mục đích:        3
-
-I.2: Đối tượng sử dụng tài liệu:        3
-
-I.3: Phạm vi sản phẩm:        3
-
-II.Chức năng:        3
-
-II.1: Tổng quan:        3
-
-II.2: Các chức năng:        3
-
-III. Các đối tượng sử dụng:        4
-
-III.1: Quản trị viên:        4
-
-III.2: Thành viên:        4
-
-
 
 # I.Giới thiệu:
 
@@ -89,10 +53,7 @@ Toàn cầu, những ai muốn chat với mọi người đều có thể sử d
 | **Kết bạn online** | Mọi người có thể kết bạn với nhau qua mạng, kể cả khi không biết người đó là ai thông qua việc tìm kiếm tên người đó trên thanh tìm kiếm của trang web. |
 | **Chat** | Mọi người có thể chat với nhau trực tuyến qua mạng.Có thể chat từng đôi một với nhau hoặc có thể chat theo nhóm. |
 | **Video Call** | Mọi người có thể gọi video cho nhau theo nhóm hoặc cá nhân khi có kết nối internet. |
-| **Chức năng nâng cao** | Giống như một mạng xã hội đơn giản:Mọi người đều có một bảng tin:
-- Có thể đăng các tin của mình lên bảng tin.
-- Có thể thấy được các tin của bạn bè trên bảng tin.
- |
+| **Chức năng nâng cao** | Một mạng xã hội đơn giản. |
 
 
 
