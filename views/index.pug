@@ -1,0 +1,17 @@
+doctype html
+script(src='/socket.io/socket.io.js')
+style.
+div(style='height: 500px;border:1px solid green;position: relative;')
+  p#asd
+input#username(type='text', placeholder='name')
+input#mess(type='text', placeholder='text')
+button#btn send
+script.
+  var socket=io();
+  document.getElementById("btn").addEventListener("click", abc);
+  function abc() {
+  socket.emit('sendbackserver',{name:document.getElementById("username").value,content:document.getElementById("mess").value});
+  }
+  socket.on('sendtoclients',function(data){
+  document.getElementById("asd").innerHTML+=data.name+':'+data.content+'<br>';
+  });
