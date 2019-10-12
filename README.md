@@ -48,14 +48,16 @@ Toàn cầu, những ai muốn chat với mọi người đều có thể sử d
 
 ## II.2: Các chức năng:
 
-|   **Chức năng** |   **Mô tả** |
-| --- | --- |
-| **Kết bạn online** | Mọi người có thể kết bạn với nhau qua mạng, kể cả khi không biết người đó là ai thông qua việc tìm kiếm tên người đó trên thanh tìm kiếm của trang web. |
-| **Chat** | Mọi người có thể chat với nhau trực tuyến qua mạng.Có thể chat từng đôi một với nhau hoặc có thể chat theo nhóm. |
-| **Video Call** | Mọi người có thể gọi video cho nhau theo nhóm hoặc cá nhân khi có kết nối internet. |
-| **Chức năng nâng cao** | Một mạng xã hội đơn giản. |
-
-
+|   **Chức năng** |   **Mô tả** |	**Quản trị viên**	|	**Thành viên**	|
+| --- | --- | --- | --- |
+| **Đăng kí** | Người dùng tạo tài khoản để đăng nhập |  | X |
+| **Đăng nhập** | Người dùng đăng nhập để tham gia web chat. | X | X |
+| **Tìm kiếm** | Mọi người tìm kiếm bạn bè thông qua từ khóa, sẽ xuất hiện các kết quả trùng khớp nhất. | X | X |
+| **Kết bạn online** | Mọi người có thể kết bạn với nhau qua mạng, kể cả khi không biết người đó là ai thông qua việc tìm kiếm tên người đó trên thanh tìm kiếm của trang web. |  | X |
+| **Chat** | Mọi người có thể chat với nhau trực tuyến qua mạng.Có thể chat từng đôi một với nhau hoặc có thể chat theo nhóm. | X | X |
+| **Tùy chỉnh hồ sơ** | Thể hiện cá tính của người dùng. Mọi người có thể thay đổi: tên, biệt danh, avatar, … |  | X |
+| **Thông báo** | Thông báo khi có người gửi lời mời kết bạn, nhắn tin, …. |  | X |
+| **Xóa tài khoản** | Xóa tài khoản vi phạm quy tắc của web chat. | X |  |
 
 # III. Các đối tượng sử dụng:
 
