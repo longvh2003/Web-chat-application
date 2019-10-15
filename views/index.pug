@@ -3,14 +3,14 @@ script(src='/socket.io/socket.io.js')
 style.
 div(style='height: 500px;border:1px solid green;position: relative;')
   Strong#dsa=dsa
-  p#asd
+  p#asd(style="height:400px;overflow-y:auto")
 input#username(type='text', placeholder='name')
 input#mess(type='text', placeholder='text')
 button#btn send
 script.
   var socket=io();
   var roomCode=!{JSON.stringify(dsa)};
-  socket.emit('room',roomCode);	  
+  socket.emit('room',roomCode);   
   document.getElementById("btn").addEventListener("click", abc);
   function abc() {
   socket.emit('sendbackserver',{name:document.getElementById("username").value,content:document.getElementById("mess").value,roomNumber:roomCode});
