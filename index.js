@@ -5,7 +5,7 @@ var mysql=require('mysql');
 var connection=mysql.createConnection({
 	host: 'localhost',
 	user: 'root',
-	password: '54254256',
+	password: '123456',
 	database: 'test'
 });
 var regform = require('./regform');
@@ -38,6 +38,20 @@ regform(app, connection);
 // 		}
 // 	});
 // });
+
+app.post('/user',function(req,res){
+	console.log('password: '+req.body.email+' password: '+req.body.pass);
+
+	connection.query('SELECT * FROM User WHERE Email = ? and Pass= ? ',[req.body.email,req.body.pass],function(err,rows){
+		if(err) console.log(err);
+		if(rows.length===1) {
+			res.render('joinForm');
+		}
+		console.log(rows);
+	});
+
+});
+
 
 app.post('/user/chat-room',function(req,res){
 	res.render('index',{
