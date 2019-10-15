@@ -6,8 +6,9 @@ var connection=mysql.createConnection({
 	host: 'localhost',
 	user: 'root',
 	password: '54254256',
-	database: 'chat'
+	database: 'test'
 });
+var regform = require('./regform');
 
 connection.connect(err=>{
 	if(err) console.log(err);
@@ -24,20 +25,19 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.get('/',function(req,res){
 	res.render('loginForm');
 });
-app.get('/regform', function(req, res){
-	res.render('regForm');
-});	
 
-app.post('/user',function(req,res){
-	console.log('password: '+req.body.username+' password: '+req.body.password);
+regform(app, connection);
 
-	connection.query('SELECT * FROM customer WHERE user_name = ? and password= ? ',[req.body.username,req.body.password],function(err,rows){
-		if(err) console.log(err);
-		if(rows.length===1) {
-			res.render('joinForm');
-		}
-	});
-});
+// app.post('/user',function(req,res){
+// 	console.log('password: '+req.body.username+' password: '+req.body.password);
+
+// 	connection.query('SELECT * FROM customer WHERE user_name = ? and password= ? ',[req.body.username,req.body.password],function(err,rows){
+// 		if(err) console.log(err);
+// 		if(rows.length===1) {
+// 			res.render('joinForm');
+// 		}
+// 	});
+// });
 
 app.post('/user/chat-room',function(req,res){
 	res.render('index',{
