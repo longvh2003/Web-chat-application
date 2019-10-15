@@ -74,3 +74,5 @@ Quản trị viên là những người có trách nhiệm quản trị trang we
 Thành viên là những người dùng đã đăng kí.
 
 Thành viên có thể sử dụng các chức năng của trang web như chat,...
+
+Cau truc log-in: https://colorlib.com/wp/template/login-form-v1/
