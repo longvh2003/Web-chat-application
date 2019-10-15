@@ -1,0 +1,44 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(http-equiv='X-UA-Compatible', content='ie=edge')
+    title Sign Up Form by Colorlib
+    // Font Icon
+    link(rel='stylesheet', href='fonts/material-icon/css/material-design-iconic-font.min.css')
+    // Main css
+    link(rel='stylesheet', href='css/style.css')
+  body
+    .main
+      section.signup
+        // <img src="images/pepega.jpg" alt="">
+        .container
+          .signup-content
+            form#signup-form.signup-form(method='POST')
+              h2.form-title Create account
+              .form-group
+                input#name.form-input(type='text', name='name', placeholder='Your Name')
+              .form-group
+                input#email.form-input(type='email', name='email', placeholder='Your Email')
+              .form-group
+                input#password.form-input(type='text', name='password', placeholder='Password')
+                span.zmdi.zmdi-eye.field-icon.toggle-password(toggle='#password')
+              .form-group
+                input#re_password.form-input(type='password', name='re_password', placeholder='Repeat your password')
+              .form-group
+                input#agree-term.agree-term(type='checkbox', name='agree-term')
+                label.label-agree-term(for='agree-term')
+                  span
+                    span
+                  | I agree all statements in 
+                  a.term-service(href='#') Terms of service
+              .form-group
+                input#submit.form-submit(type='submit', name='submit', value='Sign up')
+            p.loginhere
+              | Have already an account ? 
+              a.loginhere-link(href='/') Login here
+    // JS
+    script(src='vendor/jquery/jquery.min.js')
+    script(src='js/reg.js')
+  // This templates was made by Colorlib (https://colorlib.com)

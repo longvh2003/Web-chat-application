@@ -5,7 +5,7 @@ var mysql=require('mysql');
 var connection=mysql.createConnection({
 	host: 'localhost',
 	user: 'root',
-	password: '123456',
+	password: '54254256',
 	database: 'chat'
 });
 
@@ -17,12 +17,16 @@ connection.connect(err=>{
 
 app.set('view engine','pug');
 app.set('views','./views');
+app.use(express.static('public'));
 
 app.use(bodyParser.urlencoded({extended:true}));
 
 app.get('/',function(req,res){
 	res.render('loginForm');
 });
+app.get('/regform', function(req, res){
+	res.render('regForm');
+});	
 
 app.post('/user',function(req,res){
 	console.log('password: '+req.body.username+' password: '+req.body.password);
