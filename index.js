@@ -27,9 +27,9 @@ app.get('/',function(req,res){
 });
 
 regform(app, connection);
-app.use(express.urlencoded());
+// app.use(express.urlencoded());
 app.post('/home',function(req,res){
-	console.log('password: '+req.body.email+' password: '+req.body.pass);
+	console.log('email: '+req.body.email+' password: '+req.body.pass);
 
 		connection.query('SELECT * FROM User WHERE Email = ? and Pass= ? ',[req.body.email,req.body.pass],function(err,rows){
 		if(err) console.log(err);
