@@ -5,7 +5,7 @@ var mysql=require('mysql');
 var connection=mysql.createConnection({
 	host: 'localhost',
 	user: 'root',
-	password: '54254256',
+	password: '123456',
 	database: 'test'
 });
 var regform = require('./regform');

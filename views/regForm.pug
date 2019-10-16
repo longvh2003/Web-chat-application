@@ -21,8 +21,9 @@ html(lang='en')
                 input#name.form-input(type='text', name='name', placeholder='Your Name')
               .form-group
                 input#email.form-input(type='email', name='email', placeholder='Your Email')
+                span(style='display:none;', id='invaildmail') Trung mail
               .form-group
-                input#password.form-input(type='text', name='password', placeholder='Password')
+                input#password.form-input(type='password', name='password', placeholder='Password')
                 span.zmdi.zmdi-eye.field-icon.toggle-password(toggle='#password')
               .form-group
                 input#re_password.form-input(type='password', name='re_password', placeholder='Repeat your password')

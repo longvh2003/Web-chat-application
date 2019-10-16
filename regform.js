@@ -12,10 +12,9 @@ module.exports = function(app, conn){
 					VALUE(?,?,?)`;
 		conn.query(sql, user,  (err, results, fields) => {
   			if (err) {
-    			return console.error(err.message);
+    			res.redirect('/regform')
   			}
-  		// get inserted id
-  			console.log('TEST:' + results.insertId);
+  		res.redirect('/');
 	});
 	});
 }
