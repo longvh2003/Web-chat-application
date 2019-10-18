@@ -42,7 +42,6 @@ app.post('/home',function(req,res){
 		}
 			console.log(rows);
 		});
-	
 
 });
 
