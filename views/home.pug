@@ -1,6 +1,49 @@
 doctype html
 html
   head
-    title PEPEGA
+    script(type='text/javascript', src='./node_modules/jquery-3.3.1.min.js')
+    script.
+      function showOption(x){
+      x.style.display= "inline-block";
+      }
+      function hideOption(x){
+      x.style.display="none";
+      }
+    title
+    style.
+      *{
+      box-sizing: border-box;
+      }
+      #sendMess{
+      position: absolute;
+      bottom: 0;
+      }
+      #setting:hover{
+      display: block;
+      }
+      #option{
+      display: none;
+      }
   body
-    img(src='images/pepega.jpg', alt='')
+    #container(style='height: 500px;')
+      #header
+        h3 User Email
+        div(style='top:10px;right:10px;position: absolute;')
+          button#setting(onmouseover="showOption(document.getElementById('option'))", onmouseleave="hideOption(document.getElementById('option'))")
+            | Setting
+            br
+            #option
+              a(href='#') log-out
+              br
+              a(href='#') change password
+              br
+              a(href='#') settings
+      #friends(style='width: 40%;border:1px solid black;float: left;height: 500px;')
+        ul
+          li Friend 1
+          li Friend 2
+          li Friend 3
+      #chatArea(style='width: 60%;border:1px solid red;float: right;height: 500px;position: relative;')
+        #sendMess(style='width: 100%')
+          input(type='text', style='width: 70%')
+          button(style='width:10%') send
