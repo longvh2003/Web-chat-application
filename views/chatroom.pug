@@ -1,0 +1,67 @@
+doctype html
+head
+    title hey
+    style(type="text/css").
+        div{
+            border: 1px solid black;
+        }
+        .container{
+            position: sticky;
+            top: 0;
+            width:100%;
+            height: 75px;
+            background-color:white;
+        }
+        .header{
+            display: inline-block;
+            position: sticky;
+            width:100%;
+            height:75px;
+        }
+        .searchbar{
+            box-sizing: border-box;
+            position:absolute;
+            top:50%;
+            transform:translateY(-50%);
+        }
+        .logo{
+            border: none;
+            height: 100%;
+            position:relative;
+            width: 50px;
+            margin-left:20px;  
+            margin-right:50px; 
+        }
+        .inlinediv{
+            display: inline-block;
+        }
+        .imglogo{
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            top:50%;
+            transform:translateY(-50%);
+        }
+        #logo{
+            
+        }
+        .searchbutton{
+            width: 20px;
+            height: 20px;
+        }
+        ul{
+            overflow:hidden;
+        }
+body
+    .container
+        header.header
+            .logo.inlinediv#logo
+                img(src="https://www.billboard.com/files/styles/article_main_image/public/media/irene-bae-joo-hyun-red-velvet-2019-billboard-1548.jpg", alt="").imglogo
+            .searchbar.inlinediv#searchbar
+                form(action="submit" method="GET").searchform
+                    input(type="text").searchtext
+                    button.searchbutton
+            .navbar#navbar
+    ul.list
+            
+
