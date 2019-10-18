@@ -18,11 +18,12 @@ html(lang='en')
             form#signup-form.signup-form(method='POST')
               h2.form-title Create account
               .form-group
-                input#name.form-input(type='text', name='name', placeholder='Your Name')
+                input#name.form-input(type='text', name='name', placeholder='Your Name',value=oldName)
               .form-group
-                input#email.form-input(type='email', name='email', placeholder='Your Email')
+                input#email.form-input(type='email', name='email', placeholder='Your Email',value=oldEmail)
+                span(style='color:red', id='invaildmail',name=invalidEmail)=invalidEmail
               .form-group
-                input#password.form-input(type='text', name='password', placeholder='Password')
+                input#password.form-input(type='password', name='password', placeholder='Password')
                 span.zmdi.zmdi-eye.field-icon.toggle-password(toggle='#password')
               .form-group
                 input#re_password.form-input(type='password', name='re_password', placeholder='Repeat your password')

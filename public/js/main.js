@@ -18,6 +18,7 @@
         }
 
         return check;
+        //return true;
     });
 
 
@@ -38,6 +39,7 @@
                 return false;
             }
         }
+        return true;
     }
 
     function showValidate(input) {
