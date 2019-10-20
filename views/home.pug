@@ -30,9 +30,10 @@ html
               a(href='#') change password
               br
               a(href='#') settings
-      form#friends(action='/home/searchFriends' method='POST' style='width: 40%;border:1px solid black;float: left;height: 500px;')
-        button#addFriends(style='border-radius: 50%' type='submit')
+      #friends(style='width: 40%;border:1px solid black;float: left;height: 500px;')
+        button#addFriends(style='border-radius: 50%')
           img(src='images/addFriends.jpg', style='width: 50px;height: 50px;border-radius: 50%;')
+        input#in  
         ul
           li Friend 1
           li Friend 2
@@ -41,6 +42,7 @@ html
         #sendMess(style='width: 100%')
           input(type='text', style='width: 70%')
           button(style='width:10%') send
+    script(src='vendor/jquery/jquery-3.2.1.min.js')
     script.
       function showOption(x){
       x.style.display= "inline-block";
@@ -52,3 +54,15 @@ html
       function displayFormAdd(){
       console.log('click');
       }
+      $(function(){
+      $('#addFriends').on('click',()=>{
+      $.ajax({
+      url:'/home/addFriends',
+      method:'POST',
+      data:{email:$('#in').val()},
+      success:(res)=>{
+      console.log(res);
+      }
+      });
+      });
+      });

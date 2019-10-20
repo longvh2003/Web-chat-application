@@ -34,7 +34,9 @@ app.post('/home',function(req,res){
 		connection.query('SELECT * FROM User WHERE Email = ? and Pass= ? ',[req.body.email,req.body.pass],function(err,rows){
 		if(err) console.log(err);
 		if(rows.length > 0) {
-			res.render('home');
+			res.render('home',{
+				userEmail:req.body.email
+			});
 			console.log('success');
 		} else {
 			res.redirect('/');
@@ -51,6 +53,11 @@ app.post('/user/chat-room',function(req,res){
 		dsa:req.body.asd
 	});
 });
+
+app.post('/home/addFriends',(req,res)=>{
+	console.log('Email friends: '+req.body.email); //gửi kết bạn đến req.body.email(chưa làm)
+});
+
 
 
 var server=app.listen(3000,()=>{console.log('running...');});
