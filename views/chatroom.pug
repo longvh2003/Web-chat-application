@@ -52,6 +52,21 @@ head
         ul{
             overflow:hidden;
         }
+        .has-search .form-control {
+            padding-left: 2.375rem;
+        }
+
+        .has-search .form-control-feedback {
+            position: absolute;
+            z-index: 2;
+            display: block;
+            width: 2.375rem;
+            height: 2.375rem;
+            line-height: 2.375rem;
+            text-align: center;
+            pointer-events: none;
+            color: #aaa;
+        }
 body
     .container
         header.header
@@ -59,8 +74,10 @@ body
                 img(src="https://www.billboard.com/files/styles/article_main_image/public/media/irene-bae-joo-hyun-red-velvet-2019-billboard-1548.jpg", alt="").imglogo
             .searchbar.inlinediv#searchbar
                 form(action="submit" method="GET").searchform
-                    input(type="text").searchtext
-                    button.searchbutton
+                    input.searchtext.form-control(type='text', placeholder='Search this blog')
+                        .input-group-append
+                            button.searchbutton.btn.btn-secondary(type='button')
+                            i.fa.fa-search
             .navbar#navbar
     ul.list
             

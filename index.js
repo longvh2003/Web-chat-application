@@ -23,7 +23,7 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended:true}));
 
 app.get('/',function(req,res){
-	res.render('chatroom');
+	res.render('loginForm');
 });
 
 regform(app, connection);
