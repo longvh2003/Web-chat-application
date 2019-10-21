@@ -1,14 +1,6 @@
 doctype html
 html
   head
-    script(type='text/javascript', src='./node_modules/jquery-3.3.1.min.js')
-    script.
-      function showOption(x){
-      x.style.display= "inline-block";
-      }
-      function hideOption(x){
-      x.style.display="none";
-      }
     title
     style.
       *{
@@ -27,7 +19,7 @@ html
   body
     #container(style='height: 500px;')
       #header
-        h3 User Email
+        h3='Email: '+userEmail
         div(style='top:10px;right:10px;position: absolute;')
           button#setting(onmouseover="showOption(document.getElementById('option'))", onmouseleave="hideOption(document.getElementById('option'))")
             | Setting
@@ -39,6 +31,9 @@ html
               br
               a(href='#') settings
       #friends(style='width: 40%;border:1px solid black;float: left;height: 500px;')
+        button#addFriends(style='border-radius: 50%')
+          img(src='images/addFriends.jpg', style='width: 50px;height: 50px;border-radius: 50%;')
+        input#in  
         ul
           li Friend 1
           li Friend 2
@@ -47,3 +42,27 @@ html
         #sendMess(style='width: 100%')
           input(type='text', style='width: 70%')
           button(style='width:10%') send
+    script(src='vendor/jquery/jquery-3.2.1.min.js')
+    script.
+      function showOption(x){
+      x.style.display= "inline-block";
+      }
+      function hideOption(x){
+      x.style.display="none";
+      }
+      document.getElementById('addFriends').addEventListener('click', displayFormAdd);
+      function displayFormAdd(){
+      console.log('click');
+      }
+      $(function(){
+      $('#addFriends').on('click',()=>{
+      $.ajax({
+      url:'/home/addFriends',
+      method:'POST',
+      data:{email:$('#in').val()},
+      success:(res)=>{
+      console.log(res);
+      }
+      });
+      });
+      });
