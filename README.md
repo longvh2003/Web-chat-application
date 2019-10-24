@@ -65,7 +65,7 @@ Cau truc log-in: https://colorlib.com/wp/template/login-form-v1/
 ## IV.1: Đăng ký:
  ![alt text](https://scontent.xx.fbcdn.net/v/t1.15752-9/75305226_2617785808264557_8660315435100536832_n.png?_nc_cat=110&_nc_oc=AQmOB0PeLs_oYlUzMHmSbKVXuoWc_iO9rj_UOcWiZRHtktNxLN7YN0JKZompwnDXmqM&_nc_ht=scontent.fhan3-1.fna&oh=b2fdb84578be19aadc611a86eb42bffa&oe=5E592DBE&_nc_fr=fhan3c01)
 ## IV.2: Đăng nhập:
- 
+ ![login Form](https://ibb.co/FDPGVrd)
 ## IV.3,4,5:Tìm kiếm,kết bạn,thông báo:
  
 
