@@ -76,5 +76,6 @@ Cau truc log-in: https://colorlib.com/wp/template/login-form-v1/
 
  
 
-
+## Database design:
+![database](https://i.ibb.co/dW2bJS5/Capture.png)
 
