@@ -92,4 +92,6 @@ Cau truc log-in: https://colorlib.com/wp/template/login-form-v1/
 ## Database design:
 
 ![database](https://i.ibb.co/dW2bJS5/Capture.png)
+
+![use case model](https://github.com/ph4nt0mb0y/Web-chat-application/files/3775979/usecase.docx)
 	
