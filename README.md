@@ -93,5 +93,71 @@ Cau truc log-in: https://colorlib.com/wp/template/login-form-v1/
 
 ![database](https://i.ibb.co/dW2bJS5/Capture.png)
 
-![use case model](https://github.com/ph4nt0mb0y/Web-chat-application/files/3775979/usecase.docx)
+# V.Biểu đồ ca sử dụng:
+
+
+
+_Image1: Use case main diagram_
+
+**V.1: Biểu đồ ca sử dụng gói hệ thống:**
+
+ 
+
+_Image2: Use case system package diagram_
+
+**V.2: Biểu đồ ca sử dụng gói quản lí:**
+
+
+
+_Image3: Use case management package diagram_
+
+
+
+
+
+**V.3: Mô tả mô hình ca sử dụng:**
+
+**3.1. Các tác nhân:**
+
+Hệ thống bao gồm 3 tác nhân: Quản trị viên, thành viên, khách.
+
+### 3.1.1. Quản trị viên:
+
+Quản trị viên có trách nhiệm chính là quản lí thành viên.
+
+Các ca sử dụng chính của một quản trị viên là quản lí thành viên và giải quyết báo cáo.
+
+### 3.1.3. Thành viên:
+
+Thành viên là một người đã đăng kí và đăng nhập vào hệ thống.
+
+Thành viên có thể có nhiều ca sử dụng như: tìm kiếm, kết bạn, chat, tùy chỉnh thông tin, gửi báo cáo,.v.v.
+
+### 3.1.4. Khách:
+
+Khách là bất kì người nào ghé thăm hệ thống. Khách không thể thực hiện bất kì nhiệm vụ nào trong hệ thống nếu chưa đăng kí tài khoản. Sau khi đăng kí tài khoản, khách trở thành thành viên.
+
+## 3.2.Các ca sử dụng:
+
+Hệ thống gồm có 10 ca sử dụng chính, được chia thành 2 gói: gói hệ thống và gói quản lý.
+
+### 3.2.1:Gói hệ thống:
+
+Gói hệ thống bao gồm tất cả các ca sử dụng liên quan đến tương tác giữa tác nhân và hệ thống. Gói hệ thống có 4 ca sử dụng chính:
+
+- Đăng kí.
+- Đăng nhập.
+- Tìm kiếm
+- Kết bạn
+- Chat
+- Tùy chỉnh thông tin
+- Xem thông báo
+
+### 3.2.3:Gói quản lí:
+
+Gói quản lí bao gồm tất cả các ca sử dụng liên quan đến việc quản lí. Gói quản lí có 4 ca sử dụng chính:
+
+- Quản lí thành viên.
+- Báo cáo tới quản trị viên.
+- Giải quyết các báo cáo.
 	
