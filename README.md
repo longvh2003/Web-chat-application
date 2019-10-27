@@ -93,3 +93,15 @@ Cau truc log-in: https://colorlib.com/wp/template/login-form-v1/
 
 ![database](https://i.ibb.co/dW2bJS5/Capture.png)
 
+Hành động	Phản hồi hệ thống	Thông tin
+Khách vào trang web	Hệ thống yêu cầu khách nhập thông tin theo mẫu.	•	Họ và tên*
+•	Ngày sinh
+•	Email*
+•	Đại chỉ
+•	Giới tính
+•	Số điện thoại*
+•	Mật khẩu
+•	Nhập lại mật khẩu
+*Thông tin bắt buộc
+Khách nhấn đăng kí tài khoản	Hệ thống kiểm tra thông tin tài khoản xem đã xuất hiện hay chưa và có hợp lệ không.	
+	Hệ thống xác nhận thông tin người dùng và tạo mới tài khoản cho người dùng để đăng nhập.	
