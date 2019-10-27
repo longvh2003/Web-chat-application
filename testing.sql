@@ -8,6 +8,8 @@ CREATE TABLE `User` (
 	`Name` varchar(15),
 	`Pass` varchar(15) NOT NULL,
 	`Email` varchar(25) NOT NULL UNIQUE,
+	`Birth` date,
+	`Gender` varchar(15),
 	PRIMARY KEY (`UserID`)
 );
 
