@@ -1,4 +1,3 @@
-Link expressjs: https://www.tutorialspoint.com/expressjs/index.htm
 
 # Web-chat-application
 
@@ -95,53 +94,50 @@ Cau truc log-in: https://colorlib.com/wp/template/login-form-v1/
 
 # V.Biểu đồ ca sử dụng:
 
-
+![main](https://user-images.githubusercontent.com/43175311/67636515-07f20e00-f904-11e9-96c6-0475c7b513df.png)
 
 _Image1: Use case main diagram_
 
 **V.1: Biểu đồ ca sử dụng gói hệ thống:**
 
- 
+ ![system](https://user-images.githubusercontent.com/43175311/67636519-0d4f5880-f904-11e9-8470-f70aa271fd17.png)
 
 _Image2: Use case system package diagram_
 
 **V.2: Biểu đồ ca sử dụng gói quản lí:**
 
-
+![management](https://user-images.githubusercontent.com/43175311/67636517-0c1e2b80-f904-11e9-8df8-1b79e489d32f.png)
 
 _Image3: Use case management package diagram_
 
 
-
-
-
 **V.3: Mô tả mô hình ca sử dụng:**
 
-**3.1. Các tác nhân:**
+**V.3.1. Các tác nhân:**
 
 Hệ thống bao gồm 3 tác nhân: Quản trị viên, thành viên, khách.
 
-### 3.1.1. Quản trị viên:
+### V.3.1.1. Quản trị viên:
 
 Quản trị viên có trách nhiệm chính là quản lí thành viên.
 
 Các ca sử dụng chính của một quản trị viên là quản lí thành viên và giải quyết báo cáo.
 
-### 3.1.3. Thành viên:
+### V.3.1.2. Thành viên:
 
 Thành viên là một người đã đăng kí và đăng nhập vào hệ thống.
 
 Thành viên có thể có nhiều ca sử dụng như: tìm kiếm, kết bạn, chat, tùy chỉnh thông tin, gửi báo cáo,.v.v.
 
-### 3.1.4. Khách:
+### V.3.1.3. Khách:
 
 Khách là bất kì người nào ghé thăm hệ thống. Khách không thể thực hiện bất kì nhiệm vụ nào trong hệ thống nếu chưa đăng kí tài khoản. Sau khi đăng kí tài khoản, khách trở thành thành viên.
 
-## 3.2.Các ca sử dụng:
+## V.3.2.Các ca sử dụng:
 
 Hệ thống gồm có 10 ca sử dụng chính, được chia thành 2 gói: gói hệ thống và gói quản lý.
 
-### 3.2.1:Gói hệ thống:
+### V.3.2.1:Gói hệ thống:
 
 Gói hệ thống bao gồm tất cả các ca sử dụng liên quan đến tương tác giữa tác nhân và hệ thống. Gói hệ thống có 4 ca sử dụng chính:
 
@@ -153,7 +149,7 @@ Gói hệ thống bao gồm tất cả các ca sử dụng liên quan đến tư
 - Tùy chỉnh thông tin
 - Xem thông báo
 
-### 3.2.3:Gói quản lí:
+### V.3.2.2:Gói quản lí:
 
 Gói quản lí bao gồm tất cả các ca sử dụng liên quan đến việc quản lí. Gói quản lí có 4 ca sử dụng chính:
 
