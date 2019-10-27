@@ -69,10 +69,12 @@ Cau truc log-in: https://colorlib.com/wp/template/login-form-v1/
 ## IV.3,4,5:Tìm kiếm,kết bạn,thông báo:
  
 
-## IV.6:Nhắn tin:
+## IV.6:Chat:
 
+## IV.7:Tùy chỉnh hồ sơ:
+![change info](https://user-images.githubusercontent.com/43175311/67635045-0f5deb00-f8f5-11e9-91d9-ad71bec085ed.png)
  
-## IV.7:Xóa Tài khoản vi phạm (admin):
+## IV.8:Xóa Tài khoản vi phạm (admin):
 
  
 
