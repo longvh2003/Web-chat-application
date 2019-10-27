@@ -37,7 +37,6 @@ Tài liệu này bao gồm các thông tin về chức năng, người dùng,...
 Toàn cầu, những ai muốn chat với mọi người đều có thể sử dụng.
 
 # II.Chức năng:
-## II.1: Các chức năng:
 
 |   **Chức năng** |   **Mô tả** |	**Quản trị viên**	|	**Thành viên**	|
 | --- | --- | --- | --- |
