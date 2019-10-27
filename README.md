@@ -66,20 +66,31 @@ Cau truc log-in: https://colorlib.com/wp/template/login-form-v1/
  ![alt text](https://scontent.xx.fbcdn.net/v/t1.15752-9/75305226_2617785808264557_8660315435100536832_n.png?_nc_cat=110&_nc_oc=AQmOB0PeLs_oYlUzMHmSbKVXuoWc_iO9rj_UOcWiZRHtktNxLN7YN0JKZompwnDXmqM&_nc_ht=scontent.fhan3-1.fna&oh=b2fdb84578be19aadc611a86eb42bffa&oe=5E592DBE&_nc_fr=fhan3c01)
  
 ## IV.2: Đăng nhập:
+
  ![login Form](https://user-images.githubusercontent.com/43175311/67635052-197fe980-f8f5-11e9-90cd-5d70eb07a671.png)
  
+ 
 ## IV.3,4,5:Tìm kiếm,kết bạn,thông báo:
+
  ![friend](https://user-images.githubusercontent.com/43175311/67635048-15ec6280-f8f5-11e9-86c9-c2cba7e6a592.png)
+ 
 
 ## IV.6:Chat:
+
 ![chat](https://user-images.githubusercontent.com/43175311/67635050-17b62600-f8f5-11e9-8aeb-5c0597f449eb.png)
 
+
 ## IV.7:Tùy chỉnh hồ sơ:
+
 ![change info](https://user-images.githubusercontent.com/43175311/67635045-0f5deb00-f8f5-11e9-91d9-ad71bec085ed.png)
+
  
 ## IV.8:Xóa Tài khoản vi phạm (admin):
+
 ![admin](https://user-images.githubusercontent.com/43175311/67635046-12f17200-f8f5-11e9-847b-8e0a163bfcdf.png)
  
+ 
 ## Database design:
+
 ![database](https://i.ibb.co/dW2bJS5/Capture.png)
 
