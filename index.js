@@ -65,13 +65,12 @@ app.get('/home',(req,res)=>{
 
 
 app.post('/user/chat-room',function(req,res){
-	res.render('index',{
-		dsa:req.body.asd
-	});
+	console.log("Kien ngu vai loz");
 });
 
 app.post('/home/addFriends',(req,res)=>{
 	console.log('Email friends: '+req.body.email); //gửi kết bạn đến req.body.email(chưa làm)
+	res.redirect('/user/chat-room');
 });
 
 
