@@ -1,0 +1,161 @@
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    width: 100%;
+}
+
+strong{
+    color: red;
+    font-size: 30px;
+}
+
+.userchat{
+    color: blue;
+    font-size: 30px;
+}
+
+.container {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+}
+
+.header {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 75px;
+    background-color: blueviolet;
+    display:flex;
+}
+
+.content {
+    position: absolute;
+    bottom: 0;
+    top: 75px;
+    left: 0;
+    right: 0;
+}
+
+.container .header .menu-icon {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    height: 36px;
+    width: 36px;
+    background-color: transparent;
+}
+
+.menu-button {
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    background-color: transparent;
+    border: 1px transparent solid;
+}
+
+.menu-button:hover {
+    border-color: yellowgreen;
+}
+
+.menu {
+    position: relative;
+    left: 0;
+    width: 200px;
+    background-color: violet;
+    height: 100%;
+    float: left;
+}
+
+.ng-hide:not(.ng-hide-animate) {
+    display: block !important;
+    width: 0;
+}
+
+.room {
+    width: 250px;
+    background-color: rebeccapurple;
+    height: 100%;
+    position: relative;
+    float: left;
+}
+
+.menu-item {
+    display: flex;
+    height: 35px;
+    width: 100%;
+    justify-content: center;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.menu-text {
+    align-self: center;
+    font-size: 22px;
+}
+
+.menu-item:hover {
+    background-color: lightblue;
+}
+
+.chat-area {
+    position: relative;
+    right: 0;
+    height: 100%;
+    float: left;
+}
+
+.chat-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 80px;
+    display: flex;
+    width: 100%;
+}
+
+.text-input {
+    height: 100%;
+    width: calc(100% - 82px);
+    font-size: 24px;
+    padding-left: 12px;
+}
+
+.text-input-button {
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    right: 2px;
+    border: 1px solid gray;
+    bottom: 0;
+    padding: 0;
+}
+
+.div-sizing {
+    transition: width 2s;
+}
+
+.small {
+    width: calc(100% - 450px);
+}
+
+.big {
+    width: calc(100% - 250px);
+}
+
+.send-icon {
+    height: 78px;
+    width: 78px;
+    background: url("https://img.icons8.com/metro/26/000000/paper-plane.png") no-repeat center;
+}
+
+.send-icon:hover {
+    background: url("https://img.icons8.com/cotton/26/000000/paper-plane--v2.png") no-repeat center;
+}

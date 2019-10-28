@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <title>ChatForm</title>
+        <link rel="stylesheet" href="/content/chatForm.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+        <script src="https://kit.fontawesome.com/43b6aeb8f4.js" crossorigin="anonymous"></script>  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.js"></script>
+        <script src="./chat.js"></script>
+    </head>
+    <body>
+        <div class="container" ng-app="myApp" ng-controller="myCtrl" data-ng-init="init()">
+            <div class="header" ng-app="">
+                <div class="menu-icon" ng-app="">
+                        <button class="menu-button" ng-click="myButton = !myButton">
+                            <i class="fas fa-bars fa-2x"></i>
+                        </button>
+                </div>
+                <div ng-model="username" style="position:absolute; height: 75px; align-self: center;line-height: 75px;right: 0;font-size: 28px;">{{username}}</div>
+            </div>
+            <div class="content">
+                    <div class="menu animate-show-hide" ng-app="ngAnimate" ng-hide="!myButton" ng-init="items=['Profile','Friends','Settings','Log Out']">
+                            <div ng-repeat="item in items" class="menu-item" ng-app="{{item}}">
+                                <p class="menu-text">{{item}}</p>
+                            </div>
+                    </div>
+                    <div class="room"></div>
+                    <div class="chat-area" ng-class="{'small':myButton, 'big':!myButton}">
+                        <div class="message" ng-model="chatarea" style="overflow: auto; height: 100%;"></div>
+                        <div class="chat-bar div-sizing">
+                            <form style="width: 100%; height: 100%;">
+                                <input type="text" name="message" class="text-input" ng-model="message">
+                                <button class="text-input-button" ng-click="sendmessage()" type="submit">
+                                    <!-- <i class="fas fa-paper-plane fa-2x"></i> -->
+                                    <div class="send-icon"></div>
+                                </button> 
+                            </form>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <script src="/socket.io/socket.io.js"></script>
+    </body>
+</html>
