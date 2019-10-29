@@ -1,6 +1,6 @@
 import conn from './connection';
-import { callbackify } from 'util';
 
+/* Truy vấn vào database lấy tin nhắn theo chatroom. !!!Không thể dùng return tại hàm này */
 module.exports = (callback) => {
     const sql = 'select * from message where to_chatroom = 1';
     conn.aquire((err, con) => {

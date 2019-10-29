@@ -6,6 +6,8 @@ app.controller('myController', myController);
 //     $qProvider.errorOnUnhandledRejections(false);
 // });
 
+/* File này không hoặc chưa dùng đến
+ */
 
 function myController($scope, $http){
     $scope.username = "";

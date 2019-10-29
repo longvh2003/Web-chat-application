@@ -1,5 +1,6 @@
 import mysql from 'mysql';
 
+/* Tạo một pool có method aquire là connect vào database để truy vấn. !Nhớ release sau khi xử dụng xong. Trả về một đối tượng */
 function Connection(){
     this.pool = null;
     

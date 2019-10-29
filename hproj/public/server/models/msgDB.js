@@ -1,5 +1,6 @@
 import conn from './connection';
 
+/* Thêm msg vào trong database. */
 module.exports = (msg) =>{
     let username = msg.username;
     let message = msg.text;

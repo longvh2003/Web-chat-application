@@ -1,5 +1,7 @@
 import conn from './connection';
 
+
+/* Lấy username và password để xác thực trong database */
 module.exports = function(app){
     app.route('/auth')
     .post((req, res) => {
@@ -10,7 +12,7 @@ module.exports = function(app){
             conn.aquire(function(err, con) {
                 con.query(sql, [username,password], function(err, result, fields){
                     if(username && password){
-                        if(result.length > 0){
+                        if(result.length > 0){   //Nếu truy vấn thành công
                             console.log(result);
                             req.session.user = {
                                 userId: result[0].user_id,
