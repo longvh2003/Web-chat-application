@@ -121,6 +121,16 @@ strong{
     width: 100%;
 }
 
+.room-bar {
+    position: absolute;
+    left: 0;
+    height: 80px;
+    display: flex;
+    width: 100%;
+    font-size: 40px;
+    line-height: 80px;
+}
+
 .text-input {
     height: 100%;
     width: calc(100% - 82px);

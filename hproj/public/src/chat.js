@@ -1,3 +1,5 @@
+
+
 var socket = io.connect("http://localhost:3000");
 var userid = null;
 
@@ -13,6 +15,16 @@ angular.module('myApp', [])
             $scope.username = result.data.username;
             userid = result.data.userId;
             console.log(result.data);
+        })
+        $http.get('/home/messageHis').then((result) => {
+            console.log(result.data);
+            for(i = 0; i< result.data.length; i++){
+                console.log(result.data[i]);
+                if(result.data[i].from_user === $scope.username){
+                    angular.element(".message").append("<p><strong  class='userchat'> " + result.data[i].from_user +  "</strong>"  + ": " + result.data[i].content + "</p>");
+                } else angular.element(".message").append("<p><strong> " + result.data[i].from_user +  "</strong>"  + ": " + result.data[i].content + "</p>");
+
+            }
         })
     }
     socket.on('message' , (msg) => {

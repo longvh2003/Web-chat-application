@@ -5,7 +5,7 @@ module.exports = (msg) =>{
     let message = msg.text;
     const sql = 'INSERT INTO message (content, from_user, to_chatroom) VALUES ?;';
     let value = [
-        [message, msg.id, 1]
+        [message, username, 1]
     ];
     conn.aquire((err, con) => {
         con.query(sql, [value], (err, result, fields) => {
