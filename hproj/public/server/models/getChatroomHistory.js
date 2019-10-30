@@ -7,6 +7,7 @@ module.exports = (callback) => {
         con.query(sql, (err, result, fields) => {
             //console.log(result);
             callback(null, result);
+            con.release();
         });
     });
 };
