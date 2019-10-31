@@ -11,23 +11,32 @@ module.exports = app=>{
 		var gender=req.body.gender;
 		var insertSql='INSERT INTO User(username,email,password,dateOfBirth,gender) value(?,?,?,?,?);';
 		var validEmailSql='SELECT * FROM USER WHERE email=?;';
-
+		var validEmail=true;
+		var validUsername=true;
+		var validQuery='select * from user where username=? or email=?';
 		con.aquire((err,con)=>{
-			con.query(validEmailSql,[email],(err,rows)=>{
-			if(err) console.log(err);
-			if(rows.length==0){
-				con.query(insertSql,[name,email,password,birth,gender],(err,rows)=>{
+			con.query(validQuery,[name,email],(err,rows)=>{
+				if(err) console.log(err);
+				if(rows.length>0){
+					for( var i=0;i<rows.length;i++){
+						if(rows[i].email==email) validEmail=false;
+						if(rows[i].username==name) validUsername=false;
+					}	
+					if(!validUsername||!validEmail){
+						var msg={invalidEmail:'',invalidUsername:'',oldEmail:req.body.email,oldName:req.body.name};
+						if(!validEmail) msg.invalidEmail='this email already token';
+						if(!validUsername) msg.invalidUsername='this username already token';
+						res.render('register',msg);
+					}
+				}else{
+					con.query(insertSql,[name,email,password,birth,gender],(err)=>{
 						if(err) console.log(err);
+						console.log('dang ky thanh cong');
 						res.redirect('/');
 					});
-			}else{
-				res.render('register',{
-					invalidEmail: 'This email already token',
-					oldName:req.body.name,
-					oldEmail:req.body.email
-				});				
-			}
+				}
+			});
 		});
-		});		
+
 	});
 }

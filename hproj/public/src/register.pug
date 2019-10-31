@@ -30,6 +30,7 @@ form(method='POST')
       .col-sm-2
       .col-sm-5
         h2(align='center') Create new account
+        span(style='color:red', id='invaildusername',name=invalidUsername)=invalidUsername   
         .row
           .col-sm-12
             input(type='text' name='name' placeholder='Name' value=oldName)

@@ -43,6 +43,6 @@ ALTER TABLE `User-Chatroom` ADD CONSTRAINT `User-Chatroom_fk0` FOREIGN KEY (`use
 
 ALTER TABLE `User-Chatroom` ADD CONSTRAINT `User-Chatroom_fk1` FOREIGN KEY (`chatroom_id`) REFERENCES `Chatroom`(`chatroom_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-INSERT INTO user (email, username, password, first_name, last_name, isModerate, friend) VALUES ('huy@123.vn', 'huy1234', '12345', 'huy', 'quang', true, 0);
-INSERT INTO user (email, username, password, first_name, last_name, isModerate, friend) VALUES ('huy@12345.vn', 'huy12345', '12345', 'huy', 'quang', true, 0);
+
+
 INSERT INTO chatroom VALUES (1, 5);
