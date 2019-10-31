@@ -35,6 +35,7 @@ module.exports = app=>{
 						res.redirect('/');
 					});
 				}
+				con.release();
 			});
 		});
 
