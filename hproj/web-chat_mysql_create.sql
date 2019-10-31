@@ -7,10 +7,10 @@ CREATE TABLE `User` (
 	`email` varchar(25) NOT NULL UNIQUE,
 	`username` varchar(25) NOT NULL UNIQUE,
 	`password` varchar(20) NOT NULL,
-	`first_name` varchar(10) NOT NULL,
-	`last_name` varchar(10) NOT NULL,
+	`dateOfBirth` date,
+	`gender` varchar(10),
 	`isModerate` BOOLEAN NOT NULL DEFAULT false,
-	`friend` int NOT NULL,
+	`friend` int,
 	PRIMARY KEY (`user_id`,`email`,`username`)
 );
 

@@ -3,6 +3,7 @@ import validate from './public/server/models/validatepassword';  //Xác  thực 
 import msgdb from './public/server/models/msgDB';  //Thêm tin nhắn vào DB
 import session from 'express-session';
 import getHis from './public/server/models/getChatroomHistory';  //Lấy tin nhắn cũ
+var register=require('./public/server/models/register')
 const port = 3000;
 import bodyParser from 'body-parser';
 let app = express();
@@ -13,8 +14,11 @@ const io = require('socket.io')(http);
 /* Dùng Middleware session, static file, view engine(có thể không cần (chưa test)) */
 app.use(session({secret: 'ssshhhhh'}));
 app.use(express.static('public'));
-app.set('views', __dirname + '/public');
-app.set('view engine', 'html')
+// app.set('views', __dirname + '/public');
+// app.set('view engine', 'html')
+app.set('view engine','pug');
+app.set('views',__dirname+'/public/src');
+app.use(bodyParser.urlencoded({ extended: true }));
 
 /* Redirect tới home nếu đăng nhập rồi, tới login nếu chưa */
 app.get('/',function(req, res){
@@ -29,8 +33,9 @@ app.get('/',function(req, res){
 /* Render chatForm nếu request tới home */
 app.get('/home', function(req, res){
     res.sendFile(__dirname + '/public/src/chatForm.html');
-})
+});
 
+register(app);
 /* Lấy tin nhắn cũ */
 app.get('/home/messageHis', (req, res) => {
     getHis(function (err, result) {
@@ -51,7 +56,6 @@ app.get('/chat.js', (req,res)=>{
     res.sendFile(__dirname + '/public/src/chat.js');
 })
 
-app.use(bodyParser.urlencoded({ extended: true }));
 validate(app);
 
 /* Xác nhận khi đăng nhập thành công */
