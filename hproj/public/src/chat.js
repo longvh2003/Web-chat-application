@@ -17,17 +17,17 @@ myApp.controller('myCtrl', function($scope, $http, $location){
         socketroom1.emit('message', {text: $scope.message, username: $scope.username, id: userid});
         $scope.message = "";
     }
-    $scope.getHistory = () =>{
-        $http.get('/home/messageHis').then((result) => {
-            for(i = 0; i< result.data.length; i++){            //Kiểm tra result và thêm tin nhắn cũ
-                if(result.data[i].from_user === $scope.username){
-                    console.log("conkec");
-                    angular.element(".messagePend").append("<p><strong  class='userchat'> " + result.data[i].from_user +  "</strong>"  + ": " + result.data[i].content + "</p>"); 
-                } else angular.element(".messagePend").append("<p><strong> " + result.data[i].from_user +  "</strong>"  + ": " + result.data[i].content + "</p>");
-            }
-        })
-        $(".messagePend").animate({ scrollTop: $(document).height() }, "slow");
-    }
+    // $scope.getHistory = () =>{
+    //     $http.get('/home/messageHis').then((result) => {
+    //         for(i = 0; i< result.data.length; i++){            //Kiểm tra result và thêm tin nhắn cũ
+    //             if(result.data[i].from_user === $scope.username){
+    //                 console.log("conkec");
+    //                 angular.element(".messagePend").append("<p><strong  class='userchat'> " + result.data[i].from_user +  "</strong>"  + ": " + result.data[i].content + "</p>"); 
+    //             } else angular.element(".messagePend").append("<p><strong> " + result.data[i].from_user +  "</strong>"  + ": " + result.data[i].content + "</p>");
+    //         }
+    //     })
+    //     $(".messagePend").animate({ scrollTop: $(document).height() }, "slow");
+    // }
 
     if(socketroom1){
         socketroom1.on('message' , (msg) => {
@@ -41,20 +41,20 @@ myApp.controller('myCtrl', function($scope, $http, $location){
     }
 
 
-    $scope.selectedRow = null;
-    $scope.panelClick = (index) => {
-        $scope.selectedRow = index;
-        $location.path('' + parseInt(index + 1));
-        socketroom1 = io('/home/1');
-    }
+    // $scope.selectedRow = null;
+    // $scope.panelClick = (index) => {
+    //     $scope.selectedRow = index;
+    //     $location.path('' + parseInt(index + 1));
+    //     socketroom1 = io('/home/1');
+    // }
 
 
-    $scope.menuClicked=index=>{
-        if(index==1){    
-            $location.path('/friends');
-            console.log(index);
-        }
-    }
+    // $scope.menuClicked=index=>{
+    //     if(index==1){    
+    //         $location.path('/friends');
+    //         console.log(index);
+    //     }
+    // }
 
 
     /* Khi load trang thì lấy username, id */
@@ -85,6 +85,27 @@ myApp.controller('contentController', ($rootScope, $scope)=> {
         $scope.myButton = !$scope.myButton;
     })
 
+    $scope.selectedRow = null;
+    $scope.panelClick = (index) => {
+        $scope.selectedRow = index;
+        $location.path('' + parseInt(index + 1));
+        socketroom1 = io('/home/:roomid');
+        $scope.getHistory();
+    }
+
+    $scope.getHistory = () =>{
+        $http.get('/home/messageHis/' + ($scope.selectedRow + 1)).then((result) => {
+            for(i = 0; i< result.data.length; i++){            //Kiểm tra result và thêm tin nhắn cũ
+                if(result.data[i].from_user === $scope.username){
+                    console.log("conkec");
+                    angular.element(".messagePend").append("<p><strong  class='userchat'> " + result.data[i].from_user +  "</strong>"  + ": " + result.data[i].content + "</p>"); 
+                } else angular.element(".messagePend").append("<p><strong> " + result.data[i].from_user +  "</strong>"  + ": " + result.data[i].content + "</p>");
+            }
+        })
+        $(".messagePend").animate({ scrollTop: $(document).height() }, "slow");
+    }
+
+
     // socket.on('message' , (msg) => {
     //     angular.element(".messagePend").append("<p><strong  class='userchat'> " + msg.username +  "</strong>"  + ": " + msg.text + "</p>");
     //     // if(msg.username === $scope.username){
@@ -97,12 +118,9 @@ myApp.controller('contentController', ($rootScope, $scope)=> {
 myApp.config(function($routeProvider, $locationProvider) {
     $locationProvider.hashPrefix('');
     $routeProvider
-        .when('/1', {
+        .when('/:roomid', {
             templateUrl: '/src/chatroom.html',
             controller: 'myCtrl'
-        })
-		.when('/2', {
-			template: '<h1>TESING</h1>',
         })
         .when('/friends',{
             templateUrl:'/src/searchFriends.html'

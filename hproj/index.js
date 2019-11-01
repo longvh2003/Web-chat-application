@@ -39,12 +39,11 @@ register(app);
 addFriends(app);
 
 /* Lấy tin nhắn cũ */
-app.get('/home/messageHis', (req, res) => {
-    getHis(function (err, result) {
+app.get('/home/messageHis/:roomid', (req, res) => {
+    getHis(req.params.roomid ,function (err, result) {
         if (err) console.log("Database error!");
         else res.send(result);
       });
-
 })
 
 /* Gửi username cho client */
@@ -80,7 +79,7 @@ nsp.on('message', (socket)=>{
     console.log('Reicived');
 })
 
-const room1 = io.of('/home/1');
+const room1 = io.of('/home/:roomid');
 room1.on('connection', (socket)=>{
     console.log('entering room');
     socket.on('message', (msg)=>{   
