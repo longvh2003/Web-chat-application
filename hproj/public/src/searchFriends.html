@@ -1,12 +1,12 @@
-<div>
+<div style="background-color: #ffc0cb">
 	<input type="text" id="username" name="username" placeholder="Username"><button id="add">add</button>
 	<div>
-		<ol>
-			
+		<p class="title">Friends list</p>
+		<ol id="listFriends">
 		</ol>
 	</div>
 </div>
-<script>src="https://code.jquery.com/jquery-1.12.4.min.js"</script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <script>
 	$(function(){
 		$('#add').on('click',()=>{
@@ -21,8 +21,62 @@
 			method:'GET',
 			success:data=>{
 				console.log(data);
+				let i;
+				for(i=0;i<data.length;i++){
+					$('#listFriends').append('<li>'+data[i].username+'</li>');
+				}
 			}
 		});
-
 	});
 </script>
+<style>
+	ol li {
+  	background: #ffe5e5;
+  	padding: 5px;
+  	margin-left: 35px;
+  	font-size: 25px;
+  	color: #ff1493;
+	}
+	ol {
+ 	 background: #ff9999;
+ 	 padding: 20px;
+	}
+	li:nth-child(even){
+		background: #ff9999;
+	}
+	.title{
+	color: #F072A9;
+	font-weight: bold;
+	font-size: 25px;
+	text-shadow: 1px 1px 1px #fff;
+
+	}
+	/*css style source code : sanwebe.com*/
+	#add{
+		background: #EB3B88;
+	border: 1px solid #C94A81;
+	padding: 5px 15px 5px 15px;
+	color: #FFCBE2;
+	box-shadow: inset -1px -1px 3px #FF62A7;
+	-moz-box-shadow: inset -1px -1px 3px #FF62A7;
+	-webkit-box-shadow: inset -1px -1px 3px #FF62A7;
+	border-radius: 3px;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;	
+	font-weight: bold;
+	}
+	#username{
+		border-radius: 3px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border: 1px solid #FFC2DC;
+	outline: none;
+	color: #F072A9;
+	padding: 5px 8px 5px 8px;
+	box-shadow: inset 1px 1px 4px #FFD5E7;
+	-moz-box-shadow: inset 1px 1px 4px #FFD5E7;
+	-webkit-box-shadow: inset 1px 1px 4px #FFD5E7;
+	background: #FFEFF6;
+	}
+</style>

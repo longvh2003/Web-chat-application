@@ -38,6 +38,7 @@ app.get('/home', function(req, res){
 register(app);
 addFriends(app);
 
+
 /* Lấy tin nhắn cũ */
 app.get('/home/messageHis/:roomid', (req, res) => {
     getHis(req.params.roomid ,function (err, result) {

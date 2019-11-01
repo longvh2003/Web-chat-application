@@ -49,12 +49,15 @@ myApp.controller('myCtrl', function($scope, $http, $location){
     // }
 
 
-    // $scope.menuClicked=index=>{
-    //     if(index==1){    
-    //         $location.path('/friends');
-    //         console.log(index);
-    //     }
-    // }
+    $scope.menuClicked=index=>{
+        if(index==1){    
+            $location.path('/friends');
+            console.log(index);
+        }
+        else if(index==3){
+            $location.path('/logout');
+        }
+    }
 
 
     /* Khi load trang thì lấy username, id */
@@ -118,13 +121,14 @@ myApp.controller('contentController', ($rootScope, $scope)=> {
 myApp.config(function($routeProvider, $locationProvider) {
     $locationProvider.hashPrefix('');
     $routeProvider
-        .when('/:roomid', {
-            templateUrl: '/src/chatroom.html',
-            controller: 'myCtrl'
-        })
+        // .when('/:roomid', {
+        //     templateUrl: '/src/chatroom.html',
+        //     controller: 'myCtrl'
+        // })
         .when('/friends',{
             templateUrl:'/src/searchFriends.html'
         })
+        
 });
 
 
