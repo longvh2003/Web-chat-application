@@ -49,6 +49,14 @@ myApp.controller('myCtrl', function($scope, $http, $location){
     }
 
 
+    $scope.menuClicked=index=>{
+        if(index==1){    
+            $location.path('/friends');
+            console.log(index);
+        }
+    }
+
+
     /* Khi load trang thì lấy username, id */
     $scope.init = () =>{
         $http.get('/home/username').then((result) => {
@@ -95,6 +103,9 @@ myApp.config(function($routeProvider, $locationProvider) {
         })
 		.when('/2', {
 			template: '<h1>TESING</h1>',
+        })
+        .when('/friends',{
+            templateUrl:'/src/searchFriends.html'
         })
 });
 

@@ -1,0 +1,28 @@
+<div>
+	<input type="text" id="username" name="username" placeholder="Username"><button id="add">add</button>
+	<div>
+		<ol>
+			
+		</ol>
+	</div>
+</div>
+<script>src="https://code.jquery.com/jquery-1.12.4.min.js"</script>
+<script>
+	$(function(){
+		$('#add').on('click',()=>{
+			$.ajax({
+				url:'/addFriends',
+				method:'POST',
+				data:{ username:$('#username').val() }
+			});
+		});
+		$.ajax({
+			url:'/addFriends',
+			method:'GET',
+			success:data=>{
+				console.log(data);
+			}
+		});
+
+	});
+</script>

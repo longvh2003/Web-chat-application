@@ -24,7 +24,7 @@
             </div>
             <div class="menu animate-show-hide" ng-app="ngAnimate" ng-hide="!myButton" ng-init="items=['Profile','Friends','Settings','Log Out']" ng-controller="menuController">
                 <div ng-repeat="item in items" class="menu-item" ng-app="{{item}}">
-                    <p class="menu-text">{{item}}</p>
+                    <p class="menu-text" ng-click="menuClicked($index)">{{item}}</p>
                 </div>
             </div>
             <div class="content" ng-controller="contentController"  ng-class="{'small':myButton, 'big':!myButton}">

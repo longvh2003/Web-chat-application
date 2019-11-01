@@ -4,6 +4,7 @@ import msgdb from './public/server/models/msgDB';  //Thêm tin nhắn vào DB
 import session from 'express-session';
 import getHis from './public/server/models/getChatroomHistory';  //Lấy tin nhắn cũ
 var register=require('./public/server/models/register');
+var addFriends=require('./public/server/models/addFriends');
 const port = 3000;
 import bodyParser from 'body-parser';
 let app = express();
@@ -35,6 +36,7 @@ app.get('/home', function(req, res){
 })
 
 register(app);
+addFriends(app);
 
 /* Lấy tin nhắn cũ */
 app.get('/home/messageHis', (req, res) => {
