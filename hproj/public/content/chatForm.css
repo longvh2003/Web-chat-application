@@ -40,7 +40,6 @@ strong{
     position: absolute;
     bottom: 0;
     top: 75px;
-    left: 0;
     right: 0;
 }
 
@@ -70,8 +69,9 @@ strong{
     left: 0;
     width: 200px;
     background-color: violet;
-    height: 100%;
+    height: calc(100% - 75px);
     float: left;
+    top:75px;
 }
 
 .ng-hide:not(.ng-hide-animate) {
@@ -110,6 +110,7 @@ strong{
     right: 0;
     height: 100%;
     float: left;
+    width: calc(100% - 250px);
 }
 
 .chat-bar {
@@ -172,11 +173,11 @@ strong{
 }
 
 .small {
-    width: calc(100% - 450px);
+    width: calc(100% - 200px);
 }
 
 .big {
-    width: calc(100% - 250px);
+    width: 100%;
 }
 
 .send-icon {

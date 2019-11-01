@@ -4,45 +4,34 @@
         <link rel="stylesheet" href="/content/chatForm.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
-        <script src="https://kit.fontawesome.com/43b6aeb8f4.js" crossorigin="anonymous"></script>  
+        <script src="https://kit.fontawesome.com/43b6aeb8f4.js" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.js"></script>        
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
         <script src="./chat.js"></script>
     </head>
     <body>
         <div class="container" ng-app="myApp" ng-controller="myCtrl" data-ng-init="init()">
-            <div class="header" ng-app="">
+            <div class="header" ng-app="" ng-controller="headerCtrl">
                 <div class="menu-icon" ng-app="">
-                        <button class="menu-button" ng-click="myButton = !myButton">
+                        <button class="menu-button" ng-click="clickMenu()">
                             <i class="fas fa-bars fa-2x"></i>
                         </button>
+                        <p>{{myButton}}</p>
                 </div>
                 <div ng-model="username" style="position:absolute; height: 75px; align-self: center;line-height: 75px;right: 0;font-size: 28px;">{{username}}</div>
             </div>
-            <div class="content">
-                    <div class="menu animate-show-hide" ng-app="ngAnimate" ng-hide="!myButton" ng-init="items=['Profile','Friends','Settings','Log Out']">
-                            <div ng-repeat="item in items" class="menu-item" ng-app="{{item}}">
-                                <p class="menu-text">{{item}}</p>
-                            </div>
-                    </div>
+            <div class="menu animate-show-hide" ng-app="ngAnimate" ng-hide="!myButton" ng-init="items=['Profile','Friends','Settings','Log Out']" ng-controller="menuController">
+                <div ng-repeat="item in items" class="menu-item" ng-app="{{item}}">
+                    <p class="menu-text">{{item}}</p>
+                </div>
+            </div>
+            <div class="content" ng-controller="contentController"  ng-class="{'small':myButton, 'big':!myButton}">
                     <div class="room" ng-init="rooms=['room1', 'room2']">
                         <div ng-repeat="room in rooms" class="room-panel" ng-class="{'hightlighted':$index == selectedRow}" ng-click="panelClick($index)">{{room}}</div>
                     </div>
-                    <div class="chat-area" ng-class="{'small':myButton, 'big':!myButton}" ng-view>
-                        <!-- <div class="room-bar div-sizing" ng-model="chatRoom">
-                            Room {{chatRoom}}:
-                        </div>
-                        <div id="message" class="message" ng-model="chatarea" style="overflow: auto;top: 80px; position: absolute; width: 100%; bottom: 80px;"></div>
-                        <div class="chat-bar div-sizing">
-                            <form style="width: 100%; height: 100%;">
-                                <input type="text" name="message" class="text-input" ng-model="message">
-                                <button class="text-input-button" ng-click="sendmessage()" type="submit">
-                                    <div class="send-icon"></div>
-                                </button> 
-                            </form>
-                        </div> -->
+                    <div class="chat-area" ng-view>
                     </div>
             </div>
         </div>

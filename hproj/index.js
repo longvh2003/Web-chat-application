@@ -3,7 +3,6 @@ import validate from './public/server/models/validatepassword';  //Xác  thực 
 import msgdb from './public/server/models/msgDB';  //Thêm tin nhắn vào DB
 import session from 'express-session';
 import getHis from './public/server/models/getChatroomHistory';  //Lấy tin nhắn cũ
-var register=require('./public/server/models/register')
 const port = 3000;
 import bodyParser from 'body-parser';
 let app = express();
@@ -14,11 +13,8 @@ const io = require('socket.io')(http);
 /* Dùng Middleware session, static file, view engine(có thể không cần (chưa test)) */
 app.use(session({secret: 'ssshhhhh'}));
 app.use(express.static('public'));
-// app.set('views', __dirname + '/public');
-// app.set('view engine', 'html')
-app.set('view engine','pug');
-app.set('views',__dirname+'/public/src');
-app.use(bodyParser.urlencoded({ extended: true }));
+app.set('views', __dirname + '/public');
+app.set('view engine', 'html')
 
 /* Redirect tới home nếu đăng nhập rồi, tới login nếu chưa */
 app.get('/',function(req, res){
@@ -33,9 +29,8 @@ app.get('/',function(req, res){
 /* Render chatForm nếu request tới home */
 app.get('/home', function(req, res){
     res.sendFile(__dirname + '/public/src/chatForm.html');
-});
+})
 
-register(app);
 /* Lấy tin nhắn cũ */
 app.get('/home/messageHis', (req, res) => {
     getHis(function (err, result) {
@@ -56,16 +51,39 @@ app.get('/chat.js', (req,res)=>{
     res.sendFile(__dirname + '/public/src/chat.js');
 })
 
+app.use(bodyParser.urlencoded({ extended: true }));
 validate(app);
 
+
 /* Xác nhận khi đăng nhập thành công */
-io.sockets.on('connection', function(socket){
-    socket.on('message', (msg) =>{
-        msgdb(msg);
-        io.emit('message', msg)
-        console.log(msg);
-    })
+// io.sockets.on('connection', function(socket){
+//     socket.on('message', (msg) =>{
+//         msgdb(msg);
+//         io.emit('message', msg)
+//         console.log(msg);
+//     })
+// });
+
+const nsp = io.of('/home');
+nsp.on('connection', function(socket){
+  console.log('someone connected');
 });
+nsp.on('message', (socket)=>{
+    msgdb(msg);
+    nsp.emit('message', msg);
+    console.log('Reicived');
+})
+
+const room1 = io.of('/home/1');
+room1.on('connection', (socket)=>{
+    console.log('entering room');
+    socket.on('message', (msg)=>{   
+        console.log('recived');
+        msgdb(msg);
+        room1.emit('message', msg);
+    })
+})
+
 
 /* Mở cổng */
 const server = http.listen(port, function(){
