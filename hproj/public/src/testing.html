@@ -1,0 +1,50 @@
+<md-dialog aria-label="Create Chat Room">
+    <form ng-submit='submit()'>
+      <md-toolbar>
+        <div class="md-toolbar-tools">
+          <h2>Make your own room chat now</h2>
+          <span flex></span>
+          <md-button aria-label="close" class="md-icon-button" ng-click="cancel()">
+          </md-button>
+        </div>
+      </md-toolbar>
+  
+      <md-dialog-content>
+        <div class="md-dialog-content">
+          <div>
+                <div style="display: flex">
+                    <md-input-container class="md-block">
+                        <!-- Use floating placeholder instead of label -->
+                        <input ng-model="newroomname" type="text" placeholder="Name (required)" ng-required="true"
+                               aria-label="Room name (required)">
+                    </md-input-container>
+                    <md-input-container class="md-block">
+                        <!-- Use floating placeholder instead of label -->
+                        <input ng-model="newroompassword" type="password" placeholder="Password (if needed)" ng-required="false"
+                               aria-label="Room password">
+                    </md-input-container>
+                </div>
+                <md-input-container class="md-block">
+                    <!-- Use floating placeholder instead of label -->
+                  <input ng-model="newroomdes" type="text" placeholder="Description" ng-required="false" aria-label="Description">
+                </md-input-container>
+          </div>
+        </div>
+      </md-dialog-content>
+  
+      <md-dialog-actions layout="row">
+        <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" md-autofocus>
+          More on Wikipedia
+        </md-button>
+        <span flex></span>
+        <md-button class="md-warn" ng-click="answer('Cancel')">
+         Cancel
+        </md-button>
+        <md-button type="submit">
+          Accept
+        </md-button>
+      </md-dialog-actions>
+    </form>
+  </md-dialog>
+  
+  

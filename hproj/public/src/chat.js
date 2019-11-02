@@ -8,7 +8,7 @@ var socketroom1;
 /* Khai báo module và controller angularjs cho toàn bộ container
    Có thể thêm controller và directive thích hợp */
 
-var myApp = angular.module('myApp', ['ngRoute']);
+var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial']);
 myApp.run(function($rootScope){
     $rootScope.rooms = [];
     $rootScope.tempRoomId = 0;
@@ -64,7 +64,7 @@ myApp.controller('menuController', function($rootScope, $scope){
     })
 })
 
-myApp.controller('contentController', function ($rootScope, $scope, $location, $http, $routeParams) {
+myApp.controller('contentController', function ($rootScope, $scope, $location, $http, $routeParams, $mdDialog) {
     if($routeParams){
         $rootScope.tempRoomId = $routeParams.roomid;
     }
@@ -102,6 +102,58 @@ myApp.controller('contentController', function ($rootScope, $scope, $location, $
         $scope.message = "";
         $("#messagePend").scrollTop = $("#messagePend").scrollHeight - $("#smessagePend").clientHeight;
     }
+
+    $scope.showAdvanced = function(ev) {
+        $mdDialog.show({
+          controller: DialogController,
+          templateUrl: '/src/testing.html',
+          parent: angular.element(document.body),
+          targetEvent: ev,
+          clickOutsideToClose:true,
+          fullscreen: false // Only for -xs, -sm breakpoints.
+        })
+        .then(function(answer, roomname, roompass, roomdes) {
+          if(answer === 'Cancel') {
+              console.log(roomname);
+              $mdDialog.hide();
+          }
+        //   if(answer === 'Accept'){
+        //       let data = {name: roomname, pass: roompass, des: roomdes};
+        //       $http.post('/home/addRoom', data).then((result) =>{
+        //           console.log('created');
+        //       })
+        //   }
+        }, function() {
+          console.log('x');
+        });
+      };
+
+    function DialogController($scope, $mdDialog, $http, $rootScope) {
+        $scope.hide = function() {
+            $mdDialog.hide();
+        };
+    
+        $scope.cancel = function() {
+            $mdDialog.cancel();
+        };
+    
+        $scope.answer = function(answer) {
+            $mdDialog.hide(answer);
+        };
+
+        $scope.submit = () => {
+            console.log($scope.newroomname);
+            if($scope.newroompassword === undefined) $scope.newroompassword = "";
+            if($scope.newroomdes === undefined) $scope.newroomdes = "";
+            let data = {name: $scope.newroomname, pass: $scope.newroompassword, des: $scope.newroomdes, userid: $rootScope.userid}
+            $http.post('/home/addRoom', JSON.stringify(data)).then((result) =>{
+                console.log('created');
+            })
+            $mdDialog.hide();
+        }    
+    }
+
+
 
 })
 

@@ -4,7 +4,7 @@ import msgdb from './public/server/models/msgDB';  //Thêm tin nhắn vào DB
 import session from 'express-session';
 import getHis from './public/server/models/getChatroomHistory';  //Lấy tin nhắn cũ
 import getChatroom from './public/server/models/getRoomId';
-
+import addChatroom from './public/server/models/addRoom';
 var register=require('./public/server/models/register');
 var addFriends=require('./public/server/models/addFriends');
 const port = 3000;
@@ -20,6 +20,8 @@ app.use(express.static('public'));
 app.set('views', __dirname + '/public/src');
 app.set('view engine', 'pug')
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json())
+
 
 
 /* Redirect tới home nếu đăng nhập rồi, tới login nếu chưa */
@@ -59,6 +61,11 @@ app.get('/home/username', (req, res)=>{
 /* Gửi file chat.js khi chatForm được render (AngularJS) */
 app.get('/chat.js', (req,res)=>{
     res.sendFile(__dirname + '/public/src/chat.js');
+})
+
+app.post('/home/addRoom', (req, res)=>{
+    console.log(req.body);
+    addChatroom(req.body);
 })
 
 validate(app);
