@@ -3,6 +3,7 @@
 html {
     width: 100%;
     height: 100%;
+    /* overflow: hidden; */
 }
 
 body {
@@ -34,7 +35,7 @@ strong{
     right: 0;
     left: 0;
     height: 75px;
-    background-color: blueviolet;
+    background-color: #85cdca;
     display:flex;
 }
 
@@ -63,17 +64,18 @@ strong{
 }
 
 .menu-button:hover {
-    border-color: yellowgreen;
+    border-color:#e27d5f;
 }
 
 .menu {
     position: relative;
     left: 0;
     width: 200px;
-    background-color: violet;
+    background-color: #3fb2a1;
     height: calc(100% - 75px);
     float: left;
     top:75px;
+
 }
 
 .ng-hide:not(.ng-hide-animate) {
@@ -83,10 +85,11 @@ strong{
 
 .room {
     width: 250px;
-    background-color: rebeccapurple;
+    background-color:  #3fb2a1;
     height: 100%;
     position: relative;
     float: left;
+    border:1px solid #e8a87c;
 }
 
 .menu-item {
@@ -108,7 +111,7 @@ strong{
 }
 
 .chat-area {
-    position: relative;
+    position: absolute;
     right: 0;
     height: 100%;
     float: left;
@@ -150,7 +153,7 @@ strong{
 }
 
 .room-panel:hover, .hightlighted{
-    background: green;
+    background: #e27d5f;
 }
 
 .text-input {

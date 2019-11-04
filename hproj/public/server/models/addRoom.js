@@ -6,13 +6,18 @@ module.exports = (room, callback) =>{
     conn.aquire((err, con) =>{
         con.query(sql1, [room.name, room.pass, room.des, 5], (err, result, field) => {
             //console.log(result);
-            if(err) throw err;
+            if(err) {
+                callback(err)
+                return;
+            } else {
+                con.query(sql2, [room.userid, room.name], (err, result, field) => {
+                    //console.log(result);
+                    //if(err) throw err;
+                    callback(err);
+                    console.log('success2');
+                });        
+            }
             console.log('success1');
-        });
-        con.query(sql2, [room.userid, room.name], (err, result, field) => {
-            //console.log(result);
-            if(err) throw err;
-            console.log('success2');
         });
         con.release();
     });

@@ -65,7 +65,11 @@ app.get('/chat.js', (req,res)=>{
 
 app.post('/home/addRoom', (req, res)=>{
     console.log(req.body);
-    addChatroom(req.body);
+    addChatroom(req.body, function(err){
+        //console.log(err.code);
+        if(err) res.send({status:false});
+        else res.send({status:true});
+    });
 })
 
 validate(app);

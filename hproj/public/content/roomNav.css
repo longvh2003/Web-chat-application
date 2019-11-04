@@ -31,3 +31,7 @@
 .join-button{
     left: 50px !important;
 }
+
+.room-hover:hover{
+    background:	#137797;;
+}

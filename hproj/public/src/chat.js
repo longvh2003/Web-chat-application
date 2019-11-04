@@ -141,15 +141,37 @@ myApp.controller('contentController', function ($rootScope, $scope, $location, $
             $mdDialog.hide(answer);
         };
 
+        $scope.showAlert = function(status, des) {
+            // Appending dialog to document.body to cover sidenav in docs app
+            // Modal dialogs should fully cover application
+            // to prevent interaction outside of dialog
+            $mdDialog.show(
+              $mdDialog.alert()
+                .parent(angular.element(document.querySelector('#popupContainer')))
+                .clickOutsideToClose(true)
+                .title(status)
+                .textContent(des)
+                .ariaLabel('Alert Dialog Demo')
+                .ok('Got it!')
+            );
+        };
+
+
         $scope.submit = () => {
             console.log($scope.newroomname);
             if($scope.newroompassword === undefined) $scope.newroompassword = "";
             if($scope.newroomdes === undefined) $scope.newroomdes = "";
             let data = {name: $scope.newroomname, pass: $scope.newroompassword, des: $scope.newroomdes, userid: $rootScope.userid}
             $http.post('/home/addRoom', JSON.stringify(data)).then((result) =>{
-                console.log('created');
+                console.log(result);
+                if(result.data.status){
+                    $scope.showAlert("Tạo phòng không thành công", "Tên phòng đã tồn tại, vui lòng chọn tên khác");
+                } else {
+                    $scope.showAlert("Tạo phòng thành công", "Tạo thành công!!");
+                    $mdDialog.hide();
+                }
             })
-            $mdDialog.hide();
+            //$mdDialog.hide();
         }    
     }
 
