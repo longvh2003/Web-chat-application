@@ -7,13 +7,16 @@ CREATE TABLE `User` (
 	`email` varchar(25) NOT NULL UNIQUE,
 	`username` varchar(25) NOT NULL UNIQUE,
 	`user_password` varchar(20) NOT NULL,
-	`first_name` varchar(10) NOT NULL,
-	`last_name` varchar(10) NOT NULL,
+	`dateOfBirth` date,
+	`gender` varchar(10),
 	`isModerate` BOOLEAN NOT NULL DEFAULT false,
-	`friend` int NOT NULL,
-	PRIMARY KEY (`user_id`,`email`,`username`)
+	PRIMARY KEY (`user_id`)
 );
-
+CREATE TABLE `friends`(
+	`currentUser` int not null,
+	`friendUser` int not null,
+	PRIMARY KEY(currentUser,friendUser)
+);
 CREATE TABLE `Message` (
 	`message_id` int NOT NULL AUTO_INCREMENT,
 	`content` varchar(255) NOT NULL,
@@ -45,8 +48,8 @@ ALTER TABLE `UserChatroom` ADD CONSTRAINT `User-Chatroom_fk0` FOREIGN KEY (`user
 
 ALTER TABLE `UserChatroom` ADD CONSTRAINT `User-Chatroom_fk1` FOREIGN KEY (`chatroom_id`) REFERENCES `Chatroom`(`chatroom_name`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-INSERT INTO user (email, username, user_password, first_name, last_name, isModerate, friend) VALUES ('huy@123.vn', 'huy1234', '12345', 'huy', 'quang', true, 0);
-INSERT INTO user (email, username, user_password, first_name, last_name, isModerate, friend) VALUES ('huy@12345.vn', 'huy12345', '12345', 'huy', 'quang', true, 0);
+INSERT INTO user (email, username, user_password) VALUES ('huy@123.vn', 'huy1234', '12345');
+INSERT INTO user (email, username, user_password) VALUES ('huy@12345.vn', 'huy12345', '12345');
 INSERT INTO chatroom(chatroom_name, member_num) VALUES ('ALL ROOM', 5);
 INSERT INTO chatroom(chatroom_name, member_num) VALUES ('PRIVATE ROOM', 5);
 INSERT INTO userchatroom VALUES (1, 'ALL ROOM');

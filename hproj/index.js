@@ -36,7 +36,9 @@ app.get('/',function(req, res){
 
 /* Render chatForm nếu request tới home */
 app.get('/home', function(req, res){
+    if(req.session.user)
     res.sendFile(__dirname + '/public/src/chatForm.html');
+    else res.redirect('/');
 })
 
 register(app);
@@ -61,7 +63,15 @@ app.get('/home/username', (req, res)=>{
 /* Gửi file chat.js khi chatForm được render (AngularJS) */
 app.get('/chat.js', (req,res)=>{
     res.sendFile(__dirname + '/public/src/chat.js');
-})
+});
+
+app.get('/logout',(req,res)=>{
+    req.session.destroy(()=>{
+        console.log('user logged out');
+        res.redirect('/');
+    });
+    
+});
 
 app.post('/home/addRoom', (req, res)=>{
     console.log(req.body);

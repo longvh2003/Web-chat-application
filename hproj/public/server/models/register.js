@@ -8,8 +8,8 @@ module.exports = app=>{
 		var email=req.body.email;
 		var password=req.body.password;
 		var birth=req.body.year+'-'+req.body.month+'-'+req.body.date;
-		var gender=req.body.gender;
-		var insertSql='INSERT INTO User(username,email,password,dateOfBirth,gender) value(?,?,?,?,?);';
+		var gender=req.body.gender; 
+		var insertSql='INSERT INTO User(username,email,user_password,dateOfBirth,gender) value(?,?,?,?,?);';
 		var validEmailSql='SELECT * FROM USER WHERE email=?;';
 		var validEmail=true;
 		var validUsername=true;

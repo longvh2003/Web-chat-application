@@ -41,15 +41,7 @@ myApp.controller('myCtrl', function($scope, $http, $location, $rootScope, $route
 
 
 
-    // $scope.menuClicked=index=>{
-    //     if(index==1){    
-    //         $location.path('/friends');
-    //         console.log(index);
-    //     }
-    //     else if(index==3){
-    //         $location.path('/logout');
-    //     }
-    // }
+    
 })
 
 myApp.controller('headerCtrl', function($rootScope, $scope){
@@ -58,10 +50,20 @@ myApp.controller('headerCtrl', function($rootScope, $scope){
     }
 })
 
-myApp.controller('menuController', function($rootScope, $scope){
+myApp.controller('menuController', function($rootScope, $scope,$location){
     $rootScope.$on('menu-clicked', ()=>{
         $scope.myButton = !$scope.myButton;
-    })
+    });
+    $scope.menuClicked=index=>{
+        if(index==1){    
+            $location.path('/friends');
+            console.log(index);
+        }
+        else if(index==3){
+            console.log('logout');
+            $.get('/logout');
+        }
+    }
 })
 
 myApp.controller('contentController', function ($rootScope, $scope, $location, $http, $routeParams, $mdDialog) {
@@ -183,14 +185,14 @@ myApp.controller('contentController', function ($rootScope, $scope, $location, $
 myApp.config(function($routeProvider, $locationProvider) {
     $locationProvider.hashPrefix('');
     $routeProvider
-        .when('/:roomid', {
+        .when('/chat/:roomid', {
             templateUrl: '/src/chatroom.html',
             controller: 'contentController'
         })
         .when('/friends',{
                 templateUrl:'/src/searchFriends.html',
-                controller: 'contentController'
-            })
+                controller: 'menuController'
+        })
         
 });
 

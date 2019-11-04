@@ -4,6 +4,7 @@
         <link rel="stylesheet" href="/content/chatForm.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.12/angular-material.min.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     </head>
     <body>
         <div class="container" ng-app="myApp" ng-controller="myCtrl" data-ng-init="init()">
@@ -16,8 +17,8 @@
                 </div>
                 <div ng-model="username" style="position:absolute; height: 75px; align-self: center;line-height: 75px;right: 0;font-size: 28px;">{{username}}</div>
             </div>
-            <div class="menu animate-show-hide" ng-app="ngAnimate" ng-hide="!myButton" ng-init="items=['Profile','Friends','Settings','Log Out']" ng-controller="menuController">
-                <div ng-repeat="item in items" class="menu-item" ng-app="{{item}}">
+            <div class="menu animate-show-hide" ng-app="ngAnimate" ng-hide="!myButton" ng-init="items=['Profile','Friends','Settings','Log Out']" ng-controller="menuController" >
+                <div ng-repeat="item in items" class="menu-item" ng-app="{{item}}" ng-click="menuClicked($index)">
                     <p class="menu-text">{{item}}</p>
                 </div>
             </div>
