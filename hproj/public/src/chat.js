@@ -10,6 +10,7 @@ var socketroom1;
 
 var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial']);
 myApp.run(function($rootScope){
+    $rootScope.roomsId = [];
     $rootScope.rooms = [];
     $rootScope.tempRoomId = 0;
     $rootScope.username = ' ';
@@ -25,17 +26,28 @@ myApp.controller('myCtrl', function($scope, $http, $location, $rootScope, $route
                 console.log( $rootScope.tempRoomId);
                 $rootScope.username = result.data.userdata.username;
                 $rootScope.userid = result.data.userdata.userId;
+                $rootScope.roomId = result.data.chatroom;
                 for (let j = 0; j < result.data.chatroom.length; j++) {
                     $rootScope.rooms[j] = result.data.chatroom[j];
+                }
+                for (let index = 0; index < $rootScope.roomId.length; index++) {
+                    socket.emit('join', $rootScope.roomId[index].chatroom_id);
                 }
             })
         }
     
     /* Nhận tin nhắn */
     socket.on('message', (msg) => {
-        if(msg.username === $rootScope.username){
-            angular.element(".messagePend").append("<p><strong  class='userchat'> " + msg.username +  "</strong>"  + ": " + msg.text + "</p>");
-        } else angular.element(".messagePend").append("<p><strong> " + msg.username +  "</strong>"  + ": " + msg.text + "</p>");
+        if(msg.roomid === $rootScope.tempRoomId){
+            if(msg.username === $rootScope.username){
+                //console.log(msg);
+                angular.element(".messagePend").append("<p><strong  class='userchat'> " + msg.username +  "</strong>"  + ": " + msg.text + "</p>");
+            } else angular.element(".messagePend").append("<p><strong> " + msg.username +  "</strong>"  + ": " + msg.text + "</p>");    
+        }
+        else {
+            angular.element("#" + msg.roomid).addClass('red');
+            sessionStorage.setItem("room" + msg.roomid, msg.roomid);
+        }
     })
 
 
@@ -74,20 +86,29 @@ myApp.controller('contentController', function ($rootScope, $scope, $location, $
         $rootScope.tempRoomId = $routeParams.roomid;
     }
 
+    if(angular.element('.room-hover div')){
+        for (let index = 0; index < $rootScope.rooms.length; index++) {
+            if(sessionStorage.getItem("room" + $rootScope.rooms[index].chatroom_id)){
+                angular.element("#" + $rootScope.rooms[index].chatroom_id).addClass('red');
+            }
+        }
+    }
+
+
     $rootScope.$on('menu-clicked', ()=>{
         $scope.myButton = !$scope.myButton;
     })
 
     $scope.selectedRow = null;
     $scope.panelClick = (index, room) => {
+        angular.element('#'+room.chatroom_id).removeClass('red');
         $rootScope.tempRoomId = room.chatroom_id;
         $location.path('/chat/' + room.chatroom_id);
         if($scope.text) $scope.text.remove();
         $scope.selectedRow = index;
-        socket.emit('join', $rootScope.tempRoomId);
+        sessionStorage.removeItem("room" + room.chatroom_id);
     }
     if($rootScope.tempRoomId){
-        socket.emit('join', $rootScope.tempRoomId);
         $scope.getHistory($rootScope.tempRoomId);
     }
 
@@ -170,9 +191,9 @@ myApp.controller('contentController', function ($rootScope, $scope, $location, $
             $http.post('/home/addRoom', JSON.stringify(data)).then((result) =>{
                 console.log(result);
                 if(result.data.status){
-                    $scope.showAlert("Tạo phòng không thành công", "Tên phòng đã tồn tại, vui lòng chọn tên khác");
-                } else {
                     $scope.showAlert("Tạo phòng thành công", "Tạo thành công!!");
+                } else {
+                    $scope.showAlert("Tạo phòng không thành công", "Tên phòng đã tồn tại, vui lòng chọn tên khác");
                     $mdDialog.hide();
                 }
             })

@@ -194,3 +194,7 @@ strong{
 .send-icon:hover {
     background: url("https://img.icons8.com/cotton/26/000000/paper-plane--v2.png") no-repeat center;
 }
+
+.red{
+    background: red;
+}
