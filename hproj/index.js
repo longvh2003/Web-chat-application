@@ -68,8 +68,8 @@ app.get('/chat.js', (req,res)=>{
 app.get('/logout',(req,res)=>{
     req.session.destroy(()=>{
         console.log('user logged out');
-        res.redirect('/');
     });
+    res.redirect('/');
     
 });
 

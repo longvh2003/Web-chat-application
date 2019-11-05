@@ -50,7 +50,7 @@ myApp.controller('headerCtrl', function($rootScope, $scope){
     }
 })
 
-myApp.controller('menuController', function($rootScope, $scope,$location){
+myApp.controller('menuController', function($rootScope, $scope,$location,$http){
     $rootScope.$on('menu-clicked', ()=>{
         $scope.myButton = !$scope.myButton;
     });
@@ -61,7 +61,10 @@ myApp.controller('menuController', function($rootScope, $scope,$location){
         }
         else if(index==3){
             console.log('logout');
-            $.get('/logout');
+            $http({
+                method:'GET',
+                url:'/logout',
+            });
         }
     }
 })

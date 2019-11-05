@@ -27,6 +27,14 @@
 				}
 			}
 		});
+		$("ol").on("click",event=>{
+			console.log($(event.target).text());
+			// $.ajax({
+			// 	url:'/home/chat1',
+			// 	method:'POST',
+			// 	data:{friend:$(event.target).text()}
+			// });
+		});
 	});
 </script>
 <style>
@@ -43,6 +51,10 @@
 	}
 	li:nth-child(even){
 		background: #ff9999;
+	}
+	li:hover{
+		background-color: black;
+		cursor: pointer;
 	}
 	.title{
 	color: #F072A9;

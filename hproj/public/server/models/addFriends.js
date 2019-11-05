@@ -11,12 +11,16 @@ module.exports=app=>{
 					if(err) console.log('loi sql them ban');
 					console.log('them ban thanh cong');
 				});
+				con.query(add,[friendId,req.session.user.userId],(err)=>{
+					if(err) console.log('loi sql them ban');
+					console.log('them ban thanh cong');
+				});				
 				con.release();
 			});
 		});
 	});
 	app.get('/addFriends',(req,res)=>{
-		var getListSql='SELECT * FROM USER JOIN friends ON user_id=currentUser WHERE user_id=?';
+		// var getListSql='SELECT * FROM USER JOIN friends ON user_id=currentUser WHERE user_id=?';
 		var testSql='select * from user where user_id in(select friendUser FROM USER JOIN friends ON user_id=currentUser WHERE user_id=?)'
 		conn.aquire((err,conn)=>{
 			conn.query(testSql,[req.session.user.userId],(err,rows)=>{
