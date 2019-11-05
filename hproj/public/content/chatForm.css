@@ -55,6 +55,12 @@ strong{
     background-color: transparent;
 }
 
+.menu-component{
+    margin: 0;
+    padding: 0;
+}
+
+
 .menu-button {
     width: 36px;
     height: 36px;
