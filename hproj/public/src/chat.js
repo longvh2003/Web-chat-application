@@ -81,7 +81,7 @@ myApp.controller('contentController', function ($rootScope, $scope, $location, $
     $scope.selectedRow = null;
     $scope.panelClick = (index, room) => {
         $rootScope.tempRoomId = room.chatroom_id;
-        $location.path('' + room.chatroom_id);
+        $location.path('/chat/' + room.chatroom_id);
         if($scope.text) $scope.text.remove();
         $scope.selectedRow = index;
         socket.emit('join', $rootScope.tempRoomId);
