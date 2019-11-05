@@ -49,36 +49,6 @@ myApp.controller('myCtrl', function($scope, $http, $location, $rootScope, $route
             sessionStorage.setItem("room" + msg.roomid, msg.roomid);
         }
     })
-
-
-
-
-    
-})
-
-myApp.controller('headerCtrl', function($rootScope, $scope){
-    $scope.clickMenu = ()=>{
-        $rootScope.$emit('menu-clicked');
-    }
-})
-
-myApp.controller('menuController', function($rootScope, $scope,$location,$http){
-    $rootScope.$on('menu-clicked', ()=>{
-        $scope.myButton = !$scope.myButton;
-    });
-    $scope.menuClicked=index=>{
-        if(index==1){    
-            $location.path('/friends');
-            console.log(index);
-        }
-        else if(index==3){
-            console.log('logout');
-            $http({
-                method:'GET',
-                url:'/logout',
-            });
-        }
-    }
 })
 
 myApp.controller('contentController', function ($rootScope, $scope, $location, $http, $routeParams, $mdDialog) {
@@ -143,12 +113,6 @@ myApp.controller('contentController', function ($rootScope, $scope, $location, $
               console.log(roomname);
               $mdDialog.hide();
           }
-        //   if(answer === 'Accept'){
-        //       let data = {name: roomname, pass: roompass, des: roomdes};
-        //       $http.post('/home/addRoom', data).then((result) =>{
-        //           console.log('created');
-        //       })
-        //   }
         }, function() {
           console.log('x');
         });
@@ -210,12 +174,12 @@ myApp.config(function($routeProvider, $locationProvider) {
     $locationProvider.hashPrefix('');
     $routeProvider
         .when('/chat/:roomid', {
-            templateUrl: '/src/chatroom.html',
+            templateUrl: '/src/component/chatroom.html',
             controller: 'contentController'
         })
         .when('/friends',{
                 templateUrl:'/src/searchFriends.html',
-                controller: 'menuController'
+                controller: menuCtrl
         })
         
 });

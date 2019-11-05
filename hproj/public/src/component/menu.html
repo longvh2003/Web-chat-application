@@ -1,0 +1,5 @@
+<div class="menu animate-show-hide" ng-app="ngAnimate" ng-hide="!myButton" ng-init="items=['Profile','Friends','Settings','Log Out']">
+    <div ng-repeat="item in items" class="menu-item" ng-app="{{item}}" ng-click="menuClicked($index)">
+        <p class="menu-text">{{item}}</p>
+    </div>
+</div>

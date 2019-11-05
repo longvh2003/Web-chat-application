@@ -63,7 +63,19 @@ app.get('/home/username', (req, res)=>{
 /* Gửi file chat.js khi chatForm được render (AngularJS) */
 app.get('/chat.js', (req,res)=>{
     res.sendFile(__dirname + '/public/src/chat.js');
-});
+})
+
+app.get('/app.js', (req,res)=>{
+    res.sendFile(__dirname + '/public/src/app.js');
+})
+
+app.get('/headerCtrl.js', (req,res)=>{
+    res.sendFile(__dirname + '/public/src/headerCtrl.js');
+})
+
+app.get('/menuCtrl.js', (req,res)=>{
+    res.sendFile(__dirname + '/public/src/menuCtrl.js');
+})
 
 app.get('/logout',(req,res)=>{
     req.session.destroy(()=>{
