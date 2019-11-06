@@ -1,7 +1,7 @@
 import conn from './connection';
 
 /* Thêm msg vào trong database. */
-module.exports = (msg) =>{
+module.exports = (msg, callback) =>{
     let username = msg.username;
     let message = msg.text;
     let chatRoomId = msg.roomid;
@@ -13,7 +13,6 @@ module.exports = (msg) =>{
     conn.aquire((err, con) => {
         con.query(sql, [value], (err, result, fields) => {
             if (err) throw err;
-            console.log("Number of records inserted: " + result.affectedRows);
             con.release();
         })
     })

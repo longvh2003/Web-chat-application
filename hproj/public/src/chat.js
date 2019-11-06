@@ -33,8 +33,16 @@ myApp.controller('myCtrl', function($scope, $http, $location, $rootScope, $route
                     socket.emit('join', $rootScope.roomId[index].chatroom_id);
                 }
                 $rootScope.$emit('username');
+                if(angular.element('.room-hover div')){
+                    for (let index = 0; index < $rootScope.rooms.length; index++) {
+                        if(sessionStorage.getItem("room" + $rootScope.rooms[index].chatroom_id)){
+                            angular.element("#" + $rootScope.rooms[index].chatroom_id).addClass('red');
+                        }
+                    }
+                }        
             })
         }
+    
     
     /* Nhận tin nhắn */
     socket.on('message', (msg) => {
@@ -56,15 +64,6 @@ myApp.controller('contentController', function ($rootScope, $scope, $location, $
     if($routeParams){
         $rootScope.tempRoomId = $routeParams.roomid;
     }
-
-    if(angular.element('.room-hover div')){
-        for (let index = 0; index < $rootScope.rooms.length; index++) {
-            if(sessionStorage.getItem("room" + $rootScope.rooms[index].chatroom_id)){
-                angular.element("#" + $rootScope.rooms[index].chatroom_id).addClass('red');
-            }
-        }
-    }
-
 
     $rootScope.$on('menu-clicked', ()=>{
         $scope.myButton = !$scope.myButton;
@@ -189,8 +188,3 @@ myApp.config(function($routeProvider, $locationProvider) {
         })
         
 });
-
-
-
-
-

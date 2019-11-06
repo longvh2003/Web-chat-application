@@ -77,6 +77,8 @@ app.get('/menuCtrl.js', (req,res)=>{
     res.sendFile(__dirname + '/public/src/menuCtrl.js');
 })
 
+
+
 app.get('/logout',(req,res)=>{
     req.session.destroy(()=>{
         console.log('user logged out');
