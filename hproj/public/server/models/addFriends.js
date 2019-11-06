@@ -2,7 +2,7 @@ var conn=require('./connection');
 module.exports=app=>{
 	app.post('/addFriends',(req,res)=>{
 		var getFriendIdSql='SELECT * FROM user WHERE username=?';
-		var add='INSERT INTO friends(currentUser,friendUser) values(?,?)';
+		var add='INSERT INTO friends(currentUser,friendUser,chatroomname) values(?,?,?)';
 		
 		var addRoom='INSERT INTO chatroom(chatroom_name, member_num) VALUES (?,?)';
 		var addUserRoom='INSERT INTO userchatroom VALUES (?,?),(?,?)';
@@ -15,16 +15,17 @@ module.exports=app=>{
 					con.query('select * from friends where currentUser=? and friendUser=?',[req.session.user.userId,friendId],(err,rows)=>{
 						if(rows.length>0) console.log('đã có thêm bạn rồi');
 						else{
-							con.query(add,[req.session.user.userId,friendId],(err)=>{
+							var nameRoom=req.session.user.userId+'-'+friendId;
+							con.query(add,[req.session.user.userId,friendId,nameRoom],(err)=>{
 								if(err) console.log(err);
 							});
-							con.query(add,[friendId,req.session.user.userId],(err)=>{
+							con.query(add,[friendId,req.session.user.userId,nameRoom],(err)=>{
 								if(err) console.log(err);
 							});
 
-							var roomName=req.session.user.userId+'-'+friendId;
-							con.query(addRoom,[roomName,2]);
-							con.query(addUserRoom,[req.session.user.userId,roomName,friendId,roomName]);
+							// var roomName=req.session.user.userId+'-'+friendId;
+							con.query(addRoom,[nameRoom,2]);
+							con.query(addUserRoom,[req.session.user.userId,nameRoom,friendId,nameRoom]);
 						}
 					});
 					con.release();
@@ -36,7 +37,7 @@ module.exports=app=>{
 	});
 	app.get('/addFriends',(req,res)=>{
 		// var getListSql='SELECT * FROM USER JOIN friends ON user_id=currentUser WHERE user_id=?';
-		var testSql='select * from user where user_id in(select frienduser from friends where currentuser=?)';
+		var testSql='select user.username,f.chatroomname,chatroom.chatroom_id from friends f  join user on user.user_id=f.frienduser  join chatroom on f.chatroomname=chatroom.chatroom_name where currentuser=?';
 		conn.aquire((err,conn)=>{
 			conn.query(testSql,[req.session.user.userId],(err,rows)=>{
 				res.send(rows);
