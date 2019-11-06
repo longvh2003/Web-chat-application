@@ -36,7 +36,7 @@ module.exports=app=>{
 	});
 	app.get('/addFriends',(req,res)=>{
 		// var getListSql='SELECT * FROM USER JOIN friends ON user_id=currentUser WHERE user_id=?';
-		var testSql='select * from user where user_id in(select friendUser FROM USER JOIN friends ON user_id=currentUser WHERE user_id=?)'
+		var testSql='select * from user where user_id in(select frienduser from friends where currentuser=?)';
 		conn.aquire((err,conn)=>{
 			conn.query(testSql,[req.session.user.userId],(err,rows)=>{
 				res.send(rows);
