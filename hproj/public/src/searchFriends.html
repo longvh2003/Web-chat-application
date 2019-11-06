@@ -2,7 +2,7 @@
 	<input type="text" id="username" name="username" placeholder="Username"><button id="add" ng-click="display()">add</button>
 	<div>
 		<p class="title">Friends list</p>
-		<ol id="listFriends">
+		<ol id="listFriends" >
 		</ol>
 	</div>
 </div>
@@ -15,25 +15,32 @@
 				method:'POST',
 				data:{ username:$('#username').val() }
 			});
+
 		});
 		$.ajax({
 			url:'/addFriends',
 			method:'GET',
-			success:data=>{
+			success:data=>{//data gồm tên friend,chatroomname với friend và id room
 				console.log(data);
 				let i;
 				for(i=0;i<data.length;i++){
 					$('#listFriends').append('<li>'+data[i].username+'</li>');
 				}
+				// $('ol').attr('ng-click','displayName()');
+				// $('ol').attr('role','button');
+				// $('ol').attr('tabindex','0');
+				$("ol").on("click",event=>{
+					var testArr=data.find(element=>{
+						return element.username==$(event.target).text();
+					});
+					// console.log(testArr.chatroom_id);
+					var chatId=testArr.chatroom_id;//đây là mã phòng chat của currentuser và friend clicked
+					console.log(chatId);
+					// $('ol').attr('ng-click','displayName(chatId)');
+					// $('ol').attr('role','button');
+					// $('ol').attr('tabindex','0');
+				});
 			}
-		});
-		$("ol").on("click",event=>{
-			console.log($(event.target).text());
-			// $.ajax({
-			// 	url:'/home/chat1',
-			// 	method:'POST',
-			// 	data:{friend:$(event.target).text()}
-			// });
 		});
 	});
 </script>
