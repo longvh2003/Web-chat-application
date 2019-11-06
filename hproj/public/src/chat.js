@@ -20,7 +20,6 @@ myApp.controller('myCtrl', function($scope, $http, $location, $rootScope, $route
 
         /* Khi load trang thì lấy username, id */
         $scope.init = () =>{
-            console.log(socket);
             $http.get('/home/username').then((result) => {
                 //if($routeParams.roomid)  $rootScope.tempRoomId=$routeParams.roomid;
                 console.log( $rootScope.tempRoomId);
@@ -33,6 +32,7 @@ myApp.controller('myCtrl', function($scope, $http, $location, $rootScope, $route
                 for (let index = 0; index < $rootScope.roomId.length; index++) {
                     socket.emit('join', $rootScope.roomId[index].chatroom_id);
                 }
+                $rootScope.$emit('username');
             })
         }
     
@@ -43,6 +43,7 @@ myApp.controller('myCtrl', function($scope, $http, $location, $rootScope, $route
                 //console.log(msg);
                 angular.element(".messagePend").append("<p><strong  class='userchat'> " + msg.username +  "</strong>"  + ": " + msg.text + "</p>");
             } else angular.element(".messagePend").append("<p><strong> " + msg.username +  "</strong>"  + ": " + msg.text + "</p>");    
+            $(".messagePend").animate({ scrollTop: $(document).height() }, "slow");  
         }
         else {
             angular.element("#" + msg.roomid).addClass('red');
@@ -89,6 +90,7 @@ myApp.controller('contentController', function ($rootScope, $scope, $location, $
                     angular.element(".messagePend").append("<p><strong  class='userchat'> " + result.data[i].from_user +  "</strong>"  + ": " + result.data[i].content + "</p>"); 
                 } else angular.element(".messagePend").append("<p><strong> " + result.data[i].from_user +  "</strong>"  + ": " + result.data[i].content + "</p>");
             }
+            angular.element(".messagePend").append("<hr style='margin-bottom: 20px;'></hr>");
         })
         $(".messagePend").animate({ scrollTop: $(document).height() }, "slow");
     }
@@ -173,10 +175,14 @@ myApp.controller('contentController', function ($rootScope, $scope, $location, $
 myApp.config(function($routeProvider, $locationProvider) {
     $locationProvider.hashPrefix('');
     $routeProvider
-        .when('/chat/:roomid', {
-            templateUrl: '/src/component/chatroom.html',
+        .when('/', {
+            templateUrl: '/src/component/room.html',
             controller: 'contentController'
         })
+        .when('/chat/:roomid', {
+                templateUrl: '/src/component/chatroom.html',
+                controller: 'contentController'
+            })
         .when('/friends',{
                 templateUrl:'/src/searchFriends.html',
                 controller: menuCtrl

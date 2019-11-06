@@ -1,4 +1,40 @@
-<div class="room-bar div-sizing" ng-model="chatRoom">
+<div class="room">
+    <div class="room-nav">
+        <div class="add-room">
+            <md-button class="md-primary md-raised room-button" ng-click="showAdvanced($event)">
+                    Create Room
+            </md-button>
+        </div>
+        <div class="join-room">
+            <md-button class="md-primary md-raised room-button join-button" ng-click="showForm($event)">
+                    Join Room
+            </md-button>
+        </div>
+    </div>
+    <md-list-item class="room-hover" ng-repeat="room in rooms" ng-click="panelClick($index, room)" id="{{room.chatroom_id}}">
+        <img ng-src="" class="md-avatar" alt="{{item.who}}" />
+        <div id="{{room.chatroom_name}}" class="md-list-item-text" layout="column">
+          <h3>{{room.chatroom_name }}</h3>
+          <p>{{ room.chatroom_description }}</p>
+        </div>
+    </md-list-item>
+</div>
+<div class="chat-area">
+        <div class="room-bar div-sizing" ng-model="chatRoom">
+                Room {{chatRoom}}:
+            </div>
+            <div id="messagePend" class="messagePend" ng-model="chatarea" style="overflow: auto;top: 80px; position: absolute; width: 100%; bottom: 80px;"></div>
+            <div class="chat-bar div-sizing">
+                <input type="text" name="message" class="text-input" ng-model="message">
+                <button class="text-input-button" ng-click="sendmessage()" type="submit">
+                    <div class="send-icon"></div>
+                </button> 
+            
+            </div>
+</div>
+
+
+<!-- <div class="room-bar div-sizing" ng-model="chatRoom">
     Room {{chatRoom}}:
 </div>
 <div id="messagePend" class="messagePend" ng-model="chatarea" style="overflow: auto;top: 80px; position: absolute; width: 100%; bottom: 80px;"></div>
@@ -8,4 +44,4 @@
         <div class="send-icon"></div>
     </button> 
 
-</div>
+</div> -->
