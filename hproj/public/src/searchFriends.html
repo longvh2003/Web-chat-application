@@ -1,49 +1,46 @@
 <div style="background-color: #ffc0cb">
-	<input type="text" id="username" name="username" placeholder="Username"><button id="add" ng-click="display()">add</button>
+	<input type="text" id="username"  placeholder="Username" ng-model="asd"><button id="add" ng-click="display()">add</button>
 	<div>
 		<p class="title">Friends list</p>
-		<ol id="listFriends" >
+		<ol id="listFriends">
+			<li ng-repeat="x in listFriends" ng-click="showEl(x)">{{x.username}}</li>
 		</ol>
+<!-- 		<div>
+			<h2 ng-repeat="x in listFriends">{{x}}</h2>
+		</div> -->
 	</div>
 </div>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script>
+<!-- <script>
 	$(function(){
-		$('#add').on('click',()=>{
-			$.ajax({
-				url:'/addFriends',
-				method:'POST',
-				data:{ username:$('#username').val() }
-			});
+		// $('#add').on('click',()=>{
+		// 	$.ajax({
+		// 		url:'/addFriends',
+		// 		method:'POST',
+		// 		data:{ username:$('#username').val() }
+		// 	});
 
-		});
-		$.ajax({
-			url:'/addFriends',
-			method:'GET',
-			success:data=>{//data gồm tên friend,chatroomname với friend và id room
-				console.log(data);
-				let i;
-				for(i=0;i<data.length;i++){
-					$('#listFriends').append('<li>'+data[i].username+'</li>');
-				}
-				// $('ol').attr('ng-click','displayName()');
-				// $('ol').attr('role','button');
-				// $('ol').attr('tabindex','0');
-				$("ol").on("click",event=>{
-					var testArr=data.find(element=>{
-						return element.username==$(event.target).text();
-					});
-					// console.log(testArr.chatroom_id);
-					var chatId=testArr.chatroom_id;//đây là mã phòng chat của currentuser và friend clicked
-					console.log(chatId);
-					// $('ol').attr('ng-click','displayName(chatId)');
-					// $('ol').attr('role','button');
-					// $('ol').attr('tabindex','0');
-				});
-			}
-		});
+		// });
+		// $.ajax({
+		// 	url:'/addFriends',
+		// 	method:'GET',
+		// 	success:data=>{//data gồm tên friend,chatroomname với friend và id room
+		// 		console.log(data);
+		// 		let i;
+		// 		for(i=0;i<data.length;i++){
+		// 			$('#listFriends').append('<li>'+data[i].username+'</li>');
+		// 		}
+		// 		$("ol").on("click",event=>{	
+		// 			var testArr=data.find(element=>{
+		// 				return element.username==$(event.target).text();
+		// 			});
+		// 			var chatId=testArr.chatroom_id;//đây là mã phòng chat của currentuser và friend clicked
+		// 			console.log(chatId);
+		// 		});
+		// 	}
+		// });
 	});
-</script>
+</script> -->
 <style>
 	ol li {
   	background: #ffe5e5;
