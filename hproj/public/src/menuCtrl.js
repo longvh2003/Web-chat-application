@@ -1,6 +1,4 @@
 function menuCtrl($rootScope, $scope, $location, $http, $window){
-    // $scope.listFriends=[1,2,3,4,5,6,7,8,9,10];
-
     $rootScope.$on('menu-clicked', ()=>{
         $scope.myButton = !$scope.myButton;
     })
@@ -35,8 +33,11 @@ function menuCtrl($rootScope, $scope, $location, $http, $window){
             method:'POST',
             url:'/addFriends',
             data:{username:$scope.asd}
+        }).then(res=>{
+            console.log(res.data);
+            $window.alert(res.data);
         });
-        $window.location.reload();
+        // $location.path('/friends');
     }
 
 }

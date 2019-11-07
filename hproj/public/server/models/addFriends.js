@@ -13,7 +13,7 @@ module.exports=app=>{
 					if(err) console.log('khong tim thay userfriend');
 					var friendId=rows[0].user_id;
 					con.query('select * from friends where currentUser=? and friendUser=?',[req.session.user.userId,friendId],(err,rows)=>{
-						if(rows.length>0) console.log('đã có thêm bạn rồi');
+						if(rows.length>0) res.send('đã có thêm bạn rồi');
 						else{
 							var nameRoom=req.session.user.userId+'-'+friendId;
 							con.query(add,[req.session.user.userId,friendId,nameRoom],(err)=>{
@@ -26,12 +26,14 @@ module.exports=app=>{
 							// var roomName=req.session.user.userId+'-'+friendId;
 							con.query(addRoom,[nameRoom,2]);
 							con.query(addUserRoom,[req.session.user.userId,nameRoom,friendId,nameRoom]);
+
+							res.send('them ban thanh cong');
 						}
 					});
 					con.release();
 				});								
 			}else{
-				console.log('ko thể thêm bạn với chính mình');
+				res.send('ko thể thêm bạn với chính mình');
 			}
 		});
 	});
