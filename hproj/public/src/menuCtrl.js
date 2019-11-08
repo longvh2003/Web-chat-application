@@ -6,12 +6,7 @@ function menuCtrl($rootScope, $scope, $location, $http, $window){
         if(index==2){    
             $location.path('/friends');
             console.log(index);
-            $http({
-                method:'GET',
-                url:'addFriends',
-            }).then(res=>{//res.data chuua res.data[i].chatroom_id
-                $rootScope.listFriends=res.data;
-            });
+            renderListFriends();
         }
         else if(index==4){
             console.log('logout');
@@ -28,6 +23,7 @@ function menuCtrl($rootScope, $scope, $location, $http, $window){
         $location.path('/chat/'+element.chatroom_id);
     }
     $scope.display=()=>{
+        $location.path('/friends');
         console.log($scope.asd);
         $http({
             method:'POST',
@@ -37,7 +33,17 @@ function menuCtrl($rootScope, $scope, $location, $http, $window){
             console.log(res.data);
             $window.alert(res.data);
         });
-        // $location.path('/friends');
+        
+    }
+
+    var renderListFriends=()=>{
+
+        $http({
+                method:'GET',
+                url:'addFriends',
+            }).then(res=>{//res.data chuua res.data[i].chatroom_id
+                $rootScope.listFriends=res.data;
+            });
     }
 
 }
