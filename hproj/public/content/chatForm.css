@@ -141,6 +141,8 @@ strong{
     width: 100%;
     font-size: 40px;
     line-height: 80px;
+    padding-left: 16px;
+    border-bottom: 1px solid black;
 }
 
 .room-panel{

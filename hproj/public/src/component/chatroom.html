@@ -1,10 +1,14 @@
-<div class="room-bar div-sizing" ng-model="chatRoom">
-    Room {{chatRoom}}:
-</div>
-<div id="messagePend" class="messagePend" ng-model="chatarea" style="overflow: auto;top: 80px; position: absolute; width: 100%; bottom: 80px;"></div>
-<div class="chat-bar div-sizing">
-    <input type="text" name="message" class="text-input" ng-model="message">
-    <button class="text-input-button" ng-click="sendmessage()" type="submit">
-        <div class="send-icon"></div>
-    </button> 
+
+<room-panel></room-panel>
+<div class="chat-area">
+    <div class="room-bar div-sizing" ng-model="chatRoom">
+       {{tempRoomName}}
+    </div>
+    <div id="messagePend" class="messagePend" ng-model="chatarea" style="overflow: auto;top: 80px; position: absolute; width: 100%; bottom: 80px;"></div>
+    <div class="chat-bar div-sizing">
+        <input type="text" name="message" class="text-input" ng-model="message">
+        <button class="text-input-button" ng-click="sendmessage()" type="submit">
+            <div class="send-icon"></div>
+        </button> 
+    </div>
 </div>

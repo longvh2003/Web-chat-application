@@ -103,6 +103,7 @@ const room = io.of('/home');
 room.on('connection', (socket)=>{
     socket.on('join', function(roomid){
         socket.join(roomid);
+        room.to(roomid).emit('userjoin', roomid);
     })
     socket.on('message', function (msg){   
         console.log(msg);
