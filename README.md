@@ -19,6 +19,9 @@
 
 **Đặng Ngọc Tiến**
 
+**TODO:**
+Profile, Hiển thị list friend, Xóa room, Inivite, Thông báo.
+
 #
 
 # I.Giới thiệu:
