@@ -16,31 +16,35 @@ myApp.run(function($rootScope){
     $rootScope.username = ' ';
     $rootScope.userid = 0;
     $rootScope.tempRoomName = '';
+    $rootScope.loadedHistory = 0;
+    $rootScope.reloadCount = 0;
 })
 myApp
-    .controller('myCtrl', function($scope, $http, $location, $rootScope, $routeParams){
+    .controller('myCtrl', function($scope, $http, $location, $rootScope, $routeParams, $route){
 
         /* Khi load trang thì lấy username, id */
         $scope.init = () =>{
             $http.get('/home/username').then((result) => {
+                console.log(2);
                 $rootScope.username = result.data.userdata.username;
                 $rootScope.userid = result.data.userdata.userId;
                 $rootScope.roomId = result.data.chatroom;
-                if($routeParams.roomid) {
-                    $rootScope.tempRoomId=$routeParams.roomid;
-                    $scope.getHistory($rootScope.tempRoomId);
-                }
+                // for (let index = 0; index < $rootScope.roomId.length; index++) {
+                //     socket.emit('join', $rootScope.roomId[index].chatroom_id);
+                // }
+                $rootScope.roomId.forEach(element => {
+                    socket.emit('join', element.chatroom_id);
+                });
                 for (let j = 0; j < result.data.chatroom.length; j++) {
                     $rootScope.rooms[j] = result.data.chatroom[j];
                     $rootScope.rooms[j].member = 0;
                     if($rootScope.tempRoomId == result.data.chatroom[j].chatroom_id && $routeParams.roomid) $rootScope.tempRoomName = $rootScope.rooms[j].chatroom_name;
-                }
-                for (let index = 0; index < $rootScope.roomId.length; index++) {
-                    socket.emit('join', $rootScope.roomId[index].chatroom_id);
-                }
+                }    
                 //console.log($rootScope.rooms);
-                $rootScope.$emit('username');
+                $rootScope.$broadcast('username');
+                $rootScope.$broadcast('loadRoom');
             })
+            $rootScope.loadedHistory = 0;
         }
 
         $scope.getHistory = (roomid) =>{
@@ -52,9 +56,18 @@ myApp
                 }
                 angular.element(".messagePend").append("<hr style='margin-bottom: 20px;'></hr>");
             })
+            $rootScope.loadedHistory++;
             $(".messagePend").animate({ scrollTop: $(document).height() }, "slow");
         }
 
+        $scope.routeReload = ()=>{
+            // $rootScope.reloadCount++;
+            // if($rootScope.reloadCount === 1){
+            //     $rootScope.loadedHistory = 0;
+            // }
+            //$rootScope.loadedHistory = 0;
+            //$route.reload();
+        }
     
     
         /* Nhận tin nhắn */
@@ -71,10 +84,11 @@ myApp
                 sessionStorage.setItem("room" + msg.roomid, msg.roomid);
             }
         })
-        socket.on('userjoin', (roomid)=>{
+        socket.on('usernumber', (clients, roomid)=>{
             $rootScope.rooms.forEach(element => {
-                if(element.chatroom_id == roomid) element.member++;          
+                if(element.chatroom_id === roomid) element.member = clients.length;       
             });
+            $scope.routeReload();
         })
     })
 
@@ -100,7 +114,21 @@ myApp
                 }
             }  
         });
-          
+
+        
+        $rootScope.$on('loadRoom', ()=>{
+            $scope.roominit = ()=>{
+                if($routeParams.roomid && $rootScope.loadedHistory ===0) {
+                    console.log(1);
+                    $rootScope.tempRoomId=$routeParams.roomid;
+                    $rootScope.rooms.forEach(element => {
+                        if(element.chatroom_id == $rootScope.tempRoomId) $rootScope.tempRoomName = element.chatroom_name;
+                    });
+                    $scope.getHistory($rootScope.tempRoomId);
+                }
+            }    
+        })
+
         $rootScope.$on('reloadRoom', ()=>{
             $route.reload();
         })
@@ -111,9 +139,10 @@ myApp
 
         $scope.selectedRow = null;
         $scope.panelClick = (index, room) => {
+            $rootScope.loadedHistory = 0;
             angular.element('#'+room.chatroom_id).removeClass('red');
-            $rootScope.tempRoomId = room.chatroom_id;
-            $rootScope.tempRoomName = room.chatroom_name;
+            // $rootScope.tempRoomId = room.chatroom_id;
+            // $rootScope.tempRoomName = room.chatroom_name;
             $location.path('/chat/' + room.chatroom_id);
             if($scope.text) $scope.text.remove();
             $scope.selectedRow = index;

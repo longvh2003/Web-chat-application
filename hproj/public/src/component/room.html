@@ -1,4 +1,4 @@
-<div class="room" data-ng-init="init()">
+<div class="room" data-ng-init="roominit()">
     <div class="room-nav">
         <div class="add-room">
             <md-button class="md-primary md-raised room-button" ng-click="showAdvanced($event)">
@@ -16,6 +16,7 @@
         <div class="md-list-item-text" layout="column">
           <h3>{{room.chatroom_name }}</h3>
           <p>{{ room.chatroom_description }}</p>
+          <p>{{room.member}}</p>
         </div>
     </md-list-item>
 </div>

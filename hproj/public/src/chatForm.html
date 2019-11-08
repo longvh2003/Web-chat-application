@@ -7,7 +7,7 @@
         <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     </head>
     <body>
-        <div class="container" ng-app="myApp" ng-controller="myCtrl" >
+        <div class="container" ng-app="myApp" ng-controller="myCtrl" data-ng-init="init()">
             <header-chat></header-chat>
             <menu class="menu-component"></menu>
             <div class="content" ng-controller="contentController" ng-class="{'small':myButton, 'big':!myButton}">
