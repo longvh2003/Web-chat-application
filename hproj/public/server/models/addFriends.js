@@ -16,16 +16,16 @@ module.exports=app=>{
 						if(rows.length>0) res.send('đã có thêm bạn rồi');
 						else{
 							var nameRoom=req.session.user.userId+'-'+friendId;
+							con.query(addRoom,[nameRoom,2]);
+							con.query(addUserRoom,[req.session.user.userId,nameRoom,friendId,nameRoom]);
 							con.query(add,[req.session.user.userId,friendId,nameRoom],(err)=>{
 								if(err) console.log(err);
 							});
 							con.query(add,[friendId,req.session.user.userId,nameRoom],(err)=>{
 								if(err) console.log(err);
 							});
-
+							
 							// var roomName=req.session.user.userId+'-'+friendId;
-							con.query(addRoom,[nameRoom,2]);
-							con.query(addUserRoom,[req.session.user.userId,nameRoom,friendId,nameRoom]);
 
 							res.send('them ban thanh cong');
 						}

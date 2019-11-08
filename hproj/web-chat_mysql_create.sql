@@ -15,7 +15,8 @@ CREATE TABLE `User` (
 CREATE TABLE `friends`(
 	`currentUser` int not null,
 	`friendUser` int not null,
-	PRIMARY KEY(currentUser,friendUser)
+    `chatroomname` varchar(50) NOT NULL,
+	PRIMARY KEY(currentUser,friendUser,chatroomname)
 );
 CREATE TABLE `Message` (
 	`message_id` int NOT NULL AUTO_INCREMENT,
@@ -47,6 +48,12 @@ ALTER TABLE `Message` ADD CONSTRAINT `Message_fk1` FOREIGN KEY (`to_chatroom`) R
 ALTER TABLE `UserChatroom` ADD CONSTRAINT `User-Chatroom_fk0` FOREIGN KEY (`user_id`) REFERENCES `User`(`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE `UserChatroom` ADD CONSTRAINT `User-Chatroom_fk1` FOREIGN KEY (`chatroom_id`) REFERENCES `Chatroom`(`chatroom_name`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `friends` ADD CONSTRAINT `friends_fk0` FOREIGN KEY (`currentUser`) REFERENCES `User`(`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `friends` ADD CONSTRAINT `friends_fk1` FOREIGN KEY (`friendUser`) REFERENCES `User`(`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE `friends` ADD CONSTRAINT `friends_fk2` FOREIGN KEY (`chatroomname`) REFERENCES `chatroom`(`chatroom_name`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 INSERT INTO user (email, username, user_password) VALUES ('huy@123.vn', 'huy1234', '12345');
 INSERT INTO user (email, username, user_password) VALUES ('huy@12345.vn', 'huy12345', '12345');
