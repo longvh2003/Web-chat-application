@@ -16,7 +16,7 @@ CREATE TABLE `friends`(
 	`currentUser` int not null,
 	`friendUser` int not null,
     `chatroomname` varchar(50) NOT NULL,
-	PRIMARY KEY(currentUser,friendUser,chatroomname)
+	PRIMARY KEY(currentUser,friendUser)
 );
 CREATE TABLE `Message` (
 	`message_id` int NOT NULL AUTO_INCREMENT,

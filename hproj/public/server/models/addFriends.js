@@ -7,7 +7,11 @@ module.exports=app=>{
 		var addRoom='INSERT INTO chatroom(chatroom_name, member_num) VALUES (?,?)';
 		var addUserRoom='INSERT INTO userchatroom VALUES (?,?),(?,?)';
 		console.log(req.session.user);
-		conn.aquire((err,con)=>{
+
+		if(!req.body.username){
+			res.send('nhap vao');
+		}else{
+			conn.aquire((err,con)=>{
 			if(req.body.username!=req.session.user.username){
 				con.query(getFriendIdSql,req.body.username,(err,rows)=>{
 					if(err) console.log('khong tim thay userfriend');
@@ -36,6 +40,7 @@ module.exports=app=>{
 				res.send('ko thể thêm bạn với chính mình');
 			}
 		});
+		}
 	});
 	app.get('/addFriends',(req,res)=>{
 		// var getListSql='SELECT * FROM USER JOIN friends ON user_id=currentUser WHERE user_id=?';
