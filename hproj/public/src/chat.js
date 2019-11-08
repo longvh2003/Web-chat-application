@@ -227,7 +227,7 @@ myApp.config(function($routeProvider, $locationProvider) {
                 controller: 'contentController'
             })
         .when('/friends',{
-                templateUrl:'/src/searchFriends.html',
+                templateUrl:'/src/component/searchFriends.html',
                 controller: menuCtrl
         })
         
