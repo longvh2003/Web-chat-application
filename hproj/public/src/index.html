@@ -98,14 +98,14 @@
         <div class="container" ng-app="myApp" ng-controller="myController">
             <div class="loginForm">
                 <h1>Web Chat Appilcation</h1>
-                <form action='auth' method="POST">
+                <form action='auth' method="POST" ng-app="">
                     <div class="login">
                         <p>User Name:</p>
-                        <input type="text" name="username" class="input" ng-model="username">
+                        <input type="text" name="username" class="input" ng-model="username" required>
                     </div>
                     <div class="login">
                         <p>Password : </p>
-                        <input type="password" name="password" class="input" ng-model="password">
+                        <input type="password" name="password" class="input" ng-model="password" required>
                     </div>
                     <div class="button">
                         <button class="loginButt" type="submit">Log In</button>
