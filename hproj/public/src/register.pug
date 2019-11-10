@@ -1,6 +1,7 @@
 doctype html
 head
   link(href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous')
+  script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js')
   title
   style.
     /*div {
@@ -33,27 +34,23 @@ form(method='POST')
         span(style='color:red', id='invaildusername',name=invalidUsername)=invalidUsername   
         .row
           .col-sm-12
-            input(type='text' name='name' placeholder='Name' value=oldName)
+            input(type='text' name='name' placeholder='Name' value=oldName required)
         span(style='color:red', id='invaildmail',name=invalidEmail)=invalidEmail    
         .row
           .col-sm-12
-            input(type='text' name='email' placeholder='Email/Phone' value=oldEmail)
+            input(type='text' name='email' placeholder='Email/Phone' value=oldEmail required)
         .row
           .col-sm-12
-            input(type='password' name='password' placeholder='Password')
+            input(type='password' name='password' placeholder='Password' required)
         p(style='margin: 0;') Birth
         .row
-          .col-sm-3
-            input(type='text' name='date' placeholder='date')
-          .col-sm-3
-            input(type='text' name='month' placeholder='month')
-          .col-sm-3
-            input(type='text' name='year' placeholder='year')
+          .col-sm-12
+            input(type='date' name='birth' required)
         .row
           .col-sm-3
             p
               | Male
-              input#male.check(type='radio' name='gender' value='male')
+              input#male.check(type='radio' name='gender' value='male' required)
           .col-sm-3
             p
               | Female

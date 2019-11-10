@@ -7,7 +7,8 @@ module.exports = app=>{
 		var name=req.body.name;
 		var email=req.body.email;
 		var password=req.body.password;
-		var birth=req.body.year+'-'+req.body.month+'-'+req.body.date;
+		// var birth=req.body.year+'-'+req.body.month+'-'+req.body.date;
+		var birth=req.body.birth;
 		var gender=req.body.gender; 
 		var insertSql='INSERT INTO User(username,email,user_password,dateOfBirth,gender) value(?,?,?,?,?);';
 		var validEmailSql='SELECT * FROM USER WHERE email=?;';
@@ -24,8 +25,8 @@ module.exports = app=>{
 					}	
 					if(!validUsername||!validEmail){
 						var msg={invalidEmail:'',invalidUsername:'',oldEmail:req.body.email,oldName:req.body.name};
-						if(!validEmail) msg.invalidEmail='this email already token';
-						if(!validUsername) msg.invalidUsername='this username already token';
+						if(!validEmail) msg.invalidEmail='This email already token';
+						if(!validUsername) msg.invalidUsername='This username already token';
 						res.render('register',msg);
 					}
 				}else{
