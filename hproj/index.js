@@ -5,6 +5,7 @@ import session from 'express-session';
 import getHis from './public/server/models/getChatroomHistory';  //Lấy tin nhắn cũ
 import getChatroom from './public/server/models/getRoomId';
 import addChatroom from './public/server/models/addRoom';
+import addToNotification from './public/server/models/notification'
 var register=require('./public/server/models/register');
 var addFriends=require('./public/server/models/addFriends');
 const port = 3000;
@@ -108,9 +109,9 @@ room.on('connection', (socket)=>{
         })
         //room.to(roomid).emit('userjoin', roomid);
     })
-    socket.on('message', function (msg){   
-        console.log(msg);
+    socket.on('message', function (msg){
         msgdb(msg);
+        addToNotification(msg);
         room.to(msg.roomid).emit('message', msg);
     })
 })

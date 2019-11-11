@@ -154,7 +154,7 @@ myApp
         //$rootScope.$on('loadHistory', $scope.getHistory($rootScope.tempRoomId));
 
         $scope.sendmessage = () =>{
-            socket.emit('message', {roomid: $rootScope.tempRoomId, text: $scope.message, username: $rootScope.username, id: $rootScope.userid});
+            socket.emit('message', {roomid: $rootScope.tempRoomId, text: $scope.message, username: $rootScope.username, id: $rootScope.userid, roomname: $rootScope.tempRoomName});
             $scope.message = "";
             $("#messagePend").scrollTop = $("#messagePend").scrollHeight - $("#smessagePend").clientHeight;
         }
