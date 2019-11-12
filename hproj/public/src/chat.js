@@ -18,6 +18,7 @@ myApp.run(function($rootScope){
     $rootScope.tempRoomName = '';
     $rootScope.loadedHistory = 0;
     $rootScope.reloadCount = 0;
+    $rootScope.notifications = 0;
 })
 myApp
     .controller('myCtrl', function($scope, $http, $location, $rootScope, $routeParams, $route){
@@ -39,10 +40,12 @@ myApp
                     $rootScope.rooms[j] = result.data.chatroom[j];
                     $rootScope.rooms[j].member = 0;
                     if($rootScope.tempRoomId == result.data.chatroom[j].chatroom_id && $routeParams.roomid) $rootScope.tempRoomName = $rootScope.rooms[j].chatroom_name;
-                }    
+                }
+                $scope.loadNotifi();    
                 //console.log($rootScope.rooms);
                 $rootScope.$broadcast('username');
                 $rootScope.$broadcast('loadRoom');
+                $rootScope.$broadcast('notifications');
             })
             $rootScope.loadedHistory = 0;
         }
@@ -68,6 +71,16 @@ myApp
             //$rootScope.loadedHistory = 0;
             //$route.reload();
         }
+
+        $scope.loadNotifi = () =>{
+            $http.get('/getNotifi/' + $rootScope.userid).then((result)=>{
+                result.data.forEach(element =>{
+                    $rootScope.notifications++;
+                    $rootScope.$broadcast('notifications');
+                    console.log(element.content);
+                })
+            })
+        }
     
     
         /* Nhận tin nhắn */
@@ -80,6 +93,7 @@ myApp
                 $(".messagePend").animate({ scrollTop: $(document).height() }, "slow");  
             }
             else {
+                $scope.loadNotifi();
                 angular.element("#" + msg.roomid).addClass('red');
                 sessionStorage.setItem("room" + msg.roomid, msg.roomid);
             }

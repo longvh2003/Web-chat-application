@@ -44,7 +44,7 @@ CREATE TABLE `UserChatroom` (
 CREATE TABLE `notification` (
 	`id` int NOT NULL AUTO_INCREMENT,
     `content` varchar(255) NOT NULL,
-    `to_user` varchar(25) NOT NULL,
+    `to_user` int NOT NULL,
     `is_read` boolean,
     PRIMARY KEY (`id`, `to_user`)
 );
@@ -63,7 +63,7 @@ ALTER TABLE `friends` ADD CONSTRAINT `friends_fk1` FOREIGN KEY (`friendUser`) RE
 
 ALTER TABLE `friends` ADD CONSTRAINT `friends_fk2` FOREIGN KEY (`chatroomname`) REFERENCES `chatroom`(`chatroom_name`) ON DELETE CASCADE ON UPDATE CASCADE;
 
-ALTER TABLE `notification` ADD CONSTRAINT `notification_fk0` FOREIGN KEY (`to_user`) REFERENCES `User`(`username`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `notification` ADD CONSTRAINT `notification_fk0` FOREIGN KEY (`to_user`) REFERENCES `User`(`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 INSERT INTO user (email, username, user_password) VALUES ('huy@123.vn', 'huy1234', '12345');
 INSERT INTO user (email, username, user_password) VALUES ('huy@12345.vn', 'huy12345', '12345');
 INSERT INTO chatroom(chatroom_name, member_num) VALUES ('ALL ROOM', 5);

@@ -5,7 +5,8 @@ import session from 'express-session';
 import getHis from './public/server/models/getChatroomHistory';  //Lấy tin nhắn cũ
 import getChatroom from './public/server/models/getRoomId';
 import addChatroom from './public/server/models/addRoom';
-import addToNotification from './public/server/models/notification'
+import addToNotification from './public/server/models/notification';
+import getNotifi from './public/server/models/getNotifi';
 var register=require('./public/server/models/register');
 var addFriends=require('./public/server/models/addFriends');
 const port = 3000;
@@ -54,6 +55,12 @@ app.get('/home/messageHis/:roomid', (req, res) => {
       });
 })
 
+app.get('/getNotifi/:userid', (req, res)=>{
+    getNotifi(req.params.userid, function(err, result) {
+        console.log(result);
+        res.send(result);
+    })
+})
 /* Gửi username cho client */
 app.get('/home/username', (req, res)=>{
     getChatroom(req.session.user.userId, function (err, result){

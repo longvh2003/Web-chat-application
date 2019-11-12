@@ -8,6 +8,11 @@ function headerCtrl($rootScope, $scope){
     $rootScope.$on('username', ()=>{
         $scope.username = $rootScope.username;
     })
+
+    $rootScope.$on('notifications', ()=>{
+        $scope.notifications = $rootScope.notifications;
+    })
+
 }
 
 angular.module('myApp').component('headerChat', {
