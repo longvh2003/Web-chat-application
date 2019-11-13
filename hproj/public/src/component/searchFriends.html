@@ -1,14 +1,25 @@
 <div style="background-color: #ffc0cb">
 	<input type="text" id="username"  placeholder="Username" ng-model="asd"><button id="add" ng-click="display()">add</button>
 	<div>
-		<p class="title">Friends list</p>
-		<ol id="listFriends">
-			<li ng-repeat="x in listFriends" ng-click="showEl(x)">{{x.username}}</li>
-		</ol>
+		<div>
+			<p class="title">Friends list</p>
+			<ol id="listFriends">
+				<li ng-repeat="x in listFriends" ng-click="showEl(x)">{{x.username}}</li>
+			</ol>
+		</div>
+
+		<div>
+			<ol id="invitation">
+				<li ng-repeat="friend in listInvitation">{{friend.username}}<button ng-click="addFriendBut(friend)">acept</button></li>
+			</ol>
+		</div>
 	</div>
 </div>
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <style>
+	*{
+		box-sizing: border-box;
+	}
 	ol li {
   	background: #ffe5e5;
   	padding: 5px;
@@ -33,6 +44,14 @@
 	font-size: 25px;
 	text-shadow: 1px 1px 1px #fff;
 
+	}
+	#listFriends{
+		float: left;
+		width: 50%;
+	}
+	#invitation{
+		float: right;
+		width: 50%;
 	}
 	/*css style source code : sanwebe.com*/
 	#add{

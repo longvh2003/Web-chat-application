@@ -5,7 +5,7 @@ module.exports = (userid, callback) =>{
     conn.aquire((err, con)=>{
         con.query(sql, [userid, false], (err, result)=>{
             if(err) throw err;
-            callback(null, result);
+            callback(null, result);//send ve cl
             con.release();
         })
     })

@@ -11,11 +11,10 @@ function menuCtrl($rootScope, $scope, $location, $http, $window){
         }
         if(index==2){    
             $location.path('/friends');
-            console.log(index);
             renderListFriends();
+            renderListInvitation();
         }
         else if(index==4){
-            console.log('logout');
             $http({
                 method:'GET',
                 url:'/logout',
@@ -30,27 +29,45 @@ function menuCtrl($rootScope, $scope, $location, $http, $window){
     }
     $scope.display=()=>{
         $location.path('/friends');
-        console.log($scope.asd);
         $http({
             method:'POST',
             url:'/addFriends',
             data:{username:$scope.asd}
         }).then(res=>{
-            console.log(res.data);
             $window.alert(res.data);
             renderListFriends();
         });
-        
+    }
+
+    $scope.addFriendBut=friend=>{
+        console.log(friend);
+        console.log('clicked');
+        $http({
+            method:'POST',
+            url:'/getListInvitation',
+            data:{userSend:friend.user_id}
+        });
+        renderListFriends();
+        renderListInvitation();
     }
 
     var renderListFriends=()=>{
-
         $http({
                 method:'GET',
-                url:'addFriends',
+                url:'/addFriends',
             }).then(res=>{//res.data chuua res.data[i].chatroom_id
                 $rootScope.listFriends=res.data;
             });
+    }
+
+    var renderListInvitation=()=>{
+        $http({
+            method:'GET',
+            url:'/getListInvitation'
+        }).then(res=>{
+            $rootScope.listInvitation=res.data;
+            console.log(res.data);
+        });
     }
 
 }

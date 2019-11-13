@@ -7,6 +7,7 @@ import getChatroom from './public/server/models/getRoomId';
 import addChatroom from './public/server/models/addRoom';
 import addToNotification from './public/server/models/notification';
 import getNotifi from './public/server/models/getNotifi';
+var getListInvi=require('./public/server/models/getListInvi');
 var register=require('./public/server/models/register');
 var addFriends=require('./public/server/models/addFriends');
 const port = 3000;
@@ -45,6 +46,7 @@ app.get('/home', function(req, res){
 
 register(app);
 addFriends(app);
+getListInvi(app);
 
 
 /* Lấy tin nhắn cũ */

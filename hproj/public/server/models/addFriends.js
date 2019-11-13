@@ -6,6 +6,8 @@ module.exports=app=>{
 		
 		var addRoom='INSERT INTO chatroom(chatroom_name, member_num) VALUES (?,?)';
 		var addUserRoom='INSERT INTO userchatroom VALUES (?,?),(?,?)';
+
+		var addInvi= 'INSERT INTO invitation value(?,?)';
 		console.log(req.session.user);
 
 		if(!req.body.username){
@@ -19,17 +21,19 @@ module.exports=app=>{
 					con.query('select * from friends where currentUser=? and friendUser=?',[req.session.user.userId,friendId],(err,rows)=>{
 						if(rows.length>0) res.send('đã có thêm bạn rồi');
 						else{
-							var nameRoom=req.session.user.userId+'-'+friendId;
-							con.query(addRoom,[nameRoom,2]);
-							con.query(addUserRoom,[req.session.user.userId,nameRoom,friendId,nameRoom]);
-							con.query(add,[req.session.user.userId,friendId,nameRoom],(err)=>{
-								if(err) console.log(err);
+							// var nameRoom=req.session.user.userId+'-'+friendId;
+							// con.query(addRoom,[nameRoom,2]);
+							// con.query(addUserRoom,[req.session.user.userId,nameRoom,friendId,nameRoom]);
+							// con.query(add,[req.session.user.userId,friendId,nameRoom],(err)=>{
+								// if(err) console.log(err);
+							// });
+							// con.query(add,[friendId,req.session.user.userId,nameRoom],(err)=>{
+								// if(err) console.log(err);
+							// });
+
+							con.query(addInvi,[req.session.user.userId,friendId],err=>{
+								console.log('Gửi lời mời kết bạn thành công');
 							});
-							con.query(add,[friendId,req.session.user.userId,nameRoom],(err)=>{
-								if(err) console.log(err);
-							});
-							
-							// var roomName=req.session.user.userId+'-'+friendId;
 
 							res.send('them ban thanh cong');
 						}

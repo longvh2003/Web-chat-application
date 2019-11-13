@@ -18,6 +18,11 @@ CREATE TABLE `friends`(
     `chatroomname` varchar(50) NOT NULL,
 	PRIMARY KEY(currentUser,friendUser)
 );
+CREATE TABLE `invitation`(
+	user1 int not null,
+	user2 int not null,
+	PRIMARY KEY(user1,user2)
+);
 CREATE TABLE `Message` (
 	`message_id` int NOT NULL AUTO_INCREMENT,
 	`content` varchar(255) NOT NULL,
@@ -43,10 +48,10 @@ CREATE TABLE `UserChatroom` (
 
 CREATE TABLE `notification` (
 	`id` int NOT NULL AUTO_INCREMENT,
-    `content` varchar(255) NOT NULL,
+    `content` varchar(255),
     `to_user` int NOT NULL,
-    `is_read` boolean,
-    PRIMARY KEY (`id`, `to_user`)
+    `is_read` boolean DEFAULT false,
+    PRIMARY KEY (`id`)
 );
 
 ALTER TABLE `Message` ADD CONSTRAINT `Message_fk0` FOREIGN KEY (`from_user`) REFERENCES `User`(`username`) ON DELETE RESTRICT ON UPDATE CASCADE;
