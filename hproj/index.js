@@ -85,6 +85,15 @@ app.get('/menuCtrl.js', (req,res)=>{
     res.sendFile(__dirname + '/public/src/menuCtrl.js');
 })
 
+app.get('/node_modules/angular-ui-notification/dist/angular-ui-notification.min.css', (req, res)=>{
+    res.sendFile(__dirname + '/node_modules/angular-ui-notification/dist/angular-ui-notification.min.css');
+})
+
+app.get('/node_modules/angular-ui-notification/dist/angular-ui-notification.min.js', (req, res)=>{
+    res.sendFile(__dirname + '/node_modules/angular-ui-notification/dist/angular-ui-notification.min.js');
+})
+
+
 
 
 app.get('/logout',(req,res)=>{

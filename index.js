@@ -28,7 +28,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.get('/',function(req,res){
 	if(req.session.user){
 		res.redirect('/home');
-	}else res.render('loginForm');
+	}else res.render('home');
 	
 
 });

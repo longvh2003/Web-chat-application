@@ -1,4 +1,5 @@
 @import "roomNav.css";
+@import "profile.css";
 
 html {
     width: 100%;
@@ -85,7 +86,7 @@ strong{
 }
 
 .ng-hide:not(.ng-hide-animate) {
-    display: block !important;
+    display: none !important;
     width: 0;
 }
 

@@ -1,0 +1,22 @@
+.profile-container{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 300px auto;
+    grid-gap: 20px;
+    position: relative;
+}
+
+.avatar-container{
+    position: relative;
+}
+
+.avatar{
+    position: absolute;
+    top:150px;
+    left: 50px;
+    height: 200px;
+    width: 200px;
+    background: url('https://i.pinimg.com/236x/37/62/69/37626928411b827e5bd1749bb6bdb1e4.jpg');
+    border-radius: 50%;
+}

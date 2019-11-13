@@ -3,6 +3,12 @@ function menuCtrl($rootScope, $scope, $location, $http, $window){
         $scope.myButton = !$scope.myButton;
     })
     $scope.menuClicked=index=>{
+        if(index == 0){
+            $location.path('/');
+        }
+        if(index == 1){
+            $location.path('/profile');
+        }
         if(index==2){    
             $location.path('/friends');
             console.log(index);
@@ -32,6 +38,7 @@ function menuCtrl($rootScope, $scope, $location, $http, $window){
         }).then(res=>{
             console.log(res.data);
             $window.alert(res.data);
+            renderListFriends();
         });
         
     }

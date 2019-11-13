@@ -8,7 +8,7 @@ var socketroom1;
 /* Khai báo module và controller angularjs cho toàn bộ container
    Có thể thêm controller và directive thích hợp */
 
-var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial']);
+var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ui-notification']);
 myApp.run(function($rootScope){
     $rootScope.roomsId = [];
     $rootScope.rooms = [];
@@ -21,7 +21,7 @@ myApp.run(function($rootScope){
     $rootScope.notifications = 0;
 })
 myApp
-    .controller('myCtrl', function($scope, $http, $location, $rootScope, $routeParams, $route){
+    .controller('myCtrl', function($scope, $http, $location, $rootScope, $routeParams, $route, Notification){
 
         /* Khi load trang thì lấy username, id */
         $scope.init = () =>{
@@ -77,6 +77,7 @@ myApp
                 result.data.forEach(element =>{
                     $rootScope.notifications++;
                     $rootScope.$broadcast('notifications');
+                    Notification(element.content);
                     console.log(element.content);
                 })
             })
@@ -222,12 +223,10 @@ myApp
 
 
             $scope.submit = () => {
-                //console.log($scope.newroomname);
                 if($scope.newroompassword === undefined) $scope.newroompassword = "";
                 if($scope.newroomdes === undefined) $scope.newroomdes = "";
                 let data = {name: $scope.newroomname, pass: $scope.newroompassword, des: $scope.newroomdes, userid: $rootScope.userid}
                 $http.post('/home/addRoom', JSON.stringify(data)).then((result) =>{
-                    //console.log(result);
                     if(result.data.status){
                         $scope.showAlert("Tạo phòng thành công", "Tạo thành công!!");
                     } else {
@@ -236,11 +235,10 @@ myApp
                     }
                 })
                 $scope.$emit('reloadRoom');
-                //$mdDialog.hide();
             }    
         }
     })
-    .directive('onFinishRender', function ($timeout) {
+    .directive('onFinishRender', function ($timeout) {  //Khi xong render thì emit repeat xong
         return {
           restrict: 'A',
           link: function (scope, element, attr) {
@@ -258,8 +256,28 @@ myApp
         }
     })
 
+/**
+ * Config cho thông báo của ui-notification
+ * 13/11/2019
+ */
 
 
+myApp.config(function(NotificationProvider) {
+    NotificationProvider.setOptions({
+        delay: 10000,
+        startTop: 20,
+        startRight: 10,
+        verticalSpacing: 20,
+        horizontalSpacing: 20,
+        positionX: 'right',
+        positionY: 'bottom'
+    });
+})
+
+/**
+ * Config cho route angularjs
+ * 
+ */
 
 
 myApp.config(function($routeProvider, $locationProvider) {
@@ -277,5 +295,8 @@ myApp.config(function($routeProvider, $locationProvider) {
             templateUrl:'/src/component/searchFriends.html',
             controller: menuCtrl
         })
-        
+        .when('/profile', {
+            templateUrl: '/src/component/profile.html',
+            controller: 'contentController'
+        })
 });
