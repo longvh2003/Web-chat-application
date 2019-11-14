@@ -6,7 +6,8 @@
             <p>{{myButton}}</p>
     </div>
     <div ng-model="notifications" class="dropdown" id="notifications" ng-click="displayNoti()">
-    	{{notifications}}<!-- số thông báo -->
+    	<span>{{notifications}}<!-- số thông báo --></span>	
+    	<img src="https://png.pngtree.com/png-clipart/20190924/original/pngtree-notification--icon-in-trendy-style-isolated-background-png-image_4859577.jpg" class="icon">
     	<div class="dropdown-content" id="dropdown-content" >
     		<div class="el" ng-repeat="note in listNote">{{note.mess}}{{note.username}}</div>
     	</div>
@@ -16,11 +17,13 @@
 <style type="text/css">
 	.dropdown{
 		position:absolute; 
-		height: 50px;
-		width:50px;
+		/*height: 50px;*/
+		/*width:50px;*/
 		right: 300px;
 		align-self: center; 
 		background: green;
+		border-radius: 50%;
+		background-color: #85cdca;
 	}
 	.dropdown:hover{
 		cursor: pointer;
@@ -33,6 +36,7 @@
 		height: 200px;
 		overflow: auto;
 		top: 50px;
+		border:2px double green;
 	}
 	.el {
 		height: 50px;
@@ -45,4 +49,22 @@
 	/*.dropdown:hover .dropdown-content {
   		display: block;
 	}*/
+	.icon{
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		position: absolute;
+	}
+	span{
+		background-color: red;
+		width: 25px;
+		height: 25px;
+		border-radius: 50%;
+		display: block;
+		z-index: 1;
+		text-align: center;
+		font-weight: 800;
+		position: absolute;
+		left: 40px;
+	}
 </style>

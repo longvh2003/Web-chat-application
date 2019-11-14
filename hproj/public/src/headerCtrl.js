@@ -15,7 +15,7 @@ function headerCtrl($rootScope, $scope,$http){
         checked++;
         updateInvi();
         $scope.notifications=0;//đọc xong rồi
-        $scope.listNote=[];
+        // $scope.listNote=[];
     }
     $scope.clickMenu = ()=>{
         $rootScope.$emit('menu-clicked');
@@ -34,13 +34,16 @@ function headerCtrl($rootScope, $scope,$http){
             method:'GET',
             url:'/getListInvitation'
         }).then(res=>{
-            var list=res.data;
-            for(var i=0;i<list.length;i++){
-                if(!list[i].readed){
-                    $scope.listNote.push({
-                        mess:'Có 1 lời mời kết bạn từ: ',
-                        username:list[i].username
-                    });
+            if(res.data){
+                var list=res.data;
+                for(var i=0;i<list.length;i++){
+                    if(!list[i].readed){
+                        $scope.listNote.push({
+                            mess:'Có 1 lời mời kết bạn từ: ',
+                            username:list[i].username
+                        });
+                        $scope.notifications++;
+                    }
                 }
             }
         });
