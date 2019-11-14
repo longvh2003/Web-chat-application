@@ -1,7 +1,7 @@
 var con=require('./connection');
 module.exports= app=>{
 	app.get('/getListInvitation',(req,res)=>{
-		var sql='select user_id,username from user where user_id in(select user1 from invitation where user2=?)';
+		var sql='select user_id,username,readed from user u join invitation i on(user1=user_id) where user2=?';
 		con.aquire((err,con)=>{
 			con.query(sql,[req.session.user.userId],(err,rows)=>{
 				if(err) console.log('ko nhận đc danh sách lời mời lỗi: '+err);

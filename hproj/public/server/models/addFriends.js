@@ -7,7 +7,7 @@ module.exports=app=>{
 		var addRoom='INSERT INTO chatroom(chatroom_name, member_num) VALUES (?,?)';
 		var addUserRoom='INSERT INTO userchatroom VALUES (?,?),(?,?)';
 
-		var addInvi= 'INSERT INTO invitation value(?,?)';
+		var addInvi= 'INSERT INTO invitation(user1,user2) value(?,?)';
 		console.log(req.session.user);
 
 		if(!req.body.username){

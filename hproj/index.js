@@ -10,6 +10,7 @@ import getNotifi from './public/server/models/getNotifi';
 var getListInvi=require('./public/server/models/getListInvi');
 var register=require('./public/server/models/register');
 var addFriends=require('./public/server/models/addFriends');
+var markInvi=require('./public/server/models/markInvi');
 const port = 3000;
 import bodyParser from 'body-parser';
 let app = express();
@@ -47,6 +48,7 @@ app.get('/home', function(req, res){
 register(app);
 addFriends(app);
 getListInvi(app);
+markInvi(app);
 
 
 /* Lấy tin nhắn cũ */

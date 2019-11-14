@@ -8,7 +8,7 @@
     <div ng-model="notifications" class="dropdown" id="notifications" ng-click="displayNoti()">
     	{{notifications}}<!-- số thông báo -->
     	<div class="dropdown-content" id="dropdown-content" >
-    		<div class="el" ng-repeat="note in listNote">{{note}}</div>
+    		<div class="el" ng-repeat="note in listNote">{{note.mess}}{{note.username}}</div>
     	</div>
 	</div>
     <div ng-model="username" style="position:absolute; height: 75px; align-self: center;line-height: 75px;right: 0;font-size: 28px;">{{username}}</div>

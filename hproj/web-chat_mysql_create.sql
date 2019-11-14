@@ -21,6 +21,7 @@ CREATE TABLE `friends`(
 CREATE TABLE `invitation`(
 	user1 int not null,
 	user2 int not null,
+	readed boolean default false,
 	PRIMARY KEY(user1,user2)
 );
 CREATE TABLE `Message` (
