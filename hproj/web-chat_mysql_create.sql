@@ -48,10 +48,10 @@ CREATE TABLE `UserChatroom` (
 
 CREATE TABLE `notification` (
 	`id` int NOT NULL AUTO_INCREMENT,
-    `content` varchar(255),
+    `content` varchar(255) not null,
     `to_user` int NOT NULL,
     `is_read` boolean DEFAULT false,
-    PRIMARY KEY (`id`)
+    PRIMARY KEY (`id`, `to_user`)
 );
 
 ALTER TABLE `Message` ADD CONSTRAINT `Message_fk0` FOREIGN KEY (`from_user`) REFERENCES `User`(`username`) ON DELETE RESTRICT ON UPDATE CASCADE;
