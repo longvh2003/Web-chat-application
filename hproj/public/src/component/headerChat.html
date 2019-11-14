@@ -5,6 +5,44 @@
             </button>
             <p>{{myButton}}</p>
     </div>
-    <div ng-model="notifications" style="position:absolute; height: 50px;width:50px;right: 300px;align-self: center; border-radius: 50%;background: green;">{{notifications}}</div><!-- số thông báo -->
+    <div ng-model="notifications" class="dropdown" id="notifications" ng-click="displayNoti()">
+    	{{notifications}}<!-- số thông báo -->
+    	<div class="dropdown-content" id="dropdown-content" >
+    		<div class="el" ng-repeat="note in listNote">{{note}}</div>
+    	</div>
+	</div>
     <div ng-model="username" style="position:absolute; height: 75px; align-self: center;line-height: 75px;right: 0;font-size: 28px;">{{username}}</div>
 </div>
+<style type="text/css">
+	.dropdown{
+		position:absolute; 
+		height: 50px;
+		width:50px;
+		right: 300px;
+		align-self: center; 
+		background: green;
+	}
+	.dropdown:hover{
+		cursor: pointer;
+	}
+	.dropdown-content {
+		display: none;
+		position: absolute;
+		z-index: 1;/******************/
+		width: 200px;
+		height: 200px;
+		overflow: auto;
+		top: 50px;
+	}
+	.el {
+		height: 50px;
+		background-color: white;
+	}
+	.el:hover {
+		background-color: #ddd;
+		cursor: pointer;
+	}
+	/*.dropdown:hover .dropdown-content {
+  		display: block;
+	}*/
+</style>

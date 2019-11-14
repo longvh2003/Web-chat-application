@@ -32,10 +32,10 @@ module.exports=app=>{
 							// });
 
 							con.query(addInvi,[req.session.user.userId,friendId],err=>{
-								console.log('Gửi lời mời kết bạn thành công');
+								res.send('Gửi lời mời kết bạn thành công');
 							});
 
-							res.send('them ban thanh cong');
+							// res.send('them ban thanh cong');
 						}
 					});
 					con.release();
