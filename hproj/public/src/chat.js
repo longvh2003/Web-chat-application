@@ -91,6 +91,12 @@ myApp
                 if(element.chatroom_id === roomid) element.member = clients.length;       
             });
         })
+
+        $rootScope.$on('reloadRoom', ()=>{
+            $scope.init();
+            console.log('reloaded');
+        })
+
     })
 
     /**
@@ -99,7 +105,7 @@ myApp
      */
 
 myApp
-    .controller('contentController', function ($rootScope, $scope, $location, $http, $routeParams, $mdDialog, $route) {
+    .controller('contentController', function ($rootScope, $scope, $location, $http, $routeParams, $mdDialog, $window) {
         $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
             if(angular.element('.room-hover div')){
                 for (let index = 0; index < $rootScope.rooms.length; index++) {
@@ -124,9 +130,6 @@ myApp
             }    
         })
 
-        $rootScope.$on('reloadRoom', ()=>{
-            $route.reload();
-        })
 
         $rootScope.$on('menu-clicked', ()=>{
             $scope.myButton = !$scope.myButton;
@@ -165,13 +168,32 @@ myApp
                   .cancel('NOPE!');
         
             $mdDialog.show(confirm).then(function() {
-                //Gọi ajax xóa room rồi reload trang
+                $http.post('/home/deleteRoom/' + $rootScope.tempRoomId).then((res)=>{
+                    $window.location.href = '/home';
+                })
             }, function() {
                 $mdDialog.hide(confirm);
             });
           };
 
 
+        $scope.inviteRoom = (ev) =>{
+            $mdDialog.show({
+                controller: DialogIniteController,
+                templateUrl: '/src/component/invite.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose:true,
+                fullscreen: false 
+                })
+                .then(function(answer, roomname, roompass, roomdes) {
+                if(answer === 'Cancel') {
+                    $mdDialog.hide();
+                }
+                }, function() {
+                });    
+        }
+          
         /**
          * Show form thêm room
          * 
@@ -179,7 +201,7 @@ myApp
 
         $scope.showAdvanced = function(ev) {
             $mdDialog.show({
-            controller: DialogController,
+            controller: DialogAddController,
             templateUrl: '/src/component/testing.html',
             parent: angular.element(document.body),
             targetEvent: ev,
@@ -194,59 +216,8 @@ myApp
             });
         };
 
-        /**
-         * Controller của dialog thêm room
-         * @param {*} $scope 
-         * @param {*} $mdDialog 
-         * @param {*} $http 
-         * @param {*} $rootScope 
-         */
-
-        function DialogController($scope, $mdDialog, $http, $rootScope) {
-            $scope.hide = function() {
-                $mdDialog.hide();
-            };
-        
-            $scope.cancel = function() {
-                $mdDialog.cancel();
-            };
-        
-            $scope.answer = function(answer) {
-                $mdDialog.hide(answer);
-            };
-
-            /**
-             * Hiển thị alert thành công hoặc thất bại
-             */
-
-            $scope.showAlert = function(status, des) {
-                $mdDialog.show(
-                $mdDialog.alert()
-                    .parent(angular.element(document.querySelector('#popupContainer')))
-                    .clickOutsideToClose(true)
-                    .title(status)
-                    .textContent(des)
-                    .ariaLabel('Alert Dialog Demo')
-                    .ok('Got it!')
-                );
-            };
 
 
-            $scope.submit = () => {
-                if($scope.newroompassword === undefined) $scope.newroompassword = "";
-                if($scope.newroomdes === undefined) $scope.newroomdes = "";
-                let data = {name: $scope.newroomname, pass: $scope.newroompassword, des: $scope.newroomdes, userid: $rootScope.userid}
-                $http.post('/home/addRoom', JSON.stringify(data)).then((result) =>{
-                    if(result.data.status){
-                        $scope.showAlert("Tạo phòng thành công", "Tạo thành công!!");
-                    } else {
-                        $scope.showAlert("Tạo phòng không thành công", "Tên phòng đã tồn tại, vui lòng chọn tên khác");
-                        $mdDialog.hide();
-                    }
-                })
-                $scope.$emit('reloadRoom');
-            }    
-        }
     })
     .directive('onFinishRender', function ($timeout) {  //Khi xong render thì emit repeat xong
         return {

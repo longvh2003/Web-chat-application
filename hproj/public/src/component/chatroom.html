@@ -3,8 +3,11 @@
 <div class="chat-area">
     <div class="room-bar div-sizing" ng-model="chatRoom">
        {{tempRoomName}}
-       <md-button class="md-fab md-primary" aria-label="Use Android" style="position: absolute;right: 0;" ng-click='deleteRoom()'>
+       <md-button class="md-fab md-primary" aria-label="Delete" style="position: absolute;right: 0;" ng-click='deleteRoom()'>
         <md-icon md-svg-src="/public/content/icon/delete.svg" aria-label="delete"></md-icon>
+      </md-button>
+      <md-button class="md-fab md-primary" aria-label="Add" style="position: absolute;right: 60;" ng-click='inviteRoom($event)'>
+        <md-icon md-svg-src="/public/content/icon/plus.svg" aria-label="delete"></md-icon>
       </md-button>
     </div>
     <div id="messagePend" class="messagePend" ng-model="chatarea" style="overflow: auto;top: 80px; position: absolute; width: 100%; bottom: 80px;"></div>

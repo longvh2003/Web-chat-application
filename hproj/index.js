@@ -7,6 +7,7 @@ import getChatroom from './public/server/models/getRoomId';
 import addChatroom from './public/server/models/addRoom';
 import addToNotification from './public/server/models/notification';
 import getNotifi from './public/server/models/getNotifi';
+import deleteRoom from './public/server/models/deleteRoom';
 var angularRouter = require('./angularRoute')
 var getListInvi=require('./public/server/models/getListInvi');
 var register=require('./public/server/models/register');
@@ -22,6 +23,7 @@ const io = require('socket.io')(http);
 /* Dùng Middleware session, static file, view engine(có thể không cần (chưa test)) */
 app.use(session({secret: 'ssshhhhh'}));
 app.use(express.static('public'));
+app.use(express.static('public/content/icon'));
 app.set('views', __dirname + '/public/src');
 app.set('view engine', 'pug')
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -88,6 +90,11 @@ app.post('/home/addRoom', (req, res)=>{
         if(err) res.send({status:false});
         else res.send({status:true});
     });
+})
+
+app.post('/home/deleteRoom/:roomid', (req, res)=>{
+    deleteRoom(req.params.roomid);
+    res.send('1');
 })
 
 validate(app);
