@@ -5,7 +5,7 @@ module.exports= app=>{
 		con.aquire((err,con)=>{
 			con.query(sql,[req.session.user.userId],(err,rows)=>{
 				if(err) console.log('ko nhận đc danh sách lời mời lỗi: '+err);
-				res.send(rows);
+				if(rows.length>0) res.send(rows);
 				console.log(rows);
 			});
 		});
@@ -29,6 +29,6 @@ module.exports= app=>{
 			con.query(addSql,[userget,usersend,roomName]);
 			con.query(removeInvi,[usersend,userget]);
 			con.release();
-		})
+		});
 	});
 }

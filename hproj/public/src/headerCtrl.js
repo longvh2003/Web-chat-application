@@ -42,9 +42,9 @@ function headerCtrl($rootScope, $scope,$http){
                             mess:'Có 1 lời mời kết bạn từ: ',
                             username:list[i].username
                         });
-                        $scope.notifications++;
                     }
                 }
+                $scope.notifications+=$scope.listNote.length;
             }
         });
     // }

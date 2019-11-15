@@ -1,4 +1,6 @@
 function menuCtrl($rootScope, $scope, $location, $http, $window){
+
+
     $rootScope.$on('menu-clicked', ()=>{
         $scope.myButton = !$scope.myButton;
     })
@@ -11,8 +13,6 @@ function menuCtrl($rootScope, $scope, $location, $http, $window){
         }
         if(index==2){    
             $location.path('/friends');
-            renderListFriends();
-            renderListInvitation();
         }
         else if(index==4){
             $http({
@@ -24,7 +24,6 @@ function menuCtrl($rootScope, $scope, $location, $http, $window){
         }
     }
     $scope.showEl=element=>{
-        console.log(element);
         $location.path('/chat/'+element.chatroom_id);
     }
     $scope.display=()=>{
@@ -35,20 +34,18 @@ function menuCtrl($rootScope, $scope, $location, $http, $window){
             data:{username:$scope.asd}
         }).then(res=>{
             $window.alert(res.data);
-            renderListFriends();
         });
     }
 
     $scope.addFriendBut=friend=>{
-        console.log(friend);
-        console.log('clicked');
         $http({
             method:'POST',
             url:'/getListInvitation',
             data:{userSend:friend.user_id}
+        }).then(res=>{
+            console.log('sdfsdkl;gjlsd    '+res);
         });
-        renderListFriends();
-        renderListInvitation();
+        $window.location.reload();
     }
 
     var renderListFriends=()=>{
@@ -56,19 +53,19 @@ function menuCtrl($rootScope, $scope, $location, $http, $window){
                 method:'GET',
                 url:'/addFriends',
             }).then(res=>{//res.data chuua res.data[i].chatroom_id
-                $rootScope.listFriends=res.data;
+                $scope.listFriends=res.data;
             });
     }
-
+    renderListFriends();
     var renderListInvitation=()=>{
         $http({
             method:'GET',
             url:'/getListInvitation'
         }).then(res=>{
-            $rootScope.listInvitation=res.data;
-            console.log(res.data);
+            $scope.listInvitation=res.data;
         });
     }
+    renderListInvitation();
 
 }
 
