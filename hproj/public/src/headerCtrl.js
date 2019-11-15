@@ -57,7 +57,8 @@ function headerCtrl($rootScope, $scope,$http){
 
 }
 
-angular.module('myApp').component('headerChat', {
-    templateUrl: '/src/component/headerChat.html',
-    controller: headerCtrl
-  });
+angular.module('myApp')
+    .component('headerChat', {
+        templateUrl: '/src/component/headerChat.html',
+        controller: headerCtrl
+    });

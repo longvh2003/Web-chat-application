@@ -7,6 +7,7 @@ import getChatroom from './public/server/models/getRoomId';
 import addChatroom from './public/server/models/addRoom';
 import addToNotification from './public/server/models/notification';
 import getNotifi from './public/server/models/getNotifi';
+var angularRouter = require('./angularRoute')
 var getListInvi=require('./public/server/models/getListInvi');
 var register=require('./public/server/models/register');
 var addFriends=require('./public/server/models/addFriends');
@@ -71,35 +72,7 @@ app.get('/home/username', (req, res)=>{
         res.send({userdata:req.session.user, chatroom: result});
     }); 
 })
-
-/* Gửi file chat.js khi chatForm được render (AngularJS) */
-app.get('/chat.js', (req,res)=>{
-    res.sendFile(__dirname + '/public/src/chat.js');
-})
-
-app.get('/app.js', (req,res)=>{
-    res.sendFile(__dirname + '/public/src/app.js');
-})
-
-app.get('/headerCtrl.js', (req,res)=>{
-    res.sendFile(__dirname + '/public/src/headerCtrl.js');
-})
-
-app.get('/menuCtrl.js', (req,res)=>{
-    res.sendFile(__dirname + '/public/src/menuCtrl.js');
-})
-
-app.get('/node_modules/angular-ui-notification/dist/angular-ui-notification.min.css', (req, res)=>{
-    res.sendFile(__dirname + '/node_modules/angular-ui-notification/dist/angular-ui-notification.min.css');
-})
-
-app.get('/node_modules/angular-ui-notification/dist/angular-ui-notification.min.js', (req, res)=>{
-    res.sendFile(__dirname + '/node_modules/angular-ui-notification/dist/angular-ui-notification.min.js');
-})
-
-
-
-
+app.use('/', angularRouter);
 app.get('/logout',(req,res)=>{
     req.session.destroy(()=>{
         console.log('user logged out');

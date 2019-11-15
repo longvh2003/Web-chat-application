@@ -1,5 +1,4 @@
 const socket = io('/home');
-//console.log(socket);
 var userid = null;
 var i = 1;
 var socketroom1;
@@ -30,9 +29,6 @@ myApp
                 $rootScope.username = result.data.userdata.username;
                 $rootScope.userid = result.data.userdata.userId;
                 $rootScope.roomId = result.data.chatroom;
-                // for (let index = 0; index < $rootScope.roomId.length; index++) {
-                //     socket.emit('join', $rootScope.roomId[index].chatroom_id);
-                // }
                 $rootScope.roomId.forEach(element => {
                     socket.emit('join', element.chatroom_id);
                 });
@@ -42,7 +38,6 @@ myApp
                     if($rootScope.tempRoomId == result.data.chatroom[j].chatroom_id && $routeParams.roomid) $rootScope.tempRoomName = $rootScope.rooms[j].chatroom_name;
                 }
                 $scope.loadNotifi();    
-                //console.log($rootScope.rooms);
                 $rootScope.$broadcast('username');
                 $rootScope.$broadcast('loadRoom');
                 $rootScope.$broadcast('notifications');
@@ -63,14 +58,6 @@ myApp
             $(".messagePend").animate({ scrollTop: $(document).height() }, "slow");
         }
 
-        $scope.routeReload = ()=>{
-            // $rootScope.reloadCount++;
-            // if($rootScope.reloadCount === 1){
-            //     $rootScope.loadedHistory = 0;
-            // }
-            //$rootScope.loadedHistory = 0;
-            //$route.reload();
-        }
 
         $scope.loadNotifi = () =>{
             $http.get('/getNotifi/' + $rootScope.userid).then((result)=>{
@@ -103,23 +90,16 @@ myApp
             $rootScope.rooms.forEach(element => {
                 if(element.chatroom_id === roomid) element.member = clients.length;       
             });
-            $scope.routeReload();
         })
     })
 
+    /**
+     * Controller của content
+     * 
+     */
+
 myApp
     .controller('contentController', function ($rootScope, $scope, $location, $http, $routeParams, $mdDialog, $route) {
-        // if($routeParams){
-        //     $rootScope.tempRoomId = $routeParams.roomid;
-        //     for(let i = 0; i < $rootScope.rooms.length; i++){
-        //         if($rootScope.tempRoomId === $rootScope.rooms[i].chatroom_id) {
-        //             $rootScope.tempRoomName = $rootScope.rooms[i].chatroom_name;
-        //             console.log($rootScope.tempRoomName);
-        //         }
-        //     }
-        // }
-
-
         $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
             if(angular.element('.room-hover div')){
                 for (let index = 0; index < $rootScope.rooms.length; index++) {
@@ -156,23 +136,46 @@ myApp
         $scope.panelClick = (index, room) => {
             $rootScope.loadedHistory = 0;
             angular.element('#'+room.chatroom_id).removeClass('red');
-            // $rootScope.tempRoomId = room.chatroom_id;
-            // $rootScope.tempRoomName = room.chatroom_name;
             $location.path('/chat/' + room.chatroom_id);
             if($scope.text) $scope.text.remove();
             $scope.selectedRow = index;
-            //$scope.getHistory($rootScope.tempRoomId);
             sessionStorage.removeItem("room" + room.chatroom_id);
         }
 
 
-        //$rootScope.$on('loadHistory', $scope.getHistory($rootScope.tempRoomId));
 
         $scope.sendmessage = () =>{
             socket.emit('message', {roomid: $rootScope.tempRoomId, text: $scope.message, username: $rootScope.username, id: $rootScope.userid, roomname: $rootScope.tempRoomName});
             $scope.message = "";
             $("#messagePend").scrollTop = $("#messagePend").scrollHeight - $("#smessagePend").clientHeight;
         }
+
+        $scope.deleteRoom = ()=>{
+            $scope.showConfirm()
+        }
+
+        $scope.showConfirm = function(ev) {
+            // Thêm dialog vào document để tránh thao tác với bên ngoài
+            var confirm = $mdDialog.confirm()
+                  .title('Xóa room')
+                  .textContent('Bạn muốn xóa room chứ??')
+                  .ariaLabel('Lucky day')
+                  .targetEvent(ev)
+                  .ok('Chắc chắn!')
+                  .cancel('NOPE!');
+        
+            $mdDialog.show(confirm).then(function() {
+                //Gọi ajax xóa room rồi reload trang
+            }, function() {
+                $mdDialog.hide(confirm);
+            });
+          };
+
+
+        /**
+         * Show form thêm room
+         * 
+         */
 
         $scope.showAdvanced = function(ev) {
             $mdDialog.show({
@@ -181,17 +184,23 @@ myApp
             parent: angular.element(document.body),
             targetEvent: ev,
             clickOutsideToClose:true,
-            fullscreen: false // Only for -xs, -sm breakpoints.
+            fullscreen: false 
             })
             .then(function(answer, roomname, roompass, roomdes) {
             if(answer === 'Cancel') {
-                //console.log(roomname);
                 $mdDialog.hide();
             }
             }, function() {
-            //console.log('x');
             });
         };
+
+        /**
+         * Controller của dialog thêm room
+         * @param {*} $scope 
+         * @param {*} $mdDialog 
+         * @param {*} $http 
+         * @param {*} $rootScope 
+         */
 
         function DialogController($scope, $mdDialog, $http, $rootScope) {
             $scope.hide = function() {
@@ -206,10 +215,11 @@ myApp
                 $mdDialog.hide(answer);
             };
 
+            /**
+             * Hiển thị alert thành công hoặc thất bại
+             */
+
             $scope.showAlert = function(status, des) {
-                // Appending dialog to document.body to cover sidenav in docs app
-                // Modal dialogs should fully cover application
-                // to prevent interaction outside of dialog
                 $mdDialog.show(
                 $mdDialog.alert()
                     .parent(angular.element(document.querySelector('#popupContainer')))
@@ -250,7 +260,7 @@ myApp
           }
         }
       })
-    .directive('roomPanel', ($http, $rootScope, $routeParams)=>{
+    .directive('roomPanel', ()=>{ //Directive room-panel
         return {
             templateUrl: '/src/component/room.html',
         }
@@ -284,7 +294,7 @@ myApp.config(function($routeProvider, $locationProvider) {
     $locationProvider.hashPrefix('');
     $routeProvider
         .when('/', {
-            templateUrl: '/src/component/roomrender.html',
+            template: '<room-panel></room-panel>',
             controller: 'contentController'
         })
         .when('/chat/:roomid', {
