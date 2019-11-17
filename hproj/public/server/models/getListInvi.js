@@ -4,7 +4,7 @@ module.exports= app=>{
 		var sql='select user_id,username,readed from user u join invitation i on(user1=user_id) where user2=?';
 		con.aquire((err,con)=>{
 			con.query(sql,[req.session.user.userId],(err,rows)=>{
-				if(err) console.log('ko nhận đc danh sách lời mời lỗi: '+err);
+				if(err) res.send('ko nhận đc danh sách lời mời lỗi: '+err);
 				if(rows.length>0) res.send(rows);
 			});
 			con.release();
