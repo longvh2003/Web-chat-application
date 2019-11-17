@@ -20,7 +20,7 @@
 **Đặng Ngọc Tiến**
 
 **TODO:**
-Profile, Hiển thị list friend, Xóa room, Inivite, Thông báo.
+Profile, Hiển thị list friend, Inivite, Thông báo.
 
 #
 
