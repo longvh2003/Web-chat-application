@@ -1,5 +1,7 @@
 function menuCtrl($rootScope, $scope, $location, $http, $window){
 
+    $scope.listFriends=[];
+    $scope.listInvitation=[];
 
     $rootScope.$on('menu-clicked', ()=>{
         $scope.myButton = !$scope.myButton;
@@ -53,7 +55,7 @@ function menuCtrl($rootScope, $scope, $location, $http, $window){
                 method:'GET',
                 url:'/addFriends',
             }).then(res=>{//res.data chuua res.data[i].chatroom_id
-                $scope.listFriends=res.data;
+                if(res.data) $scope.listFriends=res.data;
             });
     }
     renderListFriends();
@@ -62,7 +64,7 @@ function menuCtrl($rootScope, $scope, $location, $http, $window){
             method:'GET',
             url:'/getListInvitation'
         }).then(res=>{
-            $scope.listInvitation=res.data;
+            if(res.data) $scope.listInvitation=res.data;
         });
     }
     renderListInvitation();

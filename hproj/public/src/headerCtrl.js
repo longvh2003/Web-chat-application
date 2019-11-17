@@ -2,21 +2,28 @@
 
 function headerCtrl($rootScope, $scope,$http){
     $scope.listNote=[];
-    // getNot();
+    $scope.notifications=0;
     var noti=angular.element('#notifications');
     var notiElem=angular.element('#dropdown-content');
     var checked=0;//biến kiểm tra
     $scope.displayNoti=()=>{
+        
+        if(checked===0){
+            updateInvi();
+            $scope.notifications=0;//đọc xong rồi
+        }        
         if(checked%2==0){
             notiElem.attr('style','display:block');
         }else{
             notiElem.attr('style','display:none');
         }
         checked++;
-        updateInvi();
-        $scope.notifications=0;//đọc xong rồi
+        console.log(checked);
+
+
         // $scope.listNote=[];
     }
+
     $scope.clickMenu = ()=>{
         $rootScope.$emit('menu-clicked');
     }
@@ -52,7 +59,7 @@ function headerCtrl($rootScope, $scope,$http){
         $http({
             method:'POST',
             url:'/updateinvi'
-        });
+        })
     }
 
 }

@@ -6,8 +6,8 @@ module.exports= app=>{
 			con.query(sql,[req.session.user.userId],(err,rows)=>{
 				if(err) console.log('ko nhận đc danh sách lời mời lỗi: '+err);
 				if(rows.length>0) res.send(rows);
-				console.log(rows);
 			});
+			con.release();
 		});
 	});
 
@@ -30,5 +30,6 @@ module.exports= app=>{
 			con.query(removeInvi,[usersend,userget]);
 			con.release();
 		});
+		res.send('success');
 	});
 }

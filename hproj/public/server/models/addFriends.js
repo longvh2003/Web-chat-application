@@ -8,7 +8,6 @@ module.exports=app=>{
 		var addUserRoom='INSERT INTO userchatroom VALUES (?,?),(?,?)';
 
 		var addInvi= 'INSERT INTO invitation(user1,user2) value(?,?)';
-		console.log(req.session.user);
 
 		if(!req.body.username){
 			res.send('nhap vao');
@@ -26,11 +25,11 @@ module.exports=app=>{
 							});
 						}
 					});
-					con.release();
 				});								
 			}else{
 				res.send('ko thể thêm bạn với chính mình');
 			}
+			con.release();
 		});
 		}
 	});
