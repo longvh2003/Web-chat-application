@@ -50,6 +50,7 @@ CREATE TABLE `UserChatroom` (
 CREATE TABLE `notification` (
 	`id` int NOT NULL AUTO_INCREMENT,
     `content` varchar(255) not null,
+    `type` int(3),
     `to_user` int NOT NULL,
     `is_read` boolean DEFAULT false,
     PRIMARY KEY (`id`, `to_user`)

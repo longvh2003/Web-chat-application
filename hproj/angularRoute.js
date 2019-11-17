@@ -21,6 +21,11 @@ router.get('/DialogAddController.js', (req,res)=>{
     res.sendFile(__dirname + '/public/src/DialogAddController.js');
 })
 
+router.get('/DialogInviteController.js', (req,res)=>{
+    res.sendFile(__dirname + '/public/src/DialogInviteController.js');
+})
+
+
 
 router.get('/node_modules/angular-ui-notification/dist/angular-ui-notification.min.css', (req, res)=>{
     res.sendFile(__dirname + '/node_modules/angular-ui-notification/dist/angular-ui-notification.min.css');

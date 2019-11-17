@@ -40,7 +40,7 @@ myApp
                 $scope.loadNotifi();    
                 $rootScope.$broadcast('username');
                 $rootScope.$broadcast('loadRoom');
-                $rootScope.$broadcast('notifications');
+                //$rootScope.$broadcast('notifications');
             })
             $rootScope.loadedHistory = 0;
         }
@@ -177,9 +177,9 @@ myApp
           };
 
 
-        $scope.inviteRoom = (ev) =>{
+        $scope.inviteRoom = function(ev) {
             $mdDialog.show({
-                controller: DialogIniteController,
+                controller: DialogInviteController,
                 templateUrl: '/src/component/invite.html',
                 parent: angular.element(document.body),
                 targetEvent: ev,
