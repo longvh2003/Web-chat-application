@@ -1,9 +1,19 @@
-<md-dialog aria-label="Invite Friend">
+<md-dialog aria-label="Invite Friend" data-ng-init = "init()">
     <md-toolbar>
         <h2>Make your own room chat now</h2>
     </md-toolbar>
 
     <md-dialog-content>
-        
+        <md-autocomplete md-no-cache="true"
+        md-selected-item="selectedItem" 
+        md-items="item in querySearch(searchText)" 
+        md-search-text="searchText" 
+        md-item-text="item.username"
+        md-min-length='0'>
+            <md-item-template>
+                <span style="background: none;">{{ item.username }}</span>
+                <md-button style="position: absolute;right: 0;" ng-click="sendInvite(item.user_id)">INVITE</md-button>
+            </md-item-template>
+        </md-autocomplete>
     </md-dialog-content>
 </md-dialog>

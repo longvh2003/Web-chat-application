@@ -4,8 +4,9 @@ import msgdb from './public/server/models/msgDB';  //Thêm tin nhắn vào DB
 import session from 'express-session';
 import getHis from './public/server/models/getChatroomHistory';  //Lấy tin nhắn cũ
 import getChatroom from './public/server/models/getRoomId';
+import getListFriend from './public/server/models/getListFriend';
 import addChatroom from './public/server/models/addRoom';
-import addToNotification from './public/server/models/notification';
+import notification from './public/server/models/notification';
 import getNotifi from './public/server/models/getNotifi';
 import deleteRoom from './public/server/models/deleteRoom';
 var angularRouter = require('./angularRoute')
@@ -15,6 +16,7 @@ var addFriends=require('./public/server/models/addFriends');
 var markInvi=require('./public/server/models/markInvi');
 const port = 3000;
 import bodyParser from 'body-parser';
+import { restElement } from 'babel-types';
 let app = express();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
@@ -92,6 +94,20 @@ app.post('/home/addRoom', (req, res)=>{
     });
 })
 
+app.post('/getFriendsInfo/:userid', (req, res)=>{
+    getListFriend(req.params.userid, (err, result)=>{
+        if(err) res.send({status:false});
+        else res.send(result);
+    })
+})
+
+app.post('/addNotifi', (req, res)=>{
+    notification.addRoomInviteNotification(req.body, (err)=>{
+        if(err) res.send({status:false});
+        else res.send({status:true}); 
+    })
+})
+
 app.post('/home/deleteRoom/:roomid', (req, res)=>{
     deleteRoom(req.params.roomid);
     res.send('1');
@@ -111,7 +127,7 @@ room.on('connection', (socket)=>{
     })
     socket.on('message', function (msg){
         msgdb(msg);
-        addToNotification(msg);
+        notification.addMessageNotification(msg);
         room.to(msg.roomid).emit('message', msg);
     })
 })
