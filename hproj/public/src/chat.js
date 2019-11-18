@@ -140,6 +140,7 @@ myApp
             $rootScope.loadedHistory = 0;
             angular.element('#'+room.chatroom_id).removeClass('red');
             $location.path('/chat/' + room.chatroom_id);
+            $rootScope.tempRoomName = room.chatroom_name;
             if($scope.text) $scope.text.remove();
             $scope.selectedRow = index;
             sessionStorage.removeItem("room" + room.chatroom_id);

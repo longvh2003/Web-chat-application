@@ -25,7 +25,11 @@ const io = require('socket.io')(http);
 /* Dùng Middleware session, static file, view engine(có thể không cần (chưa test)) */
 app.use(session({secret: 'ssshhhhh'}));
 app.use(express.static('public'));
+app.use(express.static(__dirname + '/node_modules'));
+app.use(express.static(__dirname + '/public/src'));
 app.use(express.static('public/content/icon'));
+app.use(express.static(__dirname + 'public/content/icon'));
+
 app.set('views', __dirname + '/public/src');
 app.set('view engine', 'pug')
 app.use(bodyParser.urlencoded({ extended: true }));
