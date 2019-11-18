@@ -18,10 +18,6 @@ function headerCtrl($rootScope, $scope,$http){
             notiElem.attr('style','display:none');
         }
         checked++;
-        console.log(checked);
-
-
-        // $scope.listNote=[];
     }
 
     $scope.clickMenu = ()=>{

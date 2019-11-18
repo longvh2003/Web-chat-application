@@ -4,13 +4,13 @@
 		<div>
 			<p class="title">Friends list</p>
 			<ol id="listFriends">
-				<li ng-repeat="x in listFriends" ng-click="showEl(x)">{{x.username}}</li>
+				<li ng-repeat="x in listFriends" ng-click="showEl(x)">{{x.username}}<button ng-click="unfriend(x)">unfriend</button></li>
 			</ol>
 		</div>
 
 		<div>
 			<ol id="invitation">
-				<li ng-repeat="friend in listInvitation">{{friend.username}}<button ng-click="addFriendBut(friend)">acept</button></li>
+				<li ng-repeat="friend in listInvitation">{{friend.username}}<button ng-click="addFriendBut(friend)">acept</button><button ng-click="removeInvi(friend)">deny</button></li>
 			</ol>
 		</div>
 	</div>

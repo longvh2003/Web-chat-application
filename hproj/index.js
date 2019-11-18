@@ -14,6 +14,8 @@ var getListInvi=require('./public/server/models/getListInvi');
 var register=require('./public/server/models/register');
 var addFriends=require('./public/server/models/addFriends');
 var markInvi=require('./public/server/models/markInvi');
+var removeInvi=require('./public/server/models/removeInvi');
+var unfriend=require('./public/server/models/unfriend');
 const port = 3000;
 import bodyParser from 'body-parser';
 import { restElement } from 'babel-types';
@@ -58,6 +60,8 @@ register(app);
 addFriends(app);
 getListInvi(app);
 markInvi(app);
+removeInvi(app);
+unfriend(app);
 
 
 /* Lấy tin nhắn cũ */

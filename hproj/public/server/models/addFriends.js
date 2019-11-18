@@ -35,7 +35,7 @@ module.exports=app=>{
 	});
 	app.get('/addFriends',(req,res)=>{
 		// var getListSql='SELECT * FROM USER JOIN friends ON user_id=currentUser WHERE user_id=?';
-		var testSql='select user.username,f.chatroomname,chatroom.chatroom_id from friends f  join user on user.user_id=f.frienduser  join chatroom on f.chatroomname=chatroom.chatroom_name where currentuser=?';
+		var testSql='select user.user_id,user.username,f.chatroomname,chatroom.chatroom_id from friends f  join user on user.user_id=f.frienduser  join chatroom on f.chatroomname=chatroom.chatroom_name where currentuser=?';
 		conn.aquire((err,conn)=>{
 			conn.query(testSql,[req.session.user.userId],(err,rows)=>{
 				res.send(rows);

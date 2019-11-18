@@ -48,6 +48,16 @@ function menuCtrl($rootScope, $scope, $location, $http, $window){
             console.log('sdfsdkl;gjlsd    '+res);
         });
         $window.location.reload();
+        
+    }
+
+    $scope.removeInvi = friend=>{
+        $http({
+            method:'POST',
+            url:'/removeInvi',
+            data:{userSend:friend.user_id}
+        });
+        $window.location.reload();   
     }
 
     var renderListFriends=()=>{
@@ -68,6 +78,14 @@ function menuCtrl($rootScope, $scope, $location, $http, $window){
         });
     }
     renderListInvitation();
+    $scope.unfriend=x=>{
+        $http({
+            method:'POST',
+            url:'/unfriend',
+            data:{xID:x.user_id}
+        });
+        console.log('unfriend');
+    }
 
 }
 
