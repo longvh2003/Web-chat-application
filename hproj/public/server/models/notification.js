@@ -30,14 +30,38 @@ module.exports =
     addRoomInviteNotification: (data, callback) =>{
         let content = 'Bạn được mời vào room: ' + data.roomname;
         let id = data.id;
-        let sql = 'INSERT INTO notification(content, type, to_user, is_read) values (?, ?, ?, ?);'
+        let testsql = 'SELECT * FROM notification WHERE to_user = ? AND to_room = ?';
+        let sql = 'INSERT INTO notification(content, type, to_user, is_read, to_room) values (?, ?, ?, ?, ?);'
         conn.aquire((err, con)=>{
-            con.query(sql, [content, 2, id, false], (err)=>{
+            con.query(testsql, [id, data.roomid], (err, result)=>{
                 if(err) throw err;
-                callback(err);
+                if(result.length) {
+                    console.log("TESTINg" + result);
+                }
+                else {
+                    con.query(sql, [content, 2, id, false, data.roomid], (err)=>{
+                        if(err) throw err;
+                        console.log("TESTING");
+                        callback(err);
+                        
+                    })
+                    con.release();        
+                }
+                console.log(result);
             })
-            con.release();
         })
+    },
+
+    getRoomInvite: (id, callback)=>{
+        let sql = 'SELECT * FROM notification WHERE to_user=? AND is_read = ? AND type = ?';
+        conn.aquire((err, con)=>{
+            con.query(sql, [id, false, 2], (err, result) => {
+                if(err) throw err;
+                callback(null, result);
+                con.release();
+            })
+        })
+
     }
 
 }

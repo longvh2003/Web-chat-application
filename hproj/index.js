@@ -41,7 +41,7 @@ app.use(express.json())
 
 /* Redirect tới home nếu đăng nhập rồi, tới login nếu chưa */
 app.get('/',function(req, res){
-    console.log(req.session.user);
+    //console.log(req.session.user);
     if(req.session.user){
         res.redirect('/home')
     } else{
@@ -94,7 +94,7 @@ app.get('/logout',(req,res)=>{
 });
 
 app.post('/home/addRoom', (req, res)=>{
-    console.log(req.body);
+    //console.log(req.body);
     addChatroom(req.body, function(err){
         //console.log(err.code);
         if(err) res.send({status:false});
@@ -113,6 +113,14 @@ app.post('/addNotifi', (req, res)=>{
     notification.addRoomInviteNotification(req.body, (err)=>{
         if(err) res.send({status:false});
         else res.send({status:true}); 
+    })
+})
+
+app.post('/loadRoomNotifi/:userid', (req, res)=>{
+    notification.getRoomInvite(req.params.userid, (err, result)=>{
+        if(err) res.send({status:false});
+        else res.send({status:true, result: result});
+        console.log(result);
     })
 })
 

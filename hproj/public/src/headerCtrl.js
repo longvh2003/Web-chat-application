@@ -3,6 +3,7 @@
 function headerCtrl($rootScope, $scope,$http){
     $scope.listNote=[];
     $scope.notifications=0;
+    $scope.listRoomInvi = [];
     var noti=angular.element('#notifications');
     var notiElem=angular.element('#dropdown-content');
     var checked=0;//biến kiểm tra
@@ -10,14 +11,15 @@ function headerCtrl($rootScope, $scope,$http){
         
         if(checked===0){
             updateInvi();
+            getRoomInvite();
             $scope.notifications=0;//đọc xong rồi
-        }        
-        if(checked%2==0){
             notiElem.attr('style','display:block');
+            checked++;
         }else{
             notiElem.attr('style','display:none');
+            checked = 0;
         }
-        checked++;
+        
     }
 
     $scope.clickMenu = ()=>{
@@ -56,6 +58,20 @@ function headerCtrl($rootScope, $scope,$http){
             method:'POST',
             url:'/updateinvi'
         })
+    }
+
+    var getRoomInvite = ()=>{
+        $http.post('/loadRoomNotifi/' + $rootScope.userid).then((res)=>{
+            res.data.result.forEach(element => {
+                $scope.listRoomInvi = [];
+                $scope.listRoomInvi.push(element);
+            });
+        })
+    }
+
+    var acceptRoom = (roomid, userid)=>{
+        
+        
     }
 
 }

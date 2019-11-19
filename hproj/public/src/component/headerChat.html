@@ -9,7 +9,15 @@
     	<span>{{notifications}}<!-- số thông báo --></span>	
     	<img src="https://png.pngtree.com/png-clipart/20190924/original/pngtree-notification--icon-in-trendy-style-isolated-background-png-image_4859577.jpg" class="icon">
     	<div class="dropdown-content" id="dropdown-content" >
-    		<div class="el" ng-repeat="note in listNote">{{note.mess}}{{note.username}}</div>
+			<div class="room-invi" ng-repeat="item in listRoomInvi">
+				<h4 class="header-notifi">{{item.content}}</h4>
+				<div style="float: right;">
+					<md-button class="md-primary md-raised" ng-click="acceptRoom(item.to_room, item.to_user)">Accept</md-button>
+					<md-button class="md-warn md-raised" ng-click="refuseRoom(item.to_room, item.to_user)">Nope</md-button>
+				</div>
+			</div>
+			<div class="el" ng-repeat="note in listNote">{{note.mess}}{{note.username}}</div>
+			
     	</div>
 	</div>
     <div ng-model="username" style="position:absolute; height: 75px; align-self: center;line-height: 75px;right: 0;font-size: 28px;">{{username}}</div>
@@ -26,17 +34,17 @@
 		background-color: #85cdca;
 	}
 	.dropdown:hover{
-		cursor: pointer;
 	}
 	.dropdown-content {
 		display: none;
 		position: absolute;
 		z-index: 1;/******************/
-		width: 200px;
-		height: 200px;
+		width: 500px;
+		height: 500px;
 		overflow: auto;
 		top: 50px;
-		border:2px double green;
+		border:2px double #CDCDCD;
+		right: -20px;
 	}
 	.el {
 		height: 50px;
@@ -67,4 +75,22 @@
 		position: absolute;
 		left: 40px;
 	}
+	.room-invi{
+		position: relative;
+		height: 100px;
+		width: 100%;
+		border-bottom: 1px solid  #CDCDCD;
+	}
+	.room-invi:hover{
+		background: #CDCDCD;
+	}
+		.room-invi .header-notifi{
+			margin: 0;
+			height: 34px;
+			white-space: nowrap;
+			padding-top: 8px;
+			font-size: 21px;
+			text-align: center;
+		}
+
 </style>

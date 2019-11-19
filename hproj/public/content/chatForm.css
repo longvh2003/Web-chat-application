@@ -36,7 +36,7 @@ strong{
     right: 0;
     left: 0;
     height: 75px;
-    background-color: #85cdca;
+    background-color: #2196F3;
     display:flex;
 }
 
@@ -78,11 +78,15 @@ strong{
     position: relative;
     left: 0;
     width: 200px;
-    background-color: #3fb2a1;
+    background-color: #1565C0;
     height: calc(100% - 75px);
     float: left;
     top:75px;
 
+}
+
+.selected{
+    background: #1976D2;
 }
 
 .ng-hide:not(.ng-hide-animate) {
@@ -92,7 +96,7 @@ strong{
 
 .room {
     width: 250px;
-    background-color:  #3fb2a1;
+    background-color:  #40C4FF;
     height: 100%;
     position: relative;
     float: left;

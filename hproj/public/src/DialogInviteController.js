@@ -18,7 +18,8 @@ function DialogInviteController($scope, $mdDialog, $http, $q, $timeout, $rootSco
     }
 
     $scope.sendInvite = id => {
-        let data = {roomname: $rootScope.tempRoomName, id: id}
+        let data = {roomid: $rootScope.tempRoomId,roomname: $rootScope.tempRoomName, id: id}
+        console.log(data);
         $http.post('/addNotifi', JSON.stringify(data)).then(res => {
             console.log(res.status);
         })
@@ -27,14 +28,6 @@ function DialogInviteController($scope, $mdDialog, $http, $q, $timeout, $rootSco
     $scope.querySearch = (query) =>{
         var results = query ? $scope.users.filter(createFilterFor(query)) : $scope.users,
         deferred;
-        // if ($scope.simulateQuery) {
-        //     deferred = $q.defer();
-        //     $timeout(function () { deferred.resolve(results); }, Math.random() * 1000, false);
-        //     return deferred.promise;
-        // } else {
-        //     return results;
-        // }
-        //console.log($rootScope.userid);
         return results;
     }
 
