@@ -27,10 +27,12 @@ const io = require('socket.io')(http);
 app.use(session({secret: 'ssshhhhh'}));
 app.use(express.static(__dirname + '/node_modules'));
 app.use(express.static(__dirname + '/public/src'));
-app.use(express.static(__dirname + 'public/content/icon'));
+app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public/content/icon'));
+app.use(express.static(__dirname + '/public/src/component'));
 
-// app.set('views', __dirname + '/public/src');
-// app.set('view engine', 'pug')
+app.set('views', __dirname + '/public/src');
+app.set('view engine', 'pug')
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json())
 
