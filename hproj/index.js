@@ -9,7 +9,6 @@ import addChatroom from './public/server/models/addRoom';
 import notification from './public/server/models/notification';
 import getNotifi from './public/server/models/getNotifi';
 import deleteRoom from './public/server/models/deleteRoom';
-var angularRouter = require('./angularRoute')
 var getListInvi=require('./public/server/models/getListInvi');
 var register=require('./public/server/models/register');
 var addFriends=require('./public/server/models/addFriends');
@@ -26,14 +25,12 @@ const io = require('socket.io')(http);
 
 /* Dùng Middleware session, static file, view engine(có thể không cần (chưa test)) */
 app.use(session({secret: 'ssshhhhh'}));
-app.use(express.static('public'));
 app.use(express.static(__dirname + '/node_modules'));
 app.use(express.static(__dirname + '/public/src'));
-app.use(express.static('public/content/icon'));
 app.use(express.static(__dirname + 'public/content/icon'));
 
-app.set('views', __dirname + '/public/src');
-app.set('view engine', 'pug')
+// app.set('views', __dirname + '/public/src');
+// app.set('view engine', 'pug')
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json())
 
@@ -41,16 +38,17 @@ app.use(express.json())
 
 /* Redirect tới home nếu đăng nhập rồi, tới login nếu chưa */
 app.get('/',function(req, res){
-    //console.log(req.session.user);
+    console.log(1);
     if(req.session.user){
         res.redirect('/home')
     } else{
-        res.sendFile(__dirname + '/public/src/index.html');
+        res.sendFile(__dirname + '/index.html');
     }
 });
 
 /* Render chatForm nếu request tới home */
 app.get('/home', function(req, res){
+    console.log(1);
     if(req.session.user)
     res.sendFile(__dirname + '/public/src/chatForm.html');
     else res.redirect('/');
@@ -66,13 +64,24 @@ unfriend(app);
 
 /* Lấy tin nhắn cũ */
 app.get('/home/messageHis/:roomid', (req, res) => {
+    console.log(1);
     getHis(req.params.roomid ,function (err, result) {
         if (err) console.log("Database error!");
         else res.send(result);
       });
 })
 
+app.get('/node_modules/angular-ui-notification/dist/angular-ui-notification.min.css', (req, res)=>{
+    res.sendFile(__dirname + '/node_modules/angular-ui-notification/dist/angular-ui-notification.min.css');
+})
+
+app.get('/node_modules/angular-ui-notification/dist/angular-ui-notification.min.js', (req, res)=>{
+    res.sendFile(__dirname + '/node_modules/angular-ui-notification/dist/angular-ui-notification.min.js');
+})
+
+
 app.get('/getNotifi/:userid', (req, res)=>{
+    console.log(1);
     getNotifi(req.params.userid, function(err, result) {
         console.log(result);
         res.send(result);
@@ -80,12 +89,13 @@ app.get('/getNotifi/:userid', (req, res)=>{
 })
 /* Gửi username cho client */
 app.get('/home/username', (req, res)=>{
+    console.log(1);
     getChatroom(req.session.user.userId, function (err, result){
         res.send({userdata:req.session.user, chatroom: result});
     }); 
 })
-app.use('/', angularRouter);
 app.get('/logout',(req,res)=>{
+    console.log(1);
     req.session.destroy(()=>{
         console.log('user logged out');
     });
@@ -94,6 +104,7 @@ app.get('/logout',(req,res)=>{
 });
 
 app.post('/home/addRoom', (req, res)=>{
+    console.log(1);
     //console.log(req.body);
     addChatroom(req.body, function(err){
         //console.log(err.code);
@@ -103,6 +114,7 @@ app.post('/home/addRoom', (req, res)=>{
 })
 
 app.post('/getFriendsInfo/:userid', (req, res)=>{
+    console.log(1);
     getListFriend(req.params.userid, (err, result)=>{
         if(err) res.send({status:false});
         else res.send(result);
@@ -110,6 +122,7 @@ app.post('/getFriendsInfo/:userid', (req, res)=>{
 })
 
 app.post('/addNotifi', (req, res)=>{
+    console.log(1);
     notification.addRoomInviteNotification(req.body, (err)=>{
         if(err) res.send({status:false});
         else res.send({status:true}); 
@@ -117,6 +130,7 @@ app.post('/addNotifi', (req, res)=>{
 })
 
 app.post('/loadRoomNotifi/:userid', (req, res)=>{
+    console.log(1);
     notification.getRoomInvite(req.params.userid, (err, result)=>{
         if(err) res.send({status:false});
         else res.send({status:true, result: result});
@@ -125,6 +139,7 @@ app.post('/loadRoomNotifi/:userid', (req, res)=>{
 })
 
 app.post('/home/deleteRoom/:roomid', (req, res)=>{
+    console.log(1);
     deleteRoom(req.params.roomid);
     res.send('1');
 })
