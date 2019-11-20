@@ -3,10 +3,11 @@ module.exports= app=>{
 	app.get('/getListInvitation',(req,res)=>{
 		var sql='select user_id,username,readed from user u join invitation i on(user1=user_id) where user2=?';
 		con.aquire((err,con)=>{
-			con.query(sql,[req.session.user.userId],(err,rows)=>{
-				if(err) res.send('ko nhận đc danh sách lời mời lỗi: '+err);
-				if(rows.length>0) res.send(rows);
-			});
+			if(req.session.user)
+				con.query(sql,[req.session.user.userId],(err,rows)=>{
+					if(err) res.send('ko nhận đc danh sách lời mời lỗi: '+err);
+					if(rows.length>0) res.send(rows);
+				});
 			con.release();
 		});
 	});
