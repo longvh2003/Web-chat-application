@@ -6,7 +6,7 @@
             <p>{{myButton}}</p>
     </div>
     <div ng-model="notifications" class="dropdown" id="notifications" ng-click="displayNoti()">
-    	<span>{{notifications}}<!-- số thông báo --></span>	
+    	<span class="header-span">{{notifications}}<!-- số thông báo --></span>	
     	<img src="https://png.pngtree.com/png-clipart/20190924/original/pngtree-notification--icon-in-trendy-style-isolated-background-png-image_4859577.jpg" class="icon">
     	<div class="dropdown-content" id="dropdown-content" >
 			<div class="room-invi" ng-repeat="item in listRoomInvi">
@@ -63,7 +63,7 @@
 		border-radius: 50%;
 		position: absolute;
 	}
-	span{
+	.header-span{
 		background-color: red;
 		width: 25px;
 		height: 25px;

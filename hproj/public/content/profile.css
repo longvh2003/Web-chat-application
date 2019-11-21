@@ -7,16 +7,51 @@
     position: relative;
 }
 
-.avatar-container{
-    position: relative;
-}
+    .avatar-container{
+        position: relative;
+    }
 
-.avatar{
-    position: absolute;
-    top:150px;
-    left: 50px;
-    height: 200px;
-    width: 200px;
-    background: url('https://i.pinimg.com/236x/37/62/69/37626928411b827e5bd1749bb6bdb1e4.jpg');
-    border-radius: 50%;
-}
+        .avatar-container .avatar{
+            position: absolute;
+            top:150px;
+            left: 50px;
+            height: 200px;
+            width: 200px;
+            background: url('https://i.pinimg.com/236x/37/62/69/37626928411b827e5bd1749bb6bdb1e4.jpg');
+            border-radius: 50%;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .avatar-container .upload-butt{
+            position: absolute;
+            top:400px;
+            left: 50px;
+            height: 50px;
+            width: 200px;
+        }
+
+    .form-container{
+        position: relative;
+        top: 100px;
+    }
+
+    .form-container .password-input{
+        position: absolute;
+        left: 0;
+        width: 50%;
+    }
+
+    .form-container .changepass-butt{
+        position: absolute;
+        left: 50%;
+        top: 9px;
+    }
+    
+    .change-password{
+        transition: height 0s;
+    }
+
+    .ng-hide {
+        height: 0;
+      }

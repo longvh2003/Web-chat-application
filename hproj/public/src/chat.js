@@ -7,7 +7,7 @@ var socketroom1;
 /* Khai báo module và controller angularjs cho toàn bộ container
    Có thể thêm controller và directive thích hợp */
 
-var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ui-notification']);
+var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ui-notification', 'ngMessages']);
 myApp.run(function($rootScope){
     $rootScope.roomsId = [];
     $rootScope.rooms = [];
@@ -279,6 +279,6 @@ myApp.config(function($routeProvider, $locationProvider) {
         })
         .when('/profile', {
             templateUrl: '/src/component/profile.html',
-            controller: 'contentController'
+            controller: ProfileCtrl
         })
 });

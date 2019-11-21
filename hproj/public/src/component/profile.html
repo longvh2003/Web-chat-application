@@ -1,6 +1,66 @@
 <div class="profile-container">
     <div class="avatar-container">
         <div class="avatar"></div>
+        <md-button class="md-raised upload-butt">Upload Avatar</md-button>
+        <input type="file" onchange="angular.element(this).scope().changeAvatar(this)" />
+    </div>
+    <div class="form-container">
+        <div layout-gt-sm="row">
+            <md-input-container class="md-block" flex-gt-sm>
+              <label>Username</label>
+              <input ng-model="username" disabled style="border-bottom-color: rgba(0, 0, 0, 0.12); background-image:none">
+            </md-input-container>
+  
+            <md-input-container class="md-block" flex-gt-sm>
+              <label>Email</label>
+              <input ng-model="Email">
+            </md-input-container>
+        </div>
+        <div style="display: flex;position: relative;width: 100%;height: 100px;">
+            <md-input-container class="md-block password-input" flex-gt-sm>
+                <label>Password</label>
+                <input ng-model="password" type="password" disabled style="border-bottom-color: rgba(0, 0, 0, 0.12); background-image:none">
+            </md-input-container>
+            <md-button class="changepass-butt md-raised md-primary" ng-click="hidePassword = !hidePassword">Change Password</md-button>
+        </div>
+        <div layout-gt-sm="row" ng-hide="hidePassword" class="change-password">
+            <md-input-container class="md-block" flex-gt-sm>
+                <label>Old Password</label>
+                <input ng-model="oldpass" type="password">
+            </md-input-container>
+            <md-input-container class="md-block" flex-gt-sm>
+                <label>New Password</label>
+                <input ng-model="newpass" type="password">
+            </md-input-container>  
+            <md-input-container class="md-block" flex-gt-sm>
+                <label>Confirm New</label>
+                <input ng-model="confirmnewpass" type="password">
+            </md-input-container>  
+        </div>
+        <div layout-gt-sm="row">
+            <md-input-container class="md-block" flex-gt-sm>
+              <label>Tên</label>
+              <input ng-model="FirstName">
+            </md-input-container>
+  
+            <md-input-container class="md-block" flex-gt-sm>
+              <label>Họ</label>
+              <input ng-model="LastName">
+            </md-input-container>
+        </div>
+        <div layout-gt-sm="row">
+            <div style="width: 50%;">
+                <label>Ngày sinh</label>
+                <md-datepicker ng-model="myDate" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
+            </div>
+            <md-select ng-model="gender" placeholder="SEX" class="md-no-underline" style="margin: 0 0 5px;border-bottom: 1px solid gainsboro; width: 150px;padding-left: 5px;">
+                <md-option value="none">Không?</md-option>
+                <md-option value="male">Nam</md-option>
+                <md-option value="female">Nữ</md-option>
+                <md-option value="others">Khác</md-option>
+            </md-select>
+        </div>
+
     </div>
     <div></div>
 </div>
