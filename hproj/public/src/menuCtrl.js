@@ -26,7 +26,7 @@ function menuCtrl($rootScope, $scope, $location, $http, $window){
         }
     }
     $scope.showEl=element=>{
-        $location.path('/chat/'+element.chatroom_id);
+        if($scope.listFriends.length>0) $location.path('/chat/'+element.chatroom_id);
         console.log('Click Li');
     }
     $scope.display=()=>{
@@ -86,8 +86,8 @@ function menuCtrl($rootScope, $scope, $location, $http, $window){
             url:'/unfriend',
             data:{friend:x}
         });
-        // console.log('unfriend');
-        console.log('Click unfriend: '+x.chatroom_id);
+        $location.path('/friends'); 
+        $window.location.reload();
     }
 
 }

@@ -20,8 +20,8 @@ module.exports = app=>{
 				if(err) console.log(err);
 				if(rows.length>0){
 					for( var i=0;i<rows.length;i++){
-						if(rows[i].email==email) validEmail=false;
-						if(rows[i].username==name) validUsername=false;
+						if(rows[i].email===email) validEmail=false;
+						if(rows[i].username===name) validUsername=false;
 					}	
 					if(!validUsername||!validEmail){
 						var msg={invalidEmail:'',invalidUsername:'',oldEmail:req.body.email,oldName:req.body.name};
