@@ -1,9 +1,9 @@
 import con from './connection';
 
-module.exports = app=>{
+module.exports = (app,upload)=>{
 	app.route('/createAccount').get((req,res)=>{
 		res.render('register');
-	}).post((req,res)=>{
+	}).post(upload,(req,res)=>{
 		var name=req.body.name;
 		var email=req.body.email;
 		var password=req.body.password;
@@ -39,6 +39,13 @@ module.exports = app=>{
 			});
 			con.release();
 		});
+			upload(req,res,err=>{
+			if(err) console.log(err);
+			else{
+
+				console.log('success upload image');
+			}
+	});
 
 	});
 }

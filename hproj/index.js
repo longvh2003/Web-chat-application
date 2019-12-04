@@ -15,6 +15,8 @@ var addFriends=require('./public/server/models/addFriends');
 var markInvi=require('./public/server/models/markInvi');
 var removeInvi=require('./public/server/models/removeInvi');
 var unfriend=require('./public/server/models/unfriend');
+var multer=require('multer');
+var path=require('path');
 const port = 3000;
 import bodyParser from 'body-parser';
 import { restElement } from 'babel-types';
@@ -55,8 +57,13 @@ app.get('/home', function(req, res){
     res.sendFile(__dirname + '/public/src/chatForm.html');
     else res.redirect('/');
 })
-
-register(app);
+var upload=multer({
+    dest:'./public/userAvatar/',
+    filename:(req,file,callback)=>{
+        callback(null,'asd'+path.extname(file.originalname));
+    }
+}).single('avatar');
+register(app,upload);
 addFriends(app);
 getListInvi(app);
 markInvi(app);
