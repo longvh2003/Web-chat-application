@@ -61,6 +61,7 @@ var storage = multer.diskStorage({
     filename:function(req,file,callback){
         var tag=file.originalname.split('.');
         callback(null,'asd'+'.'+tag[1]);
+        console.log('req: '+req.name);
     }
 });
 var upload=multer({storage:storage});
