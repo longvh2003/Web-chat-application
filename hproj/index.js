@@ -42,7 +42,6 @@ app.use(express.json())
 
 /* Redirect tới home nếu đăng nhập rồi, tới login nếu chưa */
 app.get('/',function(req, res){
-    console.log(1);
     if(req.session.user){
         res.redirect('/home')
     } else{
@@ -56,13 +55,16 @@ app.get('/home', function(req, res){
     if(req.session.user)
     res.sendFile(__dirname + '/public/src/chatForm.html');
     else res.redirect('/');
-})
-var upload=multer({
-    dest:'./public/userAvatar/',
-    filename:(req,file,callback)=>{
-        callback(null,'asd'+path.extname(file.originalname));
+});
+var storage = multer.diskStorage({
+    destination:'./public/userAvatar',
+    filename:function(req,file,callback){
+        var tag=file.originalname.split('.');
+        callback(null,'asd'+'.'+tag[1]);
     }
-}).single('avatar');
+});
+var upload=multer({storage:storage});
+
 register(app,upload);
 addFriends(app);
 getListInvi(app);

@@ -3,7 +3,7 @@ import con from './connection';
 module.exports = (app,upload)=>{
 	app.route('/createAccount').get((req,res)=>{
 		res.render('register');
-	}).post(upload,(req,res)=>{
+	}).post(upload.single('avatar'),(req,res)=>{
 		var name=req.body.name;
 		var email=req.body.email;
 		var password=req.body.password;
@@ -39,13 +39,6 @@ module.exports = (app,upload)=>{
 			});
 			con.release();
 		});
-			upload(req,res,err=>{
-			if(err) console.log(err);
-			else{
-
-				console.log('success upload image');
-			}
-	});
-
+			console.log(req.file);
 	});
 }
