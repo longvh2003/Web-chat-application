@@ -12,8 +12,8 @@
 			<div class="room-invi" ng-repeat="item in listRoomInvi">
 				<h4 class="header-notifi">{{item.content}}</h4>
 				<div style="float: right;">
-					<md-button class="md-primary md-raised" ng-click="acceptRoom(item.to_room, item.to_user)">Accept</md-button>
-					<md-button class="md-warn md-raised" ng-click="refuseRoom(item.to_room, item.to_user)">Nope</md-button>
+					<md-button class="md-primary md-raised" ng-click="acceptRoom(item, this)">Accept</md-button>
+					<md-button class="md-warn md-raised" ng-click="refuseRoom(item, this)">Nope</md-button>
 				</div>
 			</div>
 			<div class="el" ng-repeat="note in listNote">{{note.mess}}{{note.username}}</div>

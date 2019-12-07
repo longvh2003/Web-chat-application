@@ -5,7 +5,7 @@ import session from 'express-session';
 import getHis from './public/server/models/getChatroomHistory';  //Lấy tin nhắn cũ
 import getChatroom from './public/server/models/getRoomId';
 import getListFriend from './public/server/models/getListFriend';
-import addChatroom from './public/server/models/addRoom';
+import Room from './public/server/models/addRoom';
 import notification from './public/server/models/notification';
 import getNotifi from './public/server/models/getNotifi';
 import deleteRoom from './public/server/models/deleteRoom';
@@ -108,7 +108,7 @@ app.get('/logout',(req,res)=>{
 app.post('/home/addRoom', (req, res)=>{
     console.log(1);
     //console.log(req.body);
-    addChatroom(req.body, function(err){
+    Room.AddRoom(req.body, function(err){
         //console.log(err.code);
         if(err) res.send({status:false});
         else res.send({status:true});
@@ -141,9 +141,14 @@ app.post('/loadRoomNotifi/:userid', (req, res)=>{
 })
 
 app.post('/home/deleteRoom/:roomid', (req, res)=>{
-    console.log(1);
     deleteRoom(req.params.roomid);
     res.send('1');
+})
+
+app.post('/acceptRoom', (req, res)=>{
+    Room.AcceptRoom(req.body, (status)=>{
+        res.send(status);
+    })
 })
 
 validate(app);

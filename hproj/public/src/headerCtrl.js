@@ -69,9 +69,11 @@ function headerCtrl($rootScope, $scope,$http){
         })
     }
 
-    var acceptRoom = (roomid, userid)=>{
-        
-        
+    $scope.acceptRoom = (notification,me)=>{
+        $http.post('/acceptRoom', JSON.stringify(notification)).then((res)=>{
+            angular.element(me).prop('disabled', true);
+            $rootScope.$broadcast('reloadRoom');
+        })
     }
 
 }
