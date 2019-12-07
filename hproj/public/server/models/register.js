@@ -1,9 +1,9 @@
 import con from './connection';
 
-module.exports = app=>{
+module.exports = (app,upload)=>{
 	app.route('/createAccount').get((req,res)=>{
 		res.render('register');
-	}).post((req,res)=>{
+	}).post(upload.single('avatar'),(req,res)=>{
 		var name=req.body.name;
 		var email=req.body.email;
 		var password=req.body.password;
@@ -20,8 +20,8 @@ module.exports = app=>{
 				if(err) console.log(err);
 				if(rows.length>0){
 					for( var i=0;i<rows.length;i++){
-						if(rows[i].email==email) validEmail=false;
-						if(rows[i].username==name) validUsername=false;
+						if(rows[i].email===email) validEmail=false;
+						if(rows[i].username===name) validUsername=false;
 					}	
 					if(!validUsername||!validEmail){
 						var msg={invalidEmail:'',invalidUsername:'',oldEmail:req.body.email,oldName:req.body.name};
@@ -39,6 +39,6 @@ module.exports = app=>{
 			});
 			con.release();
 		});
-
+			console.log(req.file);
 	});
 }

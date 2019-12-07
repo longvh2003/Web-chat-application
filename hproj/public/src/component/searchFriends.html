@@ -4,13 +4,14 @@
 		<div>
 			<p class="title">Friends list</p>
 			<ol id="listFriends">
-				<li ng-repeat="x in listFriends" ng-click="showEl(x)">{{x.username}}<button ng-click="unfriend(x)" class="inList">unfriend</button></li>
+				<li ng-repeat="x in listFriends" ng-click="showEl(x)"><span class="friendName">{{x.username}}</span><button ng-click="unfriend(x)" class="inList">unfriend</button></li>
 			</ol>
 		</div>
 
 		<div>
+			
 			<ol id="invitation">
-				<li ng-repeat="friend in listInvitation">{{friend.username}}<button ng-click="addFriendBut(friend)" class="inList">acept</button><button ng-click="removeInvi(friend)" class="inList">deny</button></li>
+				<li ng-repeat="friend in listInvitation"><span class="friendName">{{friend.username}}</span><button ng-click="addFriendBut(friend)" class="inList">acept</button><button ng-click="removeInvi(friend)" class="inList">deny</button></li>
 			</ol>
 		</div>
 	</div>
@@ -35,7 +36,7 @@
 		background: #ff9999;
 	}
 	li:hover{
-		background-color: black;
+		background-color: pink;
 		cursor: pointer;
 	}
 	.title{
@@ -84,5 +85,9 @@
 	ol .inList:hover{
 		background-color: red;
 		z-index: 1;
+	}
+	.friendName{
+		width: 250px;
+		display: inline-block;
 	}
 </style>

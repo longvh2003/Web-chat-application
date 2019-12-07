@@ -15,6 +15,8 @@ var addFriends=require('./public/server/models/addFriends');
 var markInvi=require('./public/server/models/markInvi');
 var removeInvi=require('./public/server/models/removeInvi');
 var unfriend=require('./public/server/models/unfriend');
+var multer=require('multer');
+var path=require('path');
 const port = 3000;
 import bodyParser from 'body-parser';
 import { restElement } from 'babel-types';
@@ -40,7 +42,6 @@ app.use(express.json())
 
 /* Redirect tới home nếu đăng nhập rồi, tới login nếu chưa */
 app.get('/',function(req, res){
-    console.log(1);
     if(req.session.user){
         res.redirect('/home')
     } else{
@@ -54,9 +55,18 @@ app.get('/home', function(req, res){
     if(req.session.user)
     res.sendFile(__dirname + '/public/src/chatForm.html');
     else res.redirect('/');
-})
+});
+var storage = multer.diskStorage({
+    destination:'./public/userAvatar',
+    filename:function(req,file,callback){
+        var tag=file.originalname.split('.');
+        callback(null,'asd'+'.'+tag[1]);
+        console.log('req: '+req.name);
+    }
+});
+var upload=multer({storage:storage});
 
-register(app);
+register(app,upload);
 addFriends(app);
 getListInvi(app);
 markInvi(app);

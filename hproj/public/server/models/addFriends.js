@@ -10,24 +10,26 @@ module.exports=app=>{
 		var addInvi= 'INSERT INTO invitation(user1,user2) value(?,?)';
 
 		if(!req.body.username){
-			res.send('nhap vao');
+			res.send('Chưa nhập tên');
 		}else{
 			conn.aquire((err,con)=>{
 			if(req.body.username!=req.session.user.username){
 				con.query(getFriendIdSql,req.body.username,(err,rows)=>{
-					if(err) console.log('khong tim thay userfriend');
-					var friendId=rows[0].user_id;
-					con.query('select * from friends where currentUser=? and friendUser=?',[req.session.user.userId,friendId],(err,rows)=>{
-						if(rows.length>0) res.send('đã có thêm bạn rồi');
-						else{
-							con.query(addInvi,[req.session.user.userId,friendId],err=>{
-								res.send('Gửi lời mời kết bạn thành công');
-							});
-						}
-					});
+					if(rows.length>0){
+						
+						var friendId=rows[0].user_id;
+						con.query('select * from friends where currentUser=? and friendUser=?',[req.session.user.userId,friendId],(err,rows)=>{
+							if(rows.length>0) res.send('đã có thêm bạn rồi');
+							else{
+								con.query(addInvi,[req.session.user.userId,friendId],err=>{
+									res.send('Gửi lời mời kết bạn thành công');
+								});
+							}
+						});
+					}else res.send('Không tìm thấy user');
 				});								
 			}else{
-				res.send('ko thể thêm bạn với chính mình');
+				res.send('Không thể thêm bạn với chính mình');
 			}
 			con.release();
 		});
