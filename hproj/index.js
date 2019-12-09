@@ -11,6 +11,7 @@ import getNotifi from './public/server/models/getNotifi';
 import deleteRoom from './public/server/models/deleteRoom';
 var getListInvi=require('./public/server/models/getListInvi');
 var register=require('./public/server/models/register');
+var changeAvatar=require('./public/server/models/changeAvatar');
 var addFriends=require('./public/server/models/addFriends');
 var markInvi=require('./public/server/models/markInvi');
 var removeInvi=require('./public/server/models/removeInvi');
@@ -51,22 +52,39 @@ app.get('/',function(req, res){
 
 /* Render chatForm nếu request tới home */
 app.get('/home', function(req, res){
-    console.log(1);
     if(req.session.user)
     res.sendFile(__dirname + '/public/src/chatForm.html');
     else res.redirect('/');
 });
-var storage = multer.diskStorage({
-    destination:'./public/userAvatar',
-    filename:function(req,file,callback){
-        var tag=file.originalname.split('.');
-        callback(null,'asd'+'.'+tag[1]);
-        console.log('req: '+req.name);
-    }
-});
-var upload=multer({storage:storage});
 
-register(app,upload);
+
+register(app);
+// changeAvatar(app);
+app.get('/changeAvatar',(req,res)=>{
+    res.sendFile(__dirname+'/public/src/component/changeAvatar.html');
+    console.log(req.session.user);
+});
+app.post('/changeAvatar',(req,res)=>{
+    var nameImage=req.session.user.userId;
+    console.log(nameImage);
+    var storage = multer.diskStorage({
+        destination:'./public/userAvatar',
+        filename:function(req,file,callback){
+            var tag=file.originalname.split('.');
+            callback(null,nameImage+'.'+tag[1]);
+        }
+    });
+    var upload=multer({storage:storage}).single('avatar');
+    upload(req,res,(err)=>{
+        if(err) console.log(err);
+        else{
+            res.redirect('/');
+        }
+    });
+});
+app.get('/getUserSession',(req,res)=>{
+    res.send(req.session);
+});
 addFriends(app);
 getListInvi(app);
 markInvi(app);

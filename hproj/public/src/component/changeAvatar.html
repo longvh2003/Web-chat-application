@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Change Avatar</title>
+</head>
+<body>
+	<form ng-app="asd" ng-controller="uploadAvatarController" enctype="multipart/form-data" action="changeAvatar" method="POST">
+		<input type="file" name="avatar">
+		<button type="submit" ng-click='upload()'>submit</button>
+	</form>
+</body>
+<script src="/angular/angular.js"></script>
+<script>
+	var asd= angular.module('asd',[]);
+	asd.controller('uploadAvatarController',function($scope,$http){
+		$scope.upload=function(){
+			// console.log('upload');
+			$http({
+				method:'GET',
+				url:'/getUserSession'
+			}).then(res=>{
+				console.log(res.data.user);
+
+			});
+		}
+	});
+
+</script>
+</html>

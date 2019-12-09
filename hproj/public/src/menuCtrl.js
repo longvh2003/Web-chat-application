@@ -76,6 +76,7 @@ function menuCtrl($rootScope, $scope, $location, $http, $window){
             url:'/getListInvitation'
         }).then(res=>{
             if(res.data) $scope.listInvitation=res.data;
+            res.send('ok');
         });
     }
     renderListInvitation();
@@ -85,6 +86,8 @@ function menuCtrl($rootScope, $scope, $location, $http, $window){
             method:'POST',
             url:'/unfriend',
             data:{friend:x}
+        }).then(res=>{
+            res.send('ok');
         });
         $location.path('/friends'); 
         $window.location.reload();

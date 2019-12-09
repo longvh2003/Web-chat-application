@@ -1,9 +1,9 @@
 import con from './connection';
 
-module.exports = (app,upload)=>{
+module.exports = (app)=>{
 	app.route('/createAccount').get((req,res)=>{
 		res.render('register');
-	}).post(upload.single('avatar'),(req,res)=>{
+	}).post((req,res)=>{
 		var name=req.body.name;
 		var email=req.body.email;
 		var password=req.body.password;
@@ -32,13 +32,23 @@ module.exports = (app,upload)=>{
 				}else{
 					con.query(insertSql,[name,email,password,birth,gender],(err)=>{
 						if(err) console.log(err);
-						console.log('dang ky thanh cong');
-						res.redirect('/');
+						else{
+							con.query('select * from user where username=?',[name],(err,rows)=>{
+								if(err) console.log(err);
+								else{
+									console.log('dang ky thanh cong');
+									req.session.user={
+										userId:rows[0].user_id,
+										username:name
+									}
+									res.redirect('/changeAvatar');
+								}
+							});
+						}
 					});
 				}
 			});
 			con.release();
 		});
-			console.log(req.file);
 	});
 }
