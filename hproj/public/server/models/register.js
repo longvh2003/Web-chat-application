@@ -1,6 +1,6 @@
 import con from './connection';
 
-module.exports = (app)=>{
+module.exports = (app,fs,path)=>{
 	app.route('/createAccount').get((req,res)=>{
 		res.render('register');
 	}).post((req,res)=>{
@@ -41,6 +41,11 @@ module.exports = (app)=>{
 										userId:rows[0].user_id,
 										username:name
 									}
+									//set default image for user
+									var folderImage=path.join(__dirname,'../../userAvatar');
+									var defaultImage= fs.createReadStream(folderImage+'/default.jpg');
+									var coppyImage = fs.createWriteStream(folderImage+'/'+req.session.user.userId+'.jpg');
+									defaultImage.pipe(coppyImage);
 									res.redirect('/changeAvatar');
 								}
 							});

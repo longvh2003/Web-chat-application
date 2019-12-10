@@ -62,6 +62,7 @@
 </style>
 <script src="/angular/angular.js"></script>
 <script>
+	document.getElementById("myImage").setAttribute("src", '/userAvatar/3.png');
 	var asd= angular.module('asd',[]);
 	asd.controller('uploadAvatarController',function($scope,$http){
 		$scope.upload=function(){
@@ -78,6 +79,7 @@
 		}
 		$scope.chooseFile = me=>{
 			if (me.files && me.files[0]) {
+				console.log(me.files[0]);
 	            let url = URL.createObjectURL(me.files[0]); // set src to blob url
 	            document.getElementById("myImage").setAttribute("src", url);
 	            document.getElementById("myImage").style.display='block';

@@ -18,6 +18,7 @@ var removeInvi=require('./public/server/models/removeInvi');
 var unfriend=require('./public/server/models/unfriend');
 var multer=require('multer');
 var path=require('path');
+var fs =require('fs');
 const port = 3000;
 import bodyParser from 'body-parser';
 import { restElement } from 'babel-types';
@@ -31,6 +32,7 @@ app.use(session({secret: 'ssshhhhh'}));
 app.use(express.static(__dirname + '/node_modules'));
 app.use(express.static(__dirname + '/public/src'));
 app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public/userAvatar'));
 app.use(express.static(__dirname + '/public/content/icon'));
 app.use(express.static(__dirname + '/public/src/component'));
 
@@ -58,8 +60,8 @@ app.get('/home', function(req, res){
 });
 
 
-register(app);
-// changeAvatar(app);
+register(app,fs,path);
+// change avatar
 app.get('/changeAvatar',(req,res)=>{
     res.sendFile(__dirname+'/public/src/component/changeAvatar.html');
     console.log(req.session.user);
@@ -72,6 +74,7 @@ app.post('/changeAvatar',(req,res)=>{
         filename:function(req,file,callback){
             var tag=file.originalname.split('.');
             callback(null,nameImage+'.'+tag[1]);
+            // callback(null,nameImage+'.'+png);
         }
     });
     var upload=multer({storage:storage}).single('avatar');
@@ -85,6 +88,7 @@ app.post('/changeAvatar',(req,res)=>{
 app.get('/getUserSession',(req,res)=>{
     res.send(req.session);
 });
+
 addFriends(app);
 getListInvi(app);
 markInvi(app);
