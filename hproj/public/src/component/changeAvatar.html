@@ -2,13 +2,64 @@
 <html>
 <head>
 	<title>Change Avatar</title>
+	<link href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
 </head>
 <body>
 	<form ng-app="asd" ng-controller="uploadAvatarController" enctype="multipart/form-data" action="changeAvatar" method="POST">
-		<input type="file" name="avatar">
-		<button type="submit" ng-click='upload()'>submit</button>
+		<input id="fileChooser" type="file" name="avatar" onchange="angular.element(this).scope().chooseFile(this)">
+		<div id="containImg">
+			<img src="" id="myImage">
+		</div>
+		<div class="gr-but">
+			<button type="button" ng-click='skip()' id="skip">Skip</button>
+			<button type="submit" ng-click='upload()' id="next">Next</button>
+		</div>
 	</form>
 </body>
+<style type="text/css">
+	*{
+		box-sizing: border-box;
+	}
+	.gr-but{
+		position: absolute;
+		bottom: 0px;
+		width: 100%;
+	}
+	#ignore{
+		float: left;
+	}
+	#next{
+		float: right;
+	}
+	form{
+		width: 800px;
+		border:1px solid black;
+		margin:0 auto;
+		position: relative;
+		height: 500px;
+	}
+	#myImage{
+		width: auto;
+		height: 100%;
+		margin-left: -50px;
+	}
+	#containImg{
+		display: block;
+		position: absolute;
+		width: 200px;
+		height: 200px;
+		overflow: hidden;
+		border-radius: 50%;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+	#fileChooser{
+		position: absolute;
+		top: 210px;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+</style>
 <script src="/angular/angular.js"></script>
 <script>
 	var asd= angular.module('asd',[]);
@@ -20,10 +71,18 @@
 				url:'/getUserSession'
 			}).then(res=>{
 				console.log(res.data.user);
-
 			});
 		}
+		$scope.skip=()=>{
+			console.log('skip');
+		}
+		$scope.chooseFile = me=>{
+			if (me.files && me.files[0]) {
+	            let url = URL.createObjectURL(me.files[0]); // set src to blob url
+	            document.getElementById("myImage").setAttribute("src", url);
+	            document.getElementById("myImage").style.display='block';
+	        }
+		}
 	});
-
 </script>
 </html>
