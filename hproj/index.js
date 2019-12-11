@@ -73,7 +73,7 @@ app.post('/changeAvatar',(req,res)=>{
         destination:'./public/userAvatar',
         filename:function(req,file,callback){
             var tag=file.originalname.split('.');
-            callback(null,nameImage+'.'+tag[1]);
+            callback(null,nameImage+'.'+'jpg');
             // callback(null,nameImage+'.'+png);
         }
     });

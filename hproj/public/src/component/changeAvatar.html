@@ -62,18 +62,20 @@
 </style>
 <script src="/angular/angular.js"></script>
 <script>
-	document.getElementById("myImage").setAttribute("src", '/userAvatar/3.png');
+	// document.getElementById("myImage").setAttribute("src", '/userAvatar/3.jpg');
 	var asd= angular.module('asd',[]);
 	asd.controller('uploadAvatarController',function($scope,$http){
 		$scope.upload=function(){
 			// console.log('upload');
-			$http({
+
+		}
+		$http({
 				method:'GET',
 				url:'/getUserSession'
 			}).then(res=>{
-				console.log(res.data.user);
-			});
-		}
+			console.log(res.data.user);
+			document.getElementById("myImage").setAttribute("src", '/userAvatar/'+res.data.user.userId+'.jpg');
+		});
 		$scope.skip=()=>{
 			console.log('skip');
 		}
