@@ -5,7 +5,6 @@ function DialogInviteController($scope, $mdDialog, $http, $q, $timeout, $rootSco
     };
     $scope.simulateQuery = true;
 
-    $scope.items = ['Home','Home','Home','Home','Home','Home','Home','Home','Home','Home','Home','Home','Home','Home','Home','Home', 'School', 'Work', 'Mall', 'Beach'];
     $scope.users = [];
 
     $scope.init = () =>{
