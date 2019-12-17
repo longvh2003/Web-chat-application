@@ -1,93 +1,46 @@
-<div style="background-color: #ffc0cb">
+<div style="height: 100%;">
 	<input type="text" id="username"  placeholder="Username" ng-model="asd"><button id="add" ng-click="display()">add</button>
-	<div>
-		<div>
-			<p class="title">Friends list</p>
-			<ol id="listFriends">
+	<div style="display: flex;height: 100%;">
+		<div style="width: 50%;height: 100%;">
+			<h1 class="title">Friends list</h1>
+			<!-- <ol id="listFriends">
 				<li ng-repeat="x in listFriends" ng-click="showEl(x)"><span class="friendName">{{x.username}}</span><button ng-click="unfriend(x)" class="inList">unfriend</button></li>
-			</ol>
+			</ol> -->
+			<md-list-item ng-repeat="x in listFriends" ng-click="showEl(x)" class="noright list-friend">
+				<img alt="{{ person.name }}" ng-src="{{ person.img }}" class="md-avatar" />
+				<p>{{ x.username }}</p>
+				<!-- <md-checkbox class="md-secondary" ng-model="person.selected"></md-checkbox>
+				<md-icon md-svg-icon="communication:email"  ng-click="doSecondaryAction($event)" aria-label="Send Email" class="md-secondary md-hue-3" ></md-icon> -->
+				<md-button class="md-accent md-raised md-hue-1">Unfriend</md-button>
+			  </md-list-item>
+
 		</div>
 
-		<div>
-			
-			<ol id="invitation">
-				<li ng-repeat="friend in listInvitation"><span class="friendName">{{friend.username}}</span><button ng-click="addFriendBut(friend)" class="inList">acept</button><button ng-click="removeInvi(friend)" class="inList">deny</button></li>
-			</ol>
+		<div style="width: 50%;height: 100%;border-left: 1px solid rgba(0, 0, 0, .10);">
+			<h1 class="title">Invitation</h1>
+			<md-list-item ng-repeat="friend in listInvitation" ng-click="" class="noright list-friend">
+				<img alt="{{ person.name }}" ng-src="{{ person.img }}" class="md-avatar" />
+				<p>{{ friend.username }}</p>
+				<md-button class="md-raised md-primary" ng-click="addFriendBut(friend)">Accept</md-button>
+				<md-button class="md-raised md-warn" ng-click="removeInvi(friend)">Deny</md-button>
+			  </md-list-item>
+
 		</div>
 	</div>
 </div>
-<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 <style>
-	*{
+	/* *{
 		box-sizing: border-box;
-	}
-	ol li {
-  	background: #ffe5e5;
-  	padding: 5px;
-  	margin-left: 35px;
-  	font-size: 25px;
-  	color: #ff1493;
-	}
-	ol {
- 	 background: #ff9999;
- 	 padding: 20px;
-	}
-	li:nth-child(even){
-		background: #ff9999;
-	}
-	li:hover{
-		background-color: pink;
-		cursor: pointer;
-	}
-	.title{
-	color: #F072A9;
-	font-weight: bold;
-	font-size: 25px;
-	text-shadow: 1px 1px 1px #fff;
+	} */
 
+	.list-friend{
+		border: none;
+		height: 100px;
 	}
-	#listFriends{
-		float: left;
-		width: 50%;
+
+	h1{
+		box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .10);
 	}
-	#invitation{
-		float: right;
-		width: 50%;
-	}
-	/*css style source code : sanwebe.com*/
-	button{
-		background: #EB3B88;
-		border: 1px solid #C94A81;
-		padding: 5px 15px 5px 15px;
-		color: #FFCBE2;
-		box-shadow: inset -1px -1px 3px #FF62A7;
-		-moz-box-shadow: inset -1px -1px 3px #FF62A7;
-		-webkit-box-shadow: inset -1px -1px 3px #FF62A7;
-		border-radius: 3px;
-		border-radius: 3px;
-		-webkit-border-radius: 3px;
-		-moz-border-radius: 3px;	
-		font-weight: bold;
-	}
-	#username{
-		border-radius: 3px;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border: 1px solid #FFC2DC;
-	outline: none;
-	color: #F072A9;
-	padding: 5px 8px 5px 8px;
-	box-shadow: inset 1px 1px 4px #FFD5E7;
-	-moz-box-shadow: inset 1px 1px 4px #FFD5E7;
-	-webkit-box-shadow: inset 1px 1px 4px #FFD5E7;
-	background: #FFEFF6;
-	}
-	ol .inList:hover{
-		background-color: red;
-		z-index: 1;
-	}
-	.friendName{
-		width: 250px;
-		display: inline-block;
-	}
+
+	
 </style>

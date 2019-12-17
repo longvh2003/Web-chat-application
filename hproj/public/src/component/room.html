@@ -5,11 +5,11 @@
                     Create Room
             </md-button>
         </div>
-        <div class="join-room">
+        <!-- <div class="join-room">
             <md-button class="md-primary md-raised room-button join-button" ng-click="showForm($event)">
                     Join Room
             </md-button>
-        </div>
+        </div> -->
     </div>
     <md-list-item class="room-hover" ng-repeat="room in rooms" ng-click="panelClick($index, room)" id="{{room.chatroom_id}}" on-finish-render="ngRepeatFinished">
         <img ng-src="https://i.pinimg.com/originals/d7/d8/35/d7d835cf05f2d9288f198054b3f1d650.jpg" class="md-avatar" alt="{{item.who}}" />
