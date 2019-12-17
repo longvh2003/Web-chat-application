@@ -33,6 +33,7 @@ app.use(express.static(__dirname + '/node_modules'));
 app.use(express.static(__dirname + '/public/src'));
 app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/public/userAvatar'));
+app.use(express.static(__dirname + '/public/content'));
 app.use(express.static(__dirname + '/public/content/icon'));
 app.use(express.static(__dirname + '/public/src/component'));
 
@@ -66,6 +67,7 @@ app.get('/changeAvatar',(req,res)=>{
     res.sendFile(__dirname+'/public/src/component/changeAvatar.html');
     console.log(req.session.user);
 });
+
 app.post('/changeAvatar',(req,res)=>{
     var nameImage=req.session.user.userId;
     console.log(nameImage);
@@ -73,13 +75,27 @@ app.post('/changeAvatar',(req,res)=>{
         destination:'./public/userAvatar',
         filename:function(req,file,callback){
             var tag=file.originalname.split('.');
-            callback(null,nameImage+'.'+'jpg');
-            // callback(null,nameImage+'.'+png);
+            callback(null,nameImage+'.jpg');
         }
     });
-    var upload=multer({storage:storage}).single('avatar');
+    var upload=multer({
+        storage:storage,
+        fileFilter:function(req,file,cb){
+            const filetypes = /jpeg|jpg|png/;
+            const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+            const mimetype = filetypes.test(file.mimetype);
+            if(mimetype && extname){
+                return cb(null,true);
+            } else {
+                cb('Error: Really nigga?! Images Only!');
+            }
+        }
+    }).single('avatar');
     upload(req,res,(err)=>{
-        if(err) console.log(err);
+        if(err) {
+            res.send(err);
+            console.log(err);
+        }
         else{
             res.redirect('/');
         }

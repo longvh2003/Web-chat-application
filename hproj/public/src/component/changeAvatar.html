@@ -3,16 +3,28 @@
 <head>
 	<title>Change Avatar</title>
 	<link href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous'>
+	<script src="https://kit.fontawesome.com/e3ddeae5cc.js" crossorigin="anonymous"></script>
 </head>
-<body>
-	<form ng-app="asd" ng-controller="uploadAvatarController" enctype="multipart/form-data" action="changeAvatar" method="POST">
-		<input id="fileChooser" type="file" name="avatar" onchange="angular.element(this).scope().chooseFile(this)">
-		<div id="containImg">
-			<img src="" id="myImage">
+<body style="background-color: #1565C0">
+	<form ng-app="asd" ng-controller="uploadAvatarController" enctype="multipart/form-data" action="changeAvatar" method="POST" class="container">
+		<div class="row">
+			<div class="col-4"></div>
+			<div class="col-4 " style="text-align: center;">
+				<h3>Choose Avatar</h3>
+			</div>
 		</div>
-		<div class="gr-but">
-			<button type="button" ng-click='skip()' id="skip">Skip</button>
-			<button type="submit" ng-click='upload()' id="next">Next</button>
+		<div class="row" style="position: relative;top:20px;">
+			<input id="fileChooser" type="file" name="avatar" onchange="angular.element(this).scope().chooseFile(this)">
+
+			<div id="containImg">
+				<img src="" id="myImage">
+			</div>
+		</div>
+		<div class="gr-but row">
+			<div class="col-4"></div>
+			<div class="col-4">
+				<button type="submit" ng-click='upload()' id="next" >Next</button>
+			</div>
 		</div>
 	</form>
 </body>
@@ -24,6 +36,7 @@
 		position: absolute;
 		bottom: 0px;
 		width: 100%;
+		/*color: #40C4FF;*/
 	}
 	#ignore{
 		float: left;
@@ -33,10 +46,12 @@
 	}
 	form{
 		width: 800px;
-		border:1px solid black;
 		margin:0 auto;
 		position: relative;
 		height: 500px;
+		background-color: #40C4FF;
+		top: 60px;
+		/*border-radius: 20%;*/
 	}
 	#myImage{
 		width: auto;
@@ -52,6 +67,7 @@
 		border-radius: 50%;
 		left: 50%;
 		transform: translateX(-50%);
+		border:5px solid black;
 	}
 	#fileChooser{
 		position: absolute;
@@ -59,15 +75,28 @@
 		left: 50%;
 		transform: translateX(-50%);
 	}
+	#next{
+		/*background: #EB3B88;*/
+		background: blue;
+		border: 1px solid #C94A81;
+		padding: 5px 15px 5px 15px;
+		color: #FFCBE2;
+		box-shadow: inset -1px -1px 3px #FF62A7;
+		-moz-box-shadow: inset -1px -1px 3px #FF62A7;
+		-webkit-box-shadow: inset -1px -1px 3px #FF62A7;
+		border-radius: 3px;
+		border-radius: 3px;
+		-webkit-border-radius: 3px;
+		-moz-border-radius: 3px;	
+		font-weight: bold;
+		width: 100%;
+	}
 </style>
 <script src="/angular/angular.js"></script>
 <script>
-	// document.getElementById("myImage").setAttribute("src", '/userAvatar/3.jpg');
 	var asd= angular.module('asd',[]);
 	asd.controller('uploadAvatarController',function($scope,$http){
 		$scope.upload=function(){
-			// console.log('upload');
-
 		}
 		$http({
 				method:'GET',
@@ -81,7 +110,9 @@
 		}
 		$scope.chooseFile = me=>{
 			if (me.files && me.files[0]) {
-				console.log(me.files[0]);
+				console.log(me.files[0].name);
+				// $scope.fileChoosedName=me.files[0].name;
+				// $scope.fileChoosedName=true;
 	            let url = URL.createObjectURL(me.files[0]); // set src to blob url
 	            document.getElementById("myImage").setAttribute("src", url);
 	            document.getElementById("myImage").style.display='block';
