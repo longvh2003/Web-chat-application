@@ -20,7 +20,15 @@
 			
     	</div>
 	</div>
-    <div ng-model="username" style="position:absolute; height: 75px; align-self: center;line-height: 75px;right: 0;font-size: 28px;">{{username}}</div>
+<!-- 	<div style="position: absolute;top: 16px;right: 108px;">
+		
+	</div> -->
+    <div ng-model="username" style="position:absolute; height: 75px; align-self: center;line-height: 75px;right: 0;font-size: 28px;">
+    	<div id="containtAvatar">
+			<img src="" id="iconAvatar">
+		</div>
+    	<p style="display: inline-block;">{{username}}</p>
+    </div>
 </div>
 <style type="text/css">
 	.dropdown{
@@ -96,5 +104,21 @@
 			font-size: 21px;
 			text-align: center;
 		}
+	#iconAvatar{
+		width: auto;
+		height: 100%;
+		margin-left: -25px;
+	}
+	#containtAvatar{
+		/*display: block;
+		position: absolute;*/
+		display: inline-block;
+		width: 50px;
+		height: 50px;
+		overflow: hidden;
+		border-radius: 50%;
+		left: 50%;
+		transform: translateX(-50%);
+	}
 
 </style>

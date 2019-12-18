@@ -1,5 +1,3 @@
-
-
 function headerCtrl($rootScope, $scope,$http){
     $scope.listNote=[];
     $scope.notifications=0;
@@ -76,6 +74,14 @@ function headerCtrl($rootScope, $scope,$http){
         })
     }
 
+    //display image
+    $http({
+            method:'GET',
+            url:'/getUserSession'
+        }).then(res=>{
+        console.log(res.data.user);
+        document.getElementById("iconAvatar").setAttribute("src", '/userAvatar/'+res.data.user.userId+'.jpg');
+    });
 }
 
 angular.module('myApp')

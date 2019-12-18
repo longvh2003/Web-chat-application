@@ -16,6 +16,7 @@ var addFriends=require('./public/server/models/addFriends');
 var markInvi=require('./public/server/models/markInvi');
 var removeInvi=require('./public/server/models/removeInvi');
 var unfriend=require('./public/server/models/unfriend');
+var profile = require('./public/server/models/profile');
 var multer=require('multer');
 var path=require('path');
 var fs =require('fs');
@@ -110,6 +111,7 @@ getListInvi(app);
 markInvi(app);
 removeInvi(app);
 unfriend(app);
+profile(app);
 
 
 /* Lấy tin nhắn cũ */

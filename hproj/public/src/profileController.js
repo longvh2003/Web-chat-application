@@ -13,4 +13,8 @@ function ProfileCtrl($scope, $rootScope,$http){
         // document.getElementById("myImage").setAttribute("src", '/userAvatar/'+res.data.user.userId+'.jpg');
         angular.element('#myImage').attr('src','userAvatar/1.jpg');
     });
+    $scope.typingPass=function(){
+        if($scope.confirmnewpass!==$scope.newpass) $scope.msg="Xác nhận mật khẩu sai";
+        else $scope.msg=null;
+    }
 }
