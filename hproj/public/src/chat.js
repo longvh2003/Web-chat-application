@@ -281,4 +281,8 @@ myApp.config(function($routeProvider, $locationProvider) {
             templateUrl: '/src/component/profile.html',
             controller: ProfileCtrl
         })
+        .when('/admin', {
+            templateUrl: '/src/component/admin.html',
+            controller: AdminCtrl
+        })
 });

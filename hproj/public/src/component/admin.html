@@ -1,0 +1,16 @@
+<div style="height: 100%;">
+         <md-subheader class = "md-no-sticky" style="border-bottom: 2px solid black;margin-bottom: 30px;">
+            <h1 class="title" style="padding-left: 185px;">Permission</h1></md-subheader>
+         <md-list-item ng-repeat="x in contacts" ng-click="showEl(x)" style="margin-left:200px;border: 1px solid black;margin-bottom: 5px; width: 700px;">
+				<img src="../../content/icon/nextButton.jpg" class = "md-avatar" style="border: 1px solid black;"
+               alt = "{{x.name}}" /><!--ảnh-->
+                  
+                  <p> Username : {{x.username}}</p>
+               <md-button class = "md-raised md-warn " >delete</md-button>
+			  </md-list-item>
+            
+         </md-content>
+		
+</div>
+
+

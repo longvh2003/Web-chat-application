@@ -1,16 +1,5 @@
 <div style="height: 100%;">
-	<!-- <input type="text" id="username"  placeholder="Username" ng-model="asd"> -->
-	<md-autocomplete md-no-cache="true"
-	md-selected-item="selectedItem" 
-	md-items="item in querySearch(searchText)" 
-	md-search-text="searchText" 
-	md-item-text="item.username"
-	md-min-length='0'>
-		<md-item-template>
-			<span style="background: none;">{{ item.username }}</span>
-		</md-item-template>
-	</md-autocomplete>
-	<button id="add" ng-click="display()">Add</button>
+	<input type="text" id="username"  placeholder="Username" ng-model="asd"><button id="add" ng-click="display()">add</button>
 	<div style="display: flex;height: 100%;">
 		<div style="width: 50%;height: 100%;">
 			<h1 class="title">Friends list</h1>
@@ -18,11 +7,11 @@
 				<li ng-repeat="x in listFriends" ng-click="showEl(x)"><span class="friendName">{{x.username}}</span><button ng-click="unfriend(x)" class="inList">unfriend</button></li>
 			</ol> -->
 			<md-list-item ng-repeat="x in listFriends" ng-click="showEl(x)" class="noright list-friend">
-				<img alt="{{ x.username }}" ng-src="{{ x.image }}" class="md-avatar" />
+				<img alt="{{ person.name }}" ng-src="{{ person.img }}" class="md-avatar" />
 				<p>{{ x.username }}</p>
 				<!-- <md-checkbox class="md-secondary" ng-model="person.selected"></md-checkbox>
 				<md-icon md-svg-icon="communication:email"  ng-click="doSecondaryAction($event)" aria-label="Send Email" class="md-secondary md-hue-3" ></md-icon> -->
-				<md-button class="md-accent md-raised md-hue-1" ng-click="unfriend(x)">Unfriend</md-button>
+				<md-button class="md-accent md-raised md-hue-1">Unfriend</md-button>
 			  </md-list-item>
 
 		</div>

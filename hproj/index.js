@@ -4,7 +4,7 @@ import msgdb from './public/server/models/msgDB';  //Thêm tin nhắn vào DB
 import session from 'express-session';
 import getHis from './public/server/models/getChatroomHistory';  //Lấy tin nhắn cũ
 import getChatroom from './public/server/models/getRoomId';
-import Friend from './public/server/models/getListFriend';
+import getListFriend from './public/server/models/getListFriend';
 import Room from './public/server/models/addRoom';
 import notification from './public/server/models/notification';
 import getNotifi from './public/server/models/getNotifi';
@@ -167,14 +167,7 @@ app.post('/home/addRoom', (req, res)=>{
 
 app.post('/getFriendsInfo/:userid', (req, res)=>{
     console.log(1);
-    Friend.getListFriend(req.params.userid, (err, result)=>{
-        if(err) res.send({status:false});
-        else res.send(result);
-    })
-})
-
-app.post('/users', (req,res)=>{
-    Friend.getAllUser((err,result)=>{
+    getListFriend(req.params.userid, (err, result)=>{
         if(err) res.send({status:false});
         else res.send(result);
     })
