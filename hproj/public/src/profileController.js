@@ -2,6 +2,7 @@ function ProfileCtrl($scope, $rootScope,$http){
     $rootScope.$on('username', ()=>{
         $scope.username = $rootScope.username;
     })
+
     $scope.password = 'sample';
     $scope.hidePassword = true;
     $scope.myDate = new Date();
