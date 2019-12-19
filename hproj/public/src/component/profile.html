@@ -1,7 +1,7 @@
 <form class="profile-container" method="POST" action="updateProfile">
     <div class="avatar-container" id="containImg">
         <img id="myImage">
-        <md-button class="md-raised upload-butt">Upload Avatar</md-button>
+        <md-button class="upload-butt md-raised">Upload Avatar</md-button>
     </div>
     <div class="form-container">
         <div layout-gt-sm="row">
@@ -51,8 +51,8 @@
         <div layout-gt-sm="row">
             <div style="width: 50%;">
                 <label>Ngày sinh</label>
-                <!-- md-datepicker ng-model="myDate" name="dateOfBirth"  md-placeholder="Enter date" md-open-on-focus></md-datepicker> -->
-                <input type="date" name="birth">
+                <md-datepicker ng-model="myDate" name="dateOfBirth"  md-placeholder="Enter date" md-open-on-focus></md-datepicker>
+                <!-- <input type="date" name="birth"> -->
             </div>
             <md-select ng-model="gender" name="gender" placeholder="SEX" class="md-no-underline" style="margin: 0 0 5px;border-bottom: 1px solid gainsboro; width: 150px;padding-left: 5px;">
                 <md-option value="none">Không?</md-option>
@@ -61,6 +61,7 @@
                 <md-option value="others">Khác</md-option>
             </md-select>
         </div>
-        <button>submit</button>
+        <md-button class="md-raised md-primary" type="submit">Submit</md-button>
+
     </div>
 </form>
