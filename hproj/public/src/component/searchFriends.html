@@ -1,5 +1,16 @@
 <div style="height: 100%;">
-	<input type="text" id="username"  placeholder="Username" ng-model="asd"><button id="add" ng-click="display()">add</button>
+	<!-- <input type="text" id="username"  placeholder="Username" ng-model="asd"> -->
+	<md-autocomplete md-no-cache="true"
+	md-selected-item="selectedItem" 
+	md-items="item in querySearch(searchText)" 
+	md-search-text="searchText" 
+	md-item-text="item.username"
+	md-min-length='0'>
+		<md-item-template>
+			<span style="background: none;">{{ item.username }}</span>
+		</md-item-template>
+	</md-autocomplete>
+	<button id="add" ng-click="display()">Add</button>
 	<div style="display: flex;height: 100%;">
 		<div style="width: 50%;height: 100%;">
 			<h1 class="title">Friends list</h1>

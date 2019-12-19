@@ -2,10 +2,12 @@ function menuCtrl($rootScope, $scope, $location, $http, $window){
 
     $scope.listFriends=[];
     $scope.listInvitation=[];
+    $scope.users = [];
 
     $rootScope.$on('menu-clicked', ()=>{
         $scope.myButton = !$scope.myButton;
     })
+    
     $scope.menuClicked=index=>{
         if(index == 0){
             $location.path('/');
@@ -25,6 +27,24 @@ function menuCtrl($rootScope, $scope, $location, $http, $window){
             });
         }
     }
+
+    $scope.querySearch = async (query) =>{
+        await $http.post('/users').then((res)=>{
+            $scope.users = res.data;
+        })
+        var results = query ? $scope.users.filter(createFilterFor(query)) : $scope.users;
+        return results;
+    }
+
+    function createFilterFor(query) {
+        var lowercaseQuery = query.toLowerCase();
+  
+        return function filterFn(item) {
+          return (item.username.toLowerCase().indexOf(lowercaseQuery) === 0);
+        };
+  
+      }
+
     $scope.showEl=element=>{
         if($scope.listFriends.length>0) $location.path('/chat/'+element.chatroom_id);
         console.log('Click Li');
