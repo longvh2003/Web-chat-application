@@ -7,7 +7,7 @@
 				<li ng-repeat="x in listFriends" ng-click="showEl(x)"><span class="friendName">{{x.username}}</span><button ng-click="unfriend(x)" class="inList">unfriend</button></li>
 			</ol> -->
 			<md-list-item ng-repeat="x in listFriends" ng-click="showEl(x)" class="noright list-friend">
-				<img alt="{{ person.name }}" ng-src="{{ person.img }}" class="md-avatar" />
+				<img alt="{{ x.username }}" ng-src="{{ x.image }}" class="md-avatar" />
 				<p>{{ x.username }}</p>
 				<!-- <md-checkbox class="md-secondary" ng-model="person.selected"></md-checkbox>
 				<md-icon md-svg-icon="communication:email"  ng-click="doSecondaryAction($event)" aria-label="Send Email" class="md-secondary md-hue-3" ></md-icon> -->

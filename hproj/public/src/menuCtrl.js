@@ -66,10 +66,23 @@ function menuCtrl($rootScope, $scope, $location, $http, $window){
                 method:'GET',
                 url:'/addFriends',
             }).then(res=>{//res.data chuua res.data[i].chatroom_id
-                if(res.data) $scope.listFriends=res.data;
+                if(res.data) 
+                var tempList = res.data;
+                console.log(res.data);
+                tempList.forEach(element=>{
+                    $scope.listFriends.push({
+                        image:'userAvatar/'+element.user_id+'.jpg',
+                        username:element.username,
+                        chatroomname:element.chatroomname,
+                        chatroom_id:element.chatroom_id
+                    });
+                });
+                console.log($scope.listFriends);
             });
     }
     renderListFriends();
+
+
     var renderListInvitation=()=>{
         $http({
             method:'GET',
