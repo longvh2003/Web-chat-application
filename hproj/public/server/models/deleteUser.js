@@ -9,6 +9,6 @@ module.exports = (app,fs)=>{
 		fs.unlink('userAvatar/'+req.body.user_id+'.jpg',err=>{
 			if(err) console.log(err);
 			else console.log('Xóa tài khoản thành công');
-		})		
+		});
 	});
 }

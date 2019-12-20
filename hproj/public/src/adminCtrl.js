@@ -1,4 +1,4 @@
-function AdminCtrl($scope,$http) {     
+function AdminCtrl($scope,$http,$window) {     
     $scope.contacts = []; 
     $http.get('/getUsersId').then(res=>{
     	console.log(res.data);
@@ -16,5 +16,6 @@ function AdminCtrl($scope,$http) {
     		url:'/deleteUser',
     		data:{user_id}
     	});
+        $window.location.reload();
     }
  } 
