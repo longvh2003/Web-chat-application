@@ -19,7 +19,9 @@
 				<li ng-repeat="x in listFriends" ng-click="showEl(x)"><span class="friendName">{{x.username}}</span><button ng-click="unfriend(x)" class="inList">unfriend</button></li>
 			</ol> -->
 			<md-list-item ng-repeat="x in listFriends" ng-click="showEl(x)" class="noright list-friend">
-				<img alt="{{ x.username }}" ng-src="{{ x.image }}" class="md-avatar" />
+				<div class="imageContainer">
+					<img alt="{{ x.username }}" ng-src="{{ x.image }}" class="myImage" />
+				</div>
 				<p>{{ x.username }}</p>
 				<!-- <md-checkbox class="md-secondary" ng-model="person.selected"></md-checkbox>
 				<md-icon md-svg-icon="communication:email"  ng-click="doSecondaryAction($event)" aria-label="Send Email" class="md-secondary md-hue-3" ></md-icon> -->
@@ -31,7 +33,9 @@
 		<div style="width: 50%;height: 100%;border-left: 1px solid rgba(0, 0, 0, .10);">
 			<h1 class="title">Invitation</h1>
 			<md-list-item ng-repeat="friend in listInvitation" ng-click="" class="noright list-friend">
-				<img alt="{{ friend.username }}" ng-src="{{ friend.image }}" class="md-avatar" />
+				<div class="imageContainer">
+					<img alt="{{ friend.username }}" ng-src="{{ friend.image }}" class="myImage" />
+				</div>
 				<p>{{ friend.username }}</p>
 				<md-button class="md-raised md-primary" ng-click="addFriendBut(friend)">Accept</md-button>
 				<md-button class="md-raised md-warn" ng-click="removeInvi(friend)">Deny</md-button>
@@ -54,5 +58,18 @@
 		box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .10);
 	}
 
-	
+	.myImage{
+		width: auto;
+		height: 100%;
+		margin-left: -50%;
+
+	}
+
+	.imageContainer{
+		width: 40px;
+		height: 40px;
+		overflow: hidden;
+		border-radius: 50%;
+		margin-right: 20px;
+	}
 </style>

@@ -31,6 +31,5 @@ module.exports= app=>{
 			con.query(removeInvi,[usersend,userget]);
 			con.release();
 		});
-		res.send('success');
 	});
 }
