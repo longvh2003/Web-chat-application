@@ -219,3 +219,10 @@ strong{
 .red{
     background: red;
 }
+
+.currentUser{
+    float: left;
+}
+.friend{
+    float: right;
+}

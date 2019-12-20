@@ -73,11 +73,18 @@ myApp
     
         /* Nhận tin nhắn */
         socket.on('message', (msg) => {
+            console.log('msg: '+JSON.stringify(msg));// msg : {"roomid":"8","text":"dsaaaaa","username":"dsa","id":5,"roomname":"4-5"}
             if(msg.roomid === $rootScope.tempRoomId){
                 if(msg.username === $rootScope.username){
                     //console.log(msg);
-                    angular.element(".messagePend").append("<p><strong  class='userchat'> " + msg.username +  "</strong>"  + ": " + msg.text + "</p>");
-                } else angular.element(".messagePend").append("<p><strong> " + msg.username +  "</strong>"  + ": " + msg.text + "</p>");    
+                    var temp=msg.roomname.split('-');
+                    var friendId="";
+                    if(temp[0]==msg.username) friendId=temp[1];
+                    else friendId=temp[0];
+                    var imageUser = 'userAvatar/'+msg.id+'.jpg';
+                    var imageFriend = 'userAvatar/'+friendId+'.jpg';
+                    angular.element(".messagePend").append("<br><div class='currentUser'><img class='myImage' src="+imageUser+">" + msg.username +":"+  msg.text + "</div>");
+                } else angular.element(".messagePend").append("<br><div class= 'friend'><img class='myImage' src="+imageFriend+">" + msg.username +":" + msg.text + "</div>");    
                 $(".messagePend").animate({ scrollTop: $(document).height() }, "slow");  
             }
             else {
