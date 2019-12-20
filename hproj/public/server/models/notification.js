@@ -15,7 +15,6 @@ module.exports =
                 var id = result[0].user_id;
                 con.query(sql, [roomname, id], (err, result)=>{
                     if(err) throw err;
-                    //console.log(result[0].user_id);
                     result.forEach(element => {
                         con.query(sql2, [content, 1, element.user_id, false],(err)=>{
                             if(err) throw err;
@@ -36,18 +35,15 @@ module.exports =
             con.query(testsql, [id, data.roomid], (err, result)=>{
                 if(err) throw err;
                 if(result.length) {
-                    console.log("TESTINg" + result);
                 }
                 else {
                     con.query(sql, [content, 2, id, false, data.roomid], (err)=>{
                         if(err) throw err;
-                        console.log("TESTING");
                         callback(err);
                         
                     })
                     con.release();        
                 }
-                console.log(result);
             })
         })
     },

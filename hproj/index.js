@@ -119,7 +119,6 @@ deleteUser(app,fs);
 
 /* Lấy tin nhắn cũ */
 app.get('/home/messageHis/:roomid', (req, res) => {
-    console.log(1);
     getHis(req.params.roomid ,function (err, result) {
         if (err) console.log("Database error!");
         else res.send(result);
@@ -136,7 +135,6 @@ app.get('/node_modules/angular-ui-notification/dist/angular-ui-notification.min.
 
 
 app.get('/getNotifi/:userid', (req, res)=>{
-    console.log(1);
     getNotifi(req.params.userid, function(err, result) {
         console.log(result);
         res.send(result);
@@ -144,13 +142,11 @@ app.get('/getNotifi/:userid', (req, res)=>{
 })
 /* Gửi username cho client */
 app.get('/home/username', (req, res)=>{
-    console.log(1);
     getChatroom(req.session.user.userId, function (err, result){
         res.send({userdata:req.session.user, chatroom: result});
     }); 
 })
 app.get('/logout',(req,res)=>{
-    console.log(1);
     req.session.destroy(()=>{
         console.log('user logged out');
     });
@@ -159,7 +155,6 @@ app.get('/logout',(req,res)=>{
 });
 
 app.post('/home/addRoom', (req, res)=>{
-    console.log(1);
     //console.log(req.body);
     Room.AddRoom(req.body, function(err){
         //console.log(err.code);
@@ -169,7 +164,6 @@ app.post('/home/addRoom', (req, res)=>{
 })
 
 app.post('/getFriendsInfo/:userid', (req, res)=>{
-    console.log(1);
     Friend.getListFriend(req.params.userid, (err, result)=>{
         if(err) res.send({status:false});
         else res.send(result);
@@ -184,7 +178,6 @@ app.post('/users', (req,res)=>{
 })
 
 app.post('/addNotifi', (req, res)=>{
-    console.log(1);
     notification.addRoomInviteNotification(req.body, (err)=>{
         if(err) res.send({status:false});
         else res.send({status:true}); 
@@ -192,11 +185,9 @@ app.post('/addNotifi', (req, res)=>{
 })
 
 app.post('/loadRoomNotifi/:userid', (req, res)=>{
-    console.log(1);
     notification.getRoomInvite(req.params.userid, (err, result)=>{
         if(err) res.send({status:false});
         else res.send({status:true, result: result});
-        console.log(result);
     })
 })
 
