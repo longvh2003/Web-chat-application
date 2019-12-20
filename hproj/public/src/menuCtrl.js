@@ -50,14 +50,13 @@ function menuCtrl($rootScope, $scope, $location, $http, $window){
 
     $scope.showEl=element=>{
         if($scope.listFriends.length>0) $location.path('/chat/'+element.chatroom_id);
-        console.log('Click Li');
     }
     $scope.display=()=>{
         $location.path('/friends');
         $http({
             method:'POST',
             url:'/addFriends',
-            data:{username:$scope.asd}
+            data:{username:$scope.selectedItem.username}
         }).then(res=>{
             $window.alert(res.data);
         });
@@ -68,8 +67,6 @@ function menuCtrl($rootScope, $scope, $location, $http, $window){
             method:'POST',
             url:'/getListInvitation',
             data:{userSend:friend.user_id}
-        }).then(res=>{
-            console.log('sdfsdkl;gjlsd    '+res);
         });
         $window.location.reload();
         
@@ -91,7 +88,7 @@ function menuCtrl($rootScope, $scope, $location, $http, $window){
             }).then(res=>{//res.data chuua res.data[i].chatroom_id
                 if(res.data) 
                 var tempList = res.data;
-                console.log(res.data);
+
                 tempList.forEach(element=>{
                     $scope.listFriends.push({
                         image:'userAvatar/'+element.user_id+'.jpg',
@@ -100,7 +97,7 @@ function menuCtrl($rootScope, $scope, $location, $http, $window){
                         chatroom_id:element.chatroom_id
                     });
                 });
-                console.log($scope.listFriends);
+
             });
     }
     renderListFriends();
@@ -111,16 +108,16 @@ function menuCtrl($rootScope, $scope, $location, $http, $window){
             method:'GET',
             url:'/getListInvitation'
         }).then(res=>{
-            if(res.data) 
-            var tempList = res.data;
-            console.log(res.data);
+            if(res.data) var tempList=res.data;
             tempList.forEach(element=>{
                 $scope.listInvitation.push({
-                    image:'userAvatar/'+element.user_id+'.jpg',
+                    user_id:element.user_id,
                     username:element.username,
+                    image:'userAvatar/'+element.user_id+'.jpg',
+                    readed:element.readed
                 });
-            });
-            res.send('ok');
+            })
+            console.log($scope.listInvitation);
         });
     }
     renderListInvitation();
@@ -130,8 +127,6 @@ function menuCtrl($rootScope, $scope, $location, $http, $window){
             method:'POST',
             url:'/unfriend',
             data:{friend:x}
-        }).then(res=>{
-            res.send('ok');
         });
         $location.path('/friends'); 
         $window.location.reload();
