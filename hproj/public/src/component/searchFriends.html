@@ -1,11 +1,12 @@
 <div style="height: 100%;">
-	<!-- <input type="text" id="username"  placeholder="Username" ng-model="asd"> -->
 	<md-autocomplete md-no-cache="true"
 	md-selected-item="selectedItem" 
 	md-items="item in querySearch(searchText)" 
 	md-search-text="searchText" 
 	md-item-text="item.username"
-	md-min-length='0'>
+	md-min-length='0'
+	>
+	<!-- <input type="text" id="username"  placeholder="Username" ng-model="asd"> -->
 		<md-item-template>
 			<span style="background: none;">{{ item.username }}</span>
 		</md-item-template>

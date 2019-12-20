@@ -111,7 +111,15 @@ function menuCtrl($rootScope, $scope, $location, $http, $window){
             method:'GET',
             url:'/getListInvitation'
         }).then(res=>{
-            if(res.data) $scope.listInvitation=res.data;
+            if(res.data) 
+            var tempList = res.data;
+            console.log(res.data);
+            tempList.forEach(element=>{
+                $scope.listInvitation.push({
+                    image:'userAvatar/'+element.user_id+'.jpg',
+                    username:element.username,
+                });
+            });
             res.send('ok');
         });
     }
