@@ -14,12 +14,12 @@ body {
 
 strong{
     color: red;
-    font-size: 30px;
+    font-size: 25px;
 }
 
 .userchat{
     color: blue;
-    font-size: 30px;
+    font-size: 25px;
 }
 
 .container {
@@ -36,8 +36,20 @@ strong{
     right: 0;
     left: 0;
     height: 75px;
-    background-color: #2196F3;
+    background-color: #3A7CA5;
     display:flex;
+    
+}
+
+.menu {
+    position: relative;
+    left: 0;
+    width: 200px;
+    background-color: #81C3D7;
+    height: 100%;
+    float: left;
+    top:75px;
+
 }
 
 .content {
@@ -74,16 +86,7 @@ strong{
     border-color:#e27d5f;
 }
 
-.menu {
-    position: relative;
-    left: 0;
-    width: 200px;
-    background-color: #1565C0;
-    height: 100%;
-    float: left;
-    top:75px;
 
-}
 
 .selected{
     background: #1976D2;
@@ -105,7 +108,7 @@ strong{
 
 .menu-item {
     display: flex;
-    height: 35px;
+    height: 70px;
     width: 100%;
     justify-content: center;
     cursor: pointer;
@@ -114,11 +117,15 @@ strong{
 
 .menu-text {
     align-self: center;
-    font-size: 22px;
+    font-size: 19px;
 }
 
-.menu-item:hover {
-    background-color: lightblue;
+.menu-item:hover,
+.menu-item:focus {
+    background-color:#3A7CA5 ;
+    color: white;
+    border: none;
+    
 }
 
 .chat-area {
@@ -170,21 +177,24 @@ strong{
 }
 
 .text-input {
-    height: 100%;
-    width: calc(100% - 82px);
+    margin-left: 2px;
+    height: 60px;
+    width: calc(100% - 92px);
     font-size: 24px;
     padding-left: 12px;
 }
 
 .text-input-button {
-    width: 80px;
-    height: 80px;
+    width: 90px;
+    height: 60px;
     position: absolute;
-    right: 2px;
-    border: 1px solid gray;
-    bottom: 0;
+    right: 0;
+    bottom: 20;
     padding: 0;
+    border-radius: 5px ;
+    
 }
+
 
 .div-sizing {
     transition: width 2s;
@@ -197,15 +207,13 @@ strong{
 .big {
     width: 100%;
 }
-
-.send-icon {
-    height: 78px;
-    width: 78px;
-    background: url("https://img.icons8.com/metro/26/000000/paper-plane.png") no-repeat center;
+#messagePend i{
+    color: white;
+    font-size: 30px;
 }
 
-.send-icon:hover {
-    background: url("https://img.icons8.com/cotton/26/000000/paper-plane--v2.png") no-repeat center;
+#messagePend i:hover{
+    color: black;
 }
 
 .red{
