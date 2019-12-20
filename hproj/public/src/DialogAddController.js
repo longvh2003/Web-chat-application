@@ -35,6 +35,7 @@ function DialogAddController($scope, $mdDialog, $http, $rootScope) {
         $http.post('/home/addRoom', JSON.stringify(data)).then((result) =>{
             if(result.data.status){
                 $scope.showAlert("Tạo phòng thành công", "Tạo thành công!!");
+                $rootScope.$emit('reloadRoom')
             } else {
                 $scope.showAlert("Tạo phòng không thành công", "Tên phòng đã tồn tại, vui lòng chọn tên khác");
                 $mdDialog.hide();

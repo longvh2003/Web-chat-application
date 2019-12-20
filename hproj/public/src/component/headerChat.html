@@ -1,7 +1,7 @@
 <div class="header">
     <div class="menu-icon" ng-app="">
             <button class="menu-button" ng-click="clickMenu()">
-                <i class="fas fa-bars fa-2x"></i>
+                <i class="fas fa-bars fa-2x" style="color:white;"></i>
             </button>
             <p>{{myButton}}</p>
     </div>
@@ -24,37 +24,36 @@
 		
 	</div> -->
     <div ng-model="username" style="position:absolute; height: 75px; align-self: center;line-height: 75px;right: 0;font-size: 28px;">
-    	<div id="containtAvatar">
+    	
+		<p class="header-username">{{username}}</p>
+		<div id="containtAvatar">
 			<img src="" id="iconAvatar">
 		</div>
-    	<p style="display: inline-block;">{{username}}</p>
     </div>
 </div>
 <style type="text/css">
-	.dropdown{
+	.dropdown{/* thông báo*/
 		position:absolute; 
-		/*height: 50px;*/
-		/*width:50px;*/
-		right: 300px;
+		right: 400px;
 		align-self: center; 
 		background: green;
 		border-radius: 50%;
 		background-color: #85cdca;
 	}
-	.dropdown:hover{
-	}
-	.dropdown-content {
+	
+	.dropdown-content {/*bên trong thông báo*/
 		display: none;
 		position: absolute;
 		z-index: 1;/******************/
-		width: 500px;
-		height: 500px;
+		width: 400px;
+		height: 450px;
 		overflow: auto;
 		top: 50px;
-		border:2px double #CDCDCD;
-		right: -20px;
+		border:1px solid black;
+		right: -225px;
+		background-color: white;
 	}
-	.el {
+	.el {/*list thông báo*/
 		height: 50px;
 		background-color: white;
 	}
@@ -62,28 +61,29 @@
 		background-color: #ddd;
 		cursor: pointer;
 	}
-	/*.dropdown:hover .dropdown-content {
-  		display: block;
-	}*/
-	.icon{
+	
+	.icon{/*icon thong báo*/
 		width: 50px;
 		height: 50px;
 		border-radius: 50%;
 		position: absolute;
+		color: #124B66;
 
 	}
-	.icon:hover{
+	.icon:hover{/**/
 		cursor: pointer;
 	}
-	.header-span{
-		background-color: red;
+	.header-span{/*số trên thông báo*/
+		background-color: white;
 		width: 25px;
+		color: #124B66;
 		height: 25px;
 		border-radius: 50%;
 		display: block;
 		z-index: 1;
 		text-align: center;
 		font-weight: 800;
+		line-height: 25px;
 		position: absolute;
 		left: 40px;
 	}
@@ -96,29 +96,38 @@
 	.room-invi:hover{
 		background: #CDCDCD;
 	}
-		.room-invi .header-notifi{
-			margin: 0;
-			height: 34px;
-			white-space: nowrap;
-			padding-top: 8px;
-			font-size: 21px;
-			text-align: center;
-		}
-	#iconAvatar{
-		width: auto;
-		height: 100%;
-		margin-left: -25px;
+	.room-invi .header-notifi{
+		margin: 0;
+		height: 34px;
+		white-space: nowrap;
+		padding-top: 8px;
+		font-size: 21px;
+		text-align: center;
 	}
-	#containtAvatar{
-		/*display: block;
-		position: absolute;*/
-		display: inline-block;
+	#iconAvatar{
+		border: 1px solid black;
 		width: 50px;
 		height: 50px;
-		overflow: hidden;
-		border-radius: 50%;
-		left: 50%;
-		transform: translateX(-50%);
+		border-radius: 25px;
+		background-color: white;
+		margin-top: 12px;
+	}
+	#containtAvatar{
+		
+		height: 100px;
+		width: 100px;
+		float: right;
+		line-height: 35px;
+		
+
+	}
+	.header-username{
+		display: inline-block;
+		font-size: 21px;
+		float: right;
+		margin-top: 0px;
+		color: #f1f1f1;
+		width: 150px;
 	}
 
 </style>

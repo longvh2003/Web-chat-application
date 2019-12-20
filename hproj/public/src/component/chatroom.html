@@ -1,20 +1,30 @@
 
 <room-panel></room-panel>
 <div class="chat-area">
-    <div class="room-bar div-sizing" ng-model="chatRoom">
+    <div class="room-bar div-sizing" ng-model="chatRoom" style="padding-left : 60px;">
        {{tempRoomName}}
-       <md-button class="md-fab md-primary" aria-label="Delete" style="position: absolute;right: 0;" ng-click='deleteRoom()'>
+       <md-button class="md-fab md-primary" aria-label="Delete" style="position: absolute;right: 60;" ng-click='deleteRoom()'>
         <md-icon md-svg-src="/delete.svg" aria-label="delete"></md-icon>
       </md-button>
-      <md-button class="md-fab md-primary" aria-label="Add" style="position: absolute;right: 60;" ng-click='inviteRoom($event)'>
+      <md-button class="md-fab md-primary" aria-label="Add" style="position: absolute;right: 130;" ng-click='inviteRoom($event)'>
         <md-icon md-svg-src="/plus.svg" aria-label="delete"></md-icon>
       </md-button>
     </div>
-    <div id="messagePend" class="messagePend" ng-model="chatarea" style="overflow: auto;top: 80px; position: absolute; width: 100%; bottom: 80px;"></div>
+    <div id="messagePend" class="messagePend mes" ng-model="chatarea" ></div>
     <div class="chat-bar div-sizing">
         <input type="text" name="message" class="text-input" ng-model="message">
         <button class="text-input-button" ng-click="sendmessage()" type="submit">
-            <div class="send-icon"></div>
+            <i class="far fa-paper-plane"></i>
         </button> 
     </div>
 </div>
+<style>
+.mes{
+  padding-left : 60px;
+  overflow: auto;
+  top: 80px;
+   position: absolute; 
+   width: 100%; 
+   bottom: 80px;
+}
+</style>

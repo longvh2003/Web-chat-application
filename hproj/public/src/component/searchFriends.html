@@ -31,7 +31,7 @@
 		<div style="width: 50%;height: 100%;border-left: 1px solid rgba(0, 0, 0, .10);">
 			<h1 class="title">Invitation</h1>
 			<md-list-item ng-repeat="friend in listInvitation" ng-click="" class="noright list-friend">
-				<img alt="{{ person.name }}" ng-src="{{ person.img }}" class="md-avatar" />
+				<img alt="{{ friend.username }}" ng-src="{{ friend.image }}" class="md-avatar" />
 				<p>{{ friend.username }}</p>
 				<md-button class="md-raised md-primary" ng-click="addFriendBut(friend)">Accept</md-button>
 				<md-button class="md-raised md-warn" ng-click="removeInvi(friend)">Deny</md-button>
@@ -40,19 +40,3 @@
 		</div>
 	</div>
 </div>
-<style>
-	/* *{
-		box-sizing: border-box;
-	} */
-
-	.list-friend{
-		border: none;
-		height: 100px;
-	}
-
-	h1{
-		box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .10);
-	}
-
-	
-</style>

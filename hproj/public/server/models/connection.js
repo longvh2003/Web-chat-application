@@ -8,7 +8,7 @@ function Connection(){
         connectionLimit: 10,
         host: 'localhost',
         user: 'root',
-        password: '123456',
+        password: '1',
         database: 'webchat',
         multipleStatments: true
     })
