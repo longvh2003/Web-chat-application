@@ -57,7 +57,6 @@ myApp
                         imageUser='userAvatar/'+$rootScope.userid+'.jpg';
                         angular.element(".messagePend").append("<br><div class='currentUser'><div class='imageContainer'><img class='myImage' src="+imageUser+"></div><p class='myPa'>" + result.data[i].from_user +  ":" + result.data[i].content + "</p></div>"); 
                     } else{ 
-                        
                         // $http({
                         //     method:'POST',
                         //     url:'/nameToId',
@@ -65,9 +64,9 @@ myApp
                         // }).then(res=>{
                         //     console.log(res.data[0].user_id);
                         //     myUser=res.data[0].user_id;
-                        // });                        
+                        // });
                         imageFriend='userAvatar/'+myUser+'.jpg';
-                        angular.element(".messagePend").append("<br><div class= 'friend'><div class='imageContainer' style='float:right;margin-right:100px'><img class='myImage' src="+imageFriend+"></div><p class='myPa' style='float:right'>" + result.data[i].from_user+":" + result.data[i].from_user + "</p></div>");
+                        angular.element(".messagePend").append("<br><div class= 'friend'><div class='imageContainer' style='float:right;margin-right:100px'><img class='myImage' src="+imageFriend+"></div><p class='myPa' style='float:right'>" + result.data[i].from_user+":" + result.data[i].content + "</p></div>");
                     }
                 }
                 angular.element(".messagePend").append("<hr style='margin-bottom: 20px;'></hr>");
