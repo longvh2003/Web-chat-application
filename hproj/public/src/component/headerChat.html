@@ -6,8 +6,10 @@
             <p>{{myButton}}</p>
     </div>
     <div ng-model="notifications" class="dropdown" id="notifications" ng-click="displayNoti()" style="z-index: 2">
-    	<span class="header-span">{{notifications}}<!-- số thông báo --></span>	
-    	<img src="https://png.pngtree.com/png-clipart/20190924/original/pngtree-notification--icon-in-trendy-style-isolated-background-png-image_4859577.jpg" class="icon">
+    	
+			<span class="header-span">{{notifications}}<!-- số thông báo --></span>	
+    		<img src="../../content/icon/notifications-24px.svg" class="icon">
+		
     	<div class="dropdown-content" id="dropdown-content" >
 			<div class="room-invi" ng-repeat="item in listRoomInvi">
 				<h4 class="header-notifi">{{item.content}}</h4>
@@ -68,6 +70,8 @@
 		border-radius: 50%;
 		position: absolute;
 		color: #124B66;
+		
+		transform: translate(10px, -20px)
 
 	}
 	.icon:hover{/**/
@@ -86,6 +90,7 @@
 		line-height: 25px;
 		position: absolute;
 		left: 40px;
+
 	}
 	.room-invi{
 		position: relative;
@@ -106,19 +111,19 @@
 	}
 	#iconAvatar{
 		border: 1px solid black;
-		width: 50px;
-		height: 50px;
-		border-radius: 25px;
-		background-color: white;
-		margin-top: 12px;
+		width: auto;
+		height: 100%;
+		margin-left: 50%;
+		transform: translateX(-50%);
 	}
 	#containtAvatar{
-		
-		height: 100px;
-		width: 100px;
+		margin-top: 12px;
+		height: 50px;
+		width: 50px;
 		float: right;
 		line-height: 35px;
-		
+		overflow: hidden;
+		border-radius: 50%;
 
 	}
 	.header-username{
@@ -128,6 +133,7 @@
 		margin-top: 0px;
 		color: #f1f1f1;
 		width: 150px;
+		padding-left: 20px;
 	}
 
 </style>

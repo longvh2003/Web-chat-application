@@ -19,6 +19,7 @@ var unfriend=require('./public/server/models/unfriend');
 var profile = require('./public/server/models/profile');
 var getUsersId = require('./public/server/models/getUsersId');
 var deleteUser = require('./public/server/models/deleteUser');
+var nameToId = require('./public/server/models/nameToId');
 var multer=require('multer');
 var path=require('path');
 var fs =require('fs');
@@ -116,6 +117,7 @@ unfriend(app);
 profile(app);
 getUsersId(app);
 deleteUser(app,fs);
+nameToId(app);
 
 /* Lấy tin nhắn cũ */
 app.get('/home/messageHis/:roomid', (req, res) => {

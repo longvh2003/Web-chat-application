@@ -47,10 +47,19 @@ myApp
 
         $scope.getHistory = (roomid) =>{
             $http.get('/home/messageHis/' + roomid).then((result) => {
+                var imageUser='';
+                var imageFriend='';
+                var myUser;
+                console.log(result);
+
                 for(i = 0; i< result.data.length; i++){            //Kiểm tra result và thêm tin nhắn cũ
-                    if(result.data[i].from_user === $rootScope.username){
-                        angular.element(".messagePend").append("<p><strong  class='userchat'> " + result.data[i].from_user +  "</strong>"  + ": " + result.data[i].content + "</p>"); 
-                    } else angular.element(".messagePend").append("<p><strong> " + result.data[i].from_user +  "</strong>"  + ": " + result.data[i].content + "</p>");
+                    if(result.data[i].from_user === $rootScope.username){ 
+                        imageUser='userAvatar/'+$rootScope.userid+'.jpg';
+                        angular.element(".messagePend").append("<br><div class='currentUser'><div class='imageContainer'><img class='myImage' src="+imageUser+"></div><p class='myPa'>" + result.data[i].from_user +  ":" + result.data[i].content + "</p></div>"); 
+                    } else{ 
+                        imageFriend='userAvatar/'+result.data[i].user_id+'.jpg';
+                        angular.element(".messagePend").append("<br><div class= 'friend'><div class='imageContainer' style='float:right;margin-right:100px'><img class='myImage' src="+imageFriend+"></div><p class='myPa' style='float:right'>" + result.data[i].from_user+":" + result.data[i].content + "</p></div>");
+                    }
                 }
                 angular.element(".messagePend").append("<hr style='margin-bottom: 20px;'></hr>");
             })
@@ -73,11 +82,17 @@ myApp
     
         /* Nhận tin nhắn */
         socket.on('message', (msg) => {
-            if(msg.roomid === $rootScope.tempRoomId){
+            console.log('msg: '+JSON.stringify(msg));// msg : {"roomid":"8","text":"dsaaaaa","username":"dsa","id":5,"roomname":"4-5"}
+            var imageUser='';
+            var imageFriend=""
+            if(msg.roomid === $rootScope.tempRoomId){ 
                 if(msg.username === $rootScope.username){
-                    //console.log(msg);
-                    angular.element(".messagePend").append("<p><strong  class='userchat'> " + msg.username +  "</strong>"  + ": " + msg.text + "</p>");
-                } else angular.element(".messagePend").append("<p><strong> " + msg.username +  "</strong>"  + ": " + msg.text + "</p>");    
+                    imageUser = 'userAvatar/'+msg.id+'.jpg';
+                    angular.element(".messagePend").append("<br><div class='currentUser'><div class='imageContainer'><img class='myImage' src="+imageUser+" alt="+msg.username+"></div><p class='myPa'>" +" "+  msg.text + "</p></div>");
+                } else {
+                    imageFriend='userAvatar/'+msg.id+'.jpg';
+                    angular.element(".messagePend").append("<br><div class= 'friend'><div class='imageContainer' style='float:right;margin-right:100px'><img class='myImage' src="+imageFriend+" alt="+msg.username+"></div><p class='myPa' style='float:right'>" +" " + msg.text + "</p></div>");    
+                }
                 $(".messagePend").animate({ scrollTop: $(document).height() }, "slow");  
             }
             else {
