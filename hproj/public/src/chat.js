@@ -57,15 +57,7 @@ myApp
                         imageUser='userAvatar/'+$rootScope.userid+'.jpg';
                         angular.element(".messagePend").append("<br><div class='currentUser'><div class='imageContainer'><img class='myImage' src="+imageUser+"></div><p class='myPa'>" + result.data[i].from_user +  ":" + result.data[i].content + "</p></div>"); 
                     } else{ 
-                        // $http({
-                        //     method:'POST',
-                        //     url:'/nameToId',
-                        //     data:{username:result.data[i].from_user}
-                        // }).then(res=>{
-                        //     console.log(res.data[0].user_id);
-                        //     myUser=res.data[0].user_id;
-                        // });
-                        imageFriend='userAvatar/'+myUser+'.jpg';
+                        imageFriend='userAvatar/'+result.data[i].user_id+'.jpg';
                         angular.element(".messagePend").append("<br><div class= 'friend'><div class='imageContainer' style='float:right;margin-right:100px'><img class='myImage' src="+imageFriend+"></div><p class='myPa' style='float:right'>" + result.data[i].from_user+":" + result.data[i].content + "</p></div>");
                     }
                 }
@@ -96,10 +88,10 @@ myApp
             if(msg.roomid === $rootScope.tempRoomId){ 
                 if(msg.username === $rootScope.username){
                     imageUser = 'userAvatar/'+msg.id+'.jpg';
-                    angular.element(".messagePend").append("<br><div class='currentUser'><div class='imageContainer'><img class='myImage' src="+imageUser+"></div><p class='myPa'>" + msg.username +":"+  msg.text + "</p></div>");
+                    angular.element(".messagePend").append("<br><div class='currentUser'><div class='imageContainer'><img class='myImage' src="+imageUser+" alt="+msg.username+"></div><p class='myPa'>" +" "+  msg.text + "</p></div>");
                 } else {
                     imageFriend='userAvatar/'+msg.id+'.jpg';
-                    angular.element(".messagePend").append("<br><div class= 'friend'><div class='imageContainer' style='float:right;margin-right:100px'><img class='myImage' src="+imageFriend+"></div><p class='myPa' style='float:right'>" + msg.username +":" + msg.text + "</p></div>");    
+                    angular.element(".messagePend").append("<br><div class= 'friend'><div class='imageContainer' style='float:right;margin-right:100px'><img class='myImage' src="+imageFriend+" alt="+msg.username+"></div><p class='myPa' style='float:right'>" +" " + msg.text + "</p></div>");    
                 }
                 $(".messagePend").animate({ scrollTop: $(document).height() }, "slow");  
             }
