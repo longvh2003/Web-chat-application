@@ -36,7 +36,7 @@ strong{
     right: 0;
     left: 0;
     height: 75px;
-    background-color: #3A7CA5;
+    background-color: #5680E9;
     display:flex;
     
 }
@@ -99,11 +99,12 @@ strong{
 
 .room {
     width: 250px;
-    background-color:  #40C4FF;
+    background-color:  #84CCEB;
     height: 100%;
     position: relative;
     float: left;
     border:1px solid #e8a87c;
+    overflow: auto;
 }
 
 .menu-item {
@@ -178,7 +179,7 @@ strong{
 
 .text-input {
     margin-left: 2px;
-    height: 60px;
+    height: 100%;
     width: calc(100% - 92px);
     font-size: 24px;
     padding-left: 12px;
@@ -186,10 +187,10 @@ strong{
 
 .text-input-button {
     width: 90px;
-    height: 60px;
+    height: 100%;
     position: absolute;
     right: 0;
-    bottom: 20;
+    bottom: 0;
     padding: 0;
     border-radius: 5px ;
     
