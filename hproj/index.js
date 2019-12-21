@@ -1,4 +1,4 @@
-import express from 'express';
+import express from 'express'; 
 import validate from './public/server/models/validatepassword';  //Xác  thực đăng nhập
 import msgdb from './public/server/models/msgDB';  //Thêm tin nhắn vào DB
 import session from 'express-session';
