@@ -18,7 +18,6 @@ module.exports = function(app){
                                 username: username,
                             }
                             res.redirect('/home');
-                            console.log(req.session.user);
                         } else{
                             res.send('SAI CMNR!!!');
                         }

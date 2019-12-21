@@ -11,7 +11,6 @@ module.exports = (app)=>{
 			con.query('select * from user where user_id=? and user_password=?',[req.session.user.userId,oldPass],(err,rows)=>{
 				if(rows.length==0){
 					res.send('mat khau sai');
-					console.log('mat khau sai');
 				}else{
 					con.query('update user set user_password =? where user_id=?',[newPass,req.session.user.userId]);
 					con.query('update user set gender=? where user_id=?',[gender,req.session.user.userId]);
