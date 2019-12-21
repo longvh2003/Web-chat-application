@@ -47,12 +47,28 @@ myApp
 
         $scope.getHistory = (roomid) =>{
             $http.get('/home/messageHis/' + roomid).then((result) => {
+                var imageUser='';
+                var imageFriend='';
+                var myUser;
+                console.log(result);
+
                 for(i = 0; i< result.data.length; i++){            //Kiểm tra result và thêm tin nhắn cũ
-                    if(result.data[i].from_user === $rootScope.username){
-                        var imageUser='';
-                        var imageFriend='';
+                    if(result.data[i].from_user === $rootScope.username){ 
+                        imageUser='userAvatar/'+$rootScope.userid+'.jpg';
                         angular.element(".messagePend").append("<br><div class='currentUser'><div class='imageContainer'><img class='myImage' src="+imageUser+"></div><p class='myPa'>" + result.data[i].from_user +  ":" + result.data[i].content + "</p></div>"); 
-                    } else angular.element(".messagePend").append("<br><div class= 'friend'><div class='imageContainer' style='float:right;margin-right:100px'><img class='myImage' src="+imageFriend+"></div><p class='myPa' style='float:right'>" + result.data[i].from_user+":" + result.data[i].from_user + "</p></div>");
+                    } else{ 
+                        
+                        // $http({
+                        //     method:'POST',
+                        //     url:'/nameToId',
+                        //     data:{username:result.data[i].from_user}
+                        // }).then(res=>{
+                        //     console.log(res.data[0].user_id);
+                        //     myUser=res.data[0].user_id;
+                        // });                        
+                        imageFriend='userAvatar/'+myUser+'.jpg';
+                        angular.element(".messagePend").append("<br><div class= 'friend'><div class='imageContainer' style='float:right;margin-right:100px'><img class='myImage' src="+imageFriend+"></div><p class='myPa' style='float:right'>" + result.data[i].from_user+":" + result.data[i].from_user + "</p></div>");
+                    }
                 }
                 angular.element(".messagePend").append("<hr style='margin-bottom: 20px;'></hr>");
             })
@@ -76,19 +92,16 @@ myApp
         /* Nhận tin nhắn */
         socket.on('message', (msg) => {
             console.log('msg: '+JSON.stringify(msg));// msg : {"roomid":"8","text":"dsaaaaa","username":"dsa","id":5,"roomname":"4-5"}
-            if(msg.roomid === $rootScope.tempRoomId){
+            var imageUser='';
+            var imageFriend=""
+            if(msg.roomid === $rootScope.tempRoomId){ 
                 if(msg.username === $rootScope.username){
-                    //console.log(msg);
-                    var temp=msg.roomname.split('-');
-                    var friendId="";
-                    if(temp[0]==msg.username) friendId=temp[1];
-                    else friendId=temp[0];
-                    console.log("msg.roomname.split('-');"+temp);
-                    console.log('friendId: '+friendId);
-                    var imageUser = 'userAvatar/'+msg.id+'.jpg';
-                    var imageFriend = 'userAvatar/'+friendId+'.jpg';
+                    imageUser = 'userAvatar/'+msg.id+'.jpg';
                     angular.element(".messagePend").append("<br><div class='currentUser'><div class='imageContainer'><img class='myImage' src="+imageUser+"></div><p class='myPa'>" + msg.username +":"+  msg.text + "</p></div>");
-                } else angular.element(".messagePend").append("<br><div class= 'friend'><div class='imageContainer' style='float:right;margin-right:100px'><img class='myImage' src="+imageFriend+"></div><p class='myPa' style='float:right'>" + msg.username +":" + msg.text + "</p></div>");    
+                } else {
+                    imageFriend='userAvatar/'+msg.id+'.jpg';
+                    angular.element(".messagePend").append("<br><div class= 'friend'><div class='imageContainer' style='float:right;margin-right:100px'><img class='myImage' src="+imageFriend+"></div><p class='myPa' style='float:right'>" + msg.username +":" + msg.text + "</p></div>");    
+                }
                 $(".messagePend").animate({ scrollTop: $(document).height() }, "slow");  
             }
             else {
