@@ -49,8 +49,10 @@ myApp
             $http.get('/home/messageHis/' + roomid).then((result) => {
                 for(i = 0; i< result.data.length; i++){            //Kiểm tra result và thêm tin nhắn cũ
                     if(result.data[i].from_user === $rootScope.username){
-                        angular.element(".messagePend").append("<p><strong  class='userchat'> " + result.data[i].from_user +  "</strong>"  + ": " + result.data[i].content + "</p>"); 
-                    } else angular.element(".messagePend").append("<p><strong> " + result.data[i].from_user +  "</strong>"  + ": " + result.data[i].content + "</p>");
+                        var imageUser='';
+                        var imageFriend='';
+                        angular.element(".messagePend").append("<br><div class='currentUser'><div class='imageContainer'><img class='myImage' src="+imageUser+"></div><p class='myPa'>" + result.data[i].from_user +  ":" + result.data[i].content + "</p></div>"); 
+                    } else angular.element(".messagePend").append("<br><div class= 'friend'><div class='imageContainer' style='float:right;margin-right:100px'><img class='myImage' src="+imageFriend+"></div><p class='myPa' style='float:right'>" + result.data[i].from_user+":" + result.data[i].from_user + "</p></div>");
                 }
                 angular.element(".messagePend").append("<hr style='margin-bottom: 20px;'></hr>");
             })
@@ -81,10 +83,12 @@ myApp
                     var friendId="";
                     if(temp[0]==msg.username) friendId=temp[1];
                     else friendId=temp[0];
+                    console.log("msg.roomname.split('-');"+temp);
+                    console.log('friendId: '+friendId);
                     var imageUser = 'userAvatar/'+msg.id+'.jpg';
                     var imageFriend = 'userAvatar/'+friendId+'.jpg';
-                    angular.element(".messagePend").append("<br><div class='currentUser'><img class='myImage' src="+imageUser+">" + msg.username +":"+  msg.text + "</div>");
-                } else angular.element(".messagePend").append("<br><div class= 'friend'><img class='myImage' src="+imageFriend+">" + msg.username +":" + msg.text + "</div>");    
+                    angular.element(".messagePend").append("<br><div class='currentUser'><div class='imageContainer'><img class='myImage' src="+imageUser+"></div><p class='myPa'>" + msg.username +":"+  msg.text + "</p></div>");
+                } else angular.element(".messagePend").append("<br><div class= 'friend'><div class='imageContainer' style='float:right;margin-right:100px'><img class='myImage' src="+imageFriend+"></div><p class='myPa' style='float:right'>" + msg.username +":" + msg.text + "</p></div>");    
                 $(".messagePend").animate({ scrollTop: $(document).height() }, "slow");  
             }
             else {
