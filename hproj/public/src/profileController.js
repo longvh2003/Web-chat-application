@@ -1,7 +1,7 @@
 function ProfileCtrl($scope, $rootScope,$http,$window){
     $rootScope.$on('username', ()=>{
         $scope.username = $rootScope.username;
-    })
+    });
 
     $scope.password = 'sample';
     $scope.hidePassword = true;
@@ -10,9 +10,7 @@ function ProfileCtrl($scope, $rootScope,$http,$window){
             method:'GET',
             url:'/getUserSession'
         }).then(res=>{
-        console.log("le trung kien"+res.data.user.userId);
-        // document.getElementById("myImage").setAttribute("src", '/userAvatar/'+res.data.user.userId+'.jpg');
-        angular.element('#myImage').attr('src','userAvatar/1.jpg');
+        angular.element('#myImage').attr('src','userAvatar/'+res.data.user.userId+'.jpg');
     });
     $scope.typingPass=function(){
         if($scope.confirmnewpass!==$scope.newpass) $scope.msg="Xác nhận mật khẩu sai";

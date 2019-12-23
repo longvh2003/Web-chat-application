@@ -19,7 +19,14 @@ function menuCtrl($rootScope, $scope, $location, $http, $window){
             $location.path('/friends');
         }
         if(index==3){    
-            $location.path('/admin');
+            
+            $http({
+                method:'POST',
+                url:'/AuthenticAdmin'
+            }).then(res=>{
+                if(res.data==true) $location.path('/admin');
+                else $window.alert('Bạn không có quyền Admin');
+            });
         }
         else if(index==4){
             $http({
@@ -50,6 +57,7 @@ function menuCtrl($rootScope, $scope, $location, $http, $window){
 
     $scope.showEl=element=>{
         if($scope.listFriends.length>0) $location.path('/chat/'+element.chatroom_id);
+        // console.log('chatroom_id: '+element.chatroom_id);
     }
     $scope.display=()=>{
         $location.path('/friends');

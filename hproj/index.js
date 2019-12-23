@@ -21,6 +21,7 @@ var getUsersId = require('./public/server/models/getUsersId');
 var deleteUser = require('./public/server/models/deleteUser');
 var nameToId = require('./public/server/models/nameToId');
 var idToname=require('./public/server/models/idToname');
+var authenticAdmin = require('./public/server/models/authenticAdmin');
 var multer=require('multer');
 var path=require('path');
 var fs =require('fs');
@@ -120,6 +121,7 @@ getUsersId(app);
 deleteUser(app,fs);
 nameToId(app);
 idToname(app);
+authenticAdmin(app);
 
 /* Lấy tin nhắn cũ */
 app.get('/home/messageHis/:roomid', (req, res) => {
