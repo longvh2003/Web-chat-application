@@ -35,7 +35,28 @@ myApp
                 for (let j = 0; j < result.data.chatroom.length; j++) {
                     $rootScope.rooms[j] = result.data.chatroom[j];
                     $rootScope.rooms[j].member = 0;
+                    $rootScope.rooms[j].imageRoomSrc='/userAvatar/groupChat.jpg';
                     if($rootScope.tempRoomId == result.data.chatroom[j].chatroom_id && $routeParams.roomid) $rootScope.tempRoomName = $rootScope.rooms[j].chatroom_name;
+                    if(result.data.chatroom[j].chatroom_name.indexOf('-')>-1){//là room của 2 bạn bè thì:
+                        var nameRoom=result.data.chatroom[j].chatroom_name.split('-');
+                        if($rootScope.userid===Number(nameRoom[0])){
+                            nameRoom=nameRoom[1];
+                        }
+                        else if ($rootScope.userid===Number(nameRoom[1])){
+                            nameRoom=nameRoom[0];
+                        }
+                        // $rootScope.rooms[j].friendId=frinedId;
+                        $http({
+                            method:'POST',
+                            url:'idToname',
+                            data:{user_id:nameRoom[0]}
+                        }).then((data)=>{
+                            console.log('sql:'+JSON.stringify(data.data));
+                            $rootScope.rooms[j].chatroom_name=data.data[0].username;
+                        });
+                        $rootScope.rooms[j].imageRoomSrc='/userAvatar/'+nameRoom+'.jpg';
+                    }
+                    
                 }
                 $scope.loadNotifi();    
                 $rootScope.$broadcast('username');
@@ -43,6 +64,7 @@ myApp
                 //$rootScope.$broadcast('notifications');
             })
             $rootScope.loadedHistory = 0;
+
         }
 
         $scope.getHistory = (roomid) =>{
@@ -74,7 +96,7 @@ myApp
                     $rootScope.notifications++;
                     $rootScope.$broadcast('notifications');
                     Notification(element.content);
-                    console.log(element.content);
+                    // console.log(element.content);
                 })
             })
         }
@@ -84,7 +106,8 @@ myApp
         socket.on('message', (msg) => {
             console.log('msg: '+JSON.stringify(msg));// msg : {"roomid":"8","text":"dsaaaaa","username":"dsa","id":5,"roomname":"4-5"}
             var imageUser='';
-            var imageFriend=""
+            var imageFriend="";
+            console.log('$rootScope.rooms: '+ JSON.stringify($rootScope.rooms));
             if(msg.roomid === $rootScope.tempRoomId){ 
                 if(msg.username === $rootScope.username){
                     imageUser = 'userAvatar/'+msg.id+'.jpg';
@@ -130,8 +153,23 @@ myApp
                 }
             }  
         });
-
-        
+        $scope.roomstest=$rootScope.rooms;
+        for(var j=0;j<$rootScope.rooms.length;j++){
+            $scope.roomstest[j].chatroom_id=$rootScope.rooms[j].chatroom_id;
+            if($rootScope.rooms[j].chatroom_name.indexOf('-')){
+                var nameRoom=$rootScope.rooms[j].chatroom_name.split('-');
+                var friendId;
+                if($rootScope.userid==nameRoom[0]) friendId=nameRoom[1];
+                else friendId=nameRoom[0];
+                $http({
+                    method:'POST',
+                    url:'/idToname',
+                    data:{user_id:friendId}
+                }).then(data=>{
+                    // $scope.roomstest[j].chatroom_name=data.data[0].username;
+                });
+            }
+        }
         $rootScope.$on('loadRoom', ()=>{
             $scope.roominit = ()=>{
                 if($routeParams.roomid && $rootScope.loadedHistory ===0) {

@@ -38,3 +38,16 @@
 .room-hover:hover{
     background:	#137797;;
 }
+.imgContainer{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 20px;
+}
+.myImg{
+    width: auto;
+    height: 100%;
+    margin-left: 50%;
+    transform: translateX(-50%);
+}

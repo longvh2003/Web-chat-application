@@ -20,6 +20,7 @@ var profile = require('./public/server/models/profile');
 var getUsersId = require('./public/server/models/getUsersId');
 var deleteUser = require('./public/server/models/deleteUser');
 var nameToId = require('./public/server/models/nameToId');
+var idToname=require('./public/server/models/idToname');
 var multer=require('multer');
 var path=require('path');
 var fs =require('fs');
@@ -42,16 +43,16 @@ app.use(express.static(__dirname + '/public/content/icon'));
 app.use(express.static(__dirname + '/public/src/component'));
 
 app.set('views', __dirname + '/public/src');
-app.set('view engine', 'pug')
+app.set('view engine', 'pug');
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.json())
+app.use(express.json());
 
 
 
 /* Redirect tới home nếu đăng nhập rồi, tới login nếu chưa */
 app.get('/',function(req, res){
     if(req.session.user){
-        res.redirect('/home')
+        res.redirect('/home');
     } else{
         res.sendFile(__dirname + '/index.html');
     }
@@ -118,6 +119,7 @@ profile(app);
 getUsersId(app);
 deleteUser(app,fs);
 nameToId(app);
+idToname(app);
 
 /* Lấy tin nhắn cũ */
 app.get('/home/messageHis/:roomid', (req, res) => {
@@ -202,7 +204,10 @@ app.post('/acceptRoom', (req, res)=>{
     Room.AcceptRoom(req.body, (status)=>{
         res.send(status);
     })
-})
+});
+app.get('/%7B%7Broom.imageRoomSrc%7D%7D',(req,res)=>{
+    res.send('request /%7B%7Broom.imageRoomSrc%7D%7D');
+});
 
 validate(app);
 

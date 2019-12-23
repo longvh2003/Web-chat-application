@@ -60,6 +60,7 @@ function menuCtrl($rootScope, $scope, $location, $http, $window){
         }).then(res=>{
             $window.alert(res.data);
         });
+        
     }
 
     $scope.addFriendBut=friend=>{

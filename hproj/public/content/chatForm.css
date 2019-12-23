@@ -235,6 +235,7 @@ strong{
     overflow: hidden;
     border-radius: 50%;
     display: inline-block;
+    /*margin-top: 20px;*/
 }
 .myImage{
     width: auto;

@@ -13,8 +13,9 @@
     </div>
     <md-list-item class="room-hover" ng-repeat="room in rooms" ng-click="panelClick($index, room)" 
         id="{{room.chatroom_id}}" on-finish-render="ngRepeatFinished" class="room-item">
-        <img ng-src="https://i.pinimg.com/originals/d7/d8/35/d7d835cf05f2d9288f198054b3f1d650.jpg" 
-            class="md-avatar" alt="{{item.who}}" />
+        <div class="imgContainer">
+            <img src={{room.imageRoomSrc}} class="myImg" alt="{{item.who}}" />
+        </div>
             <div class="md-list-item-text" layout="column">
             <h3 style="line-height: 30px;">{{room.chatroom_name }} </h3>
             <p>{{room.member}}</p>
