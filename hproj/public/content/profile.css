@@ -48,6 +48,7 @@
         position: relative;
         top: 100px;
         border-left: 1px solid rgba(0, 0, 0, .10);
+        padding-left: 20px;
     }
 
     .form-container .password-input{

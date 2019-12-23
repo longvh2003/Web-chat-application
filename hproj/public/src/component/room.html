@@ -1,7 +1,7 @@
 <div class="room" data-ng-init="roominit()">
     <div class="room-nav">
-        <div class="add-room">
-            <md-button class="md-primary md-raised room-button" ng-click="showAdvanced($event)">
+        <div class="add-room" style="padding-left: 120px;">
+            <md-button  class="md-primary md-raised room-button" ng-click="showAdvanced($event)">
                     Create Room
             </md-button>
         </div>
@@ -16,10 +16,10 @@
         <div class="imgContainer">
             <img src={{room.imageRoomSrc}} class="myImg" alt="{{item.who}}" />
         </div>
-            <div class="md-list-item-text" layout="column">
-            <h3 style="line-height: 30px;">{{room.chatroom_name }} </h3>
-            <p>{{room.member}}</p>
-            <p >{{ room.chatroom_description }}</p>  
+            <div class="md-list-item-text" layout="column" style="padding-left: 20;">
+            <h3 style="line-height: 30px;margin: 5px;">{{room.chatroom_name }} </h3>
+            <p style="margin:5px">member : {{room.member}}</p>
+            
            
             </div>
     </md-list-item>

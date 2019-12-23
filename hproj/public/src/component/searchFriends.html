@@ -1,24 +1,28 @@
 <div style="height: 100%;">
+	<div style="display: inline-block;width: 100%; padding-top: 10px;"> 
+		
 	<md-autocomplete md-no-cache="true"
 	md-selected-item="selectedItem" 
 	md-items="item in querySearch(searchText)" 
 	md-search-text="searchText" 
 	md-item-text="item.username"
-	md-min-length='0'
+	md-min-length='0' style="width:72%;padding-left: 10%; display: inline-block;float: left;margin-right: 10px;"
 	>
 	<!-- <input type="text" id="username"  placeholder="Username" ng-model="asd"> -->
 		<md-item-template>
-			<span style="background: none;">{{ item.username }}</span>
+			<span style="background: none;margin-top: 0px;">{{ item.username }}</span>
 		</md-item-template>
 	</md-autocomplete>
-	<button id="add" ng-click="display()">Add</button>
-	<div style="display: flex;height: 100%;overflow: auto;overflow: auto;">
+	<button id="add" ng-click="display()" style="float: left ;" >Add <i class="fas fa-plus"></i></button>
+
+	</div>
+	<div style="display: flex;height: 100%;overflow: auto;overflow: auto; padding-top: 10px;">
 		<div style="width: 50%;height: 100%;">
-			<h1 class="title">Friends list</h1>
+			<h1 class="title" style="text-align: center;">Friends list</h1>
 			<!-- <ol id="listFriends">
 				<li ng-repeat="x in listFriends" ng-click="showEl(x)"><span class="friendName">{{x.username}}</span><button ng-click="unfriend(x)" class="inList">unfriend</button></li>
 			</ol> -->
-			<md-list-item ng-repeat="x in listFriends" ng-click="showEl(x)" class="noright list-friend">
+			<md-list-item ng-repeat="x in listFriends" ng-click="showEl(x)" class="noright list-friend" style="padding-top:20px;">
 				<div class="imageCotainer">
 					<img alt="{{ x.username }}" ng-src="{{ x.image }}" class="myImage" />
 				</div>
@@ -31,7 +35,7 @@
 		</div>
 
 		<div style="width: 50%;height: 100%;border-left: 1px solid rgba(0, 0, 0, .10);">
-			<h1 class="title">Invitation</h1>
+			<h1 class="title" style="text-align: center;">Invitation</h1>
 			<md-list-item ng-repeat="friend in listInvitation" ng-click="" class="noright list-friend">
 				<div class="imageCotainer">
 					<img alt="{{ friend.username }}" ng-src="{{ friend.image }}" class="myImage" />
@@ -52,10 +56,11 @@
 		transform: translateX(-50%);
 	}
 	.imageCotainer{
-		width: 50px;
-		height: 50px;
+		width: 40px;
+		height: 40px;
 		overflow: hidden;
 		border-radius: 50%;
 		margin-right: 20px;
+		margin-left: 30px;
 	}
 </style>
