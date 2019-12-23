@@ -40,4 +40,4 @@
 ---
 1.**![Link tài liệu](https://docs.google.com/document/d/1Dy3us59ODRr7fFIC_jlTLbhayHcJh97oyaIfqzo1aG0/edit?usp=sharing)**
 
-2.**![Link slide]()**
+2.**![Link slide](https://github.com/ph4nt0mb0y/Web-chat-application/blob/master/Webchat_application_Nhom8.pptx)**
